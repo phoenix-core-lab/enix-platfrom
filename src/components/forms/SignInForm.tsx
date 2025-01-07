@@ -38,12 +38,12 @@ const SigninForm = () => {
   const [cookies, setCookie] = useCookies([
     "secretToken",
     "phoneNumber",
+    "isActiveUser",
+    "subscriptionDate"
   ]);
-  // const [open, setOpen] = React.useState(false);
   const open = false;
   const [isLoading, setIsLoading] = React.useState(false);
   const [isOpenChangePassword, setIsOpenChangePassword] = React.useState(false);
-  // const [isOpenSendPassword, setIsOpenSendPassword] = React.useState(true);
   const isOpenSendPassword = true;
   const [phoneNum, setPhoneNum] = React.useState("+998");
 
@@ -76,6 +76,8 @@ const SigninForm = () => {
         const token = res.data.access_token;
         if (token) {
           setCookie("phoneNumber", phoneNum, { path: "/" });
+          setCookie("isActiveUser", res.data.is_active, { path: "/" });
+          setCookie("subscriptionDate", res.data.until, { path: "/" });
           setCookie("secretToken", token, { path: "/" });
           router.push("/dashboard");
         } else {
@@ -93,45 +95,6 @@ const SigninForm = () => {
       });
   };
 
-  // const handleSendPassword = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   setPhoneNum(e.currentTarget.elements.resetPhone.value);
-  //   axios
-  //     .post("http://192.168.1.182:40455/api/auth/send-phone-code", {
-  //       phoneNumber: e.currentTarget.elements.resetPhone.value,
-  //     })
-  //     .then(() => {
-  //       setIsOpenSendPassword(false);
-  //       setIsLoading(false);
-  //     })
-  //     .catch(() => {
-  //       toast.error("Телефон рақами нотўғри киритилган!");
-  //       setIsLoading(false);
-  //     });
-  // };
-
-  // const handleChangePassword = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   axios
-  //     .post("http://192.168.1.182:40455/api/auth/change-password", {
-  //       phoneNumber: phoneNum,
-  //       newPassword: e.currentTarget.elements.newPass.value,
-  //       code: e.currentTarget.elements.checkPass.value,
-  //     })
-  //     .then(() => {
-  //       setIsOpenChangePassword(false);
-  //       setIsOpenSendPassword(true);
-  //       setIsLoading(false);
-  //       toast.success("Пароль успешно изменен!");
-  //     })
-  //     .catch(() => {
-  //       setIsLoading(false);
-  //       toast.error("Код подтверждения введен неправильно!");
-  //     });
-  // };
-
   return (
     <CssVarsProvider defaultMode="dark">
       <CssBaseline />
@@ -140,7 +103,7 @@ const SigninForm = () => {
         styles={{
           ":root": {
             "--Form-maxWidth": "800px",
-            "--Transition-duration": "0.4s", // set to `none` to disable transition
+            "--Transition-duration": "0.4s", 
           },
         }}
       />
@@ -322,12 +285,6 @@ const SigninForm = () => {
                       type="submit"
                       loading={isLoading}
                       fullWidth
-                      // sx={{
-                      //   bgcolor: "#000",
-                      //   "&:hover": {
-                      //     bgcolor: "#00000095",
-                      //   },
-                      // }}
                     >
                       Кириш
                     </Button>

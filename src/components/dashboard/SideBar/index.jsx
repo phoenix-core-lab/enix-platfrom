@@ -13,7 +13,7 @@ const SideBar = () => {
       <div className="sideBarHeader">
         <div className="helpButtons">
           <button
-            title="Menyuni yoping"
+            title="Yangi so'rov yarating"
             onClick={() => {
               window.location.reload();
             }}
@@ -92,11 +92,12 @@ const SideBar = () => {
           <Image
             src="/images/images.svg"
             alt="website"
-            width="25"
+            width="22"
             height="25"
+            style={{ marginLeft: "2px" }}
           />
           <h3 className="sideBarLinkLabel">Fotosuratlar ishlash</h3>
-          <div className="hoverEffectIcon">
+          <div className="hoverEffectIcon imageGenerateIcon">
             <Image
               src="/images/arrow-forward-circle.svg"
               alt="website"

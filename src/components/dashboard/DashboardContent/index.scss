@@ -1,4 +1,4 @@
-.dasboardContentContainer{
+.dasboardContentContainer {
     width: 100%;
     height: 100%;
     display: flex;
@@ -7,16 +7,22 @@
     justify-content: space-between;
     align-items: center;
 
-    .notifyParagraph{
+    .notifyParagraph {
         margin-bottom: -10px;
         text-align: center;
         font-size: 14px;
         color: #676767;
     }
 
-    .footerText{
+    .footerText {
         font-size: 14px;
         color: #676767;
         margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .footerText {
+        display: none;
     }
 }
