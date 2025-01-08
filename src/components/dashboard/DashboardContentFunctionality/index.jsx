@@ -99,6 +99,9 @@ const DashboardContentFunctionality = (props) => {
             }
           })
           .catch((err) => {
+            if (err.response.status === 406) {
+              router.push("/prices?toast=true");
+            }
             console.error(err);
             setModelAnswer([
               {
@@ -215,16 +218,9 @@ const DashboardContentFunctionality = (props) => {
       .catch((err) => {
         console.error(err);
         setLoading(false);
-
         if (err.response?.status === 406) {
-          setModelAnswer((prev) => [
-            ...prev,
-            {
-              from_user: false,
-              message: "Cheklov tugadi. Siz obuna uchun pul to'lamadingiz.",
-            },
-          ]);
-          typeEffect("Cheklov tugadi. Siz obuna uchun pul to'lamadingiz.");
+          router.push("/prices?toast=true");
+          console.error(err);
         } else {
           setModelAnswer((prev) => [
             ...prev,
@@ -286,14 +282,8 @@ const DashboardContentFunctionality = (props) => {
         console.error(err);
         setLoading(false);
         if (err.response?.status === 406) {
-          setModelAnswer((prev) => [
-            ...prev,
-            {
-              from_user: false,
-              message: "Cheklov tugadi. Siz obuna uchun pul to'lamadingiz.",
-            },
-          ]);
-          typeEffect("Cheklov tugadi. Siz obuna uchun pul to'lamadingiz.");
+          router.push("/prices?toast=true");
+          console.error(err);
         } else {
           setModelAnswer((prev) => [
             ...prev,

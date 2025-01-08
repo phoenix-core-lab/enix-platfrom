@@ -1,0 +1,465 @@
+.sideBar {
+  min-width: 65px;
+  max-width: 65px;
+  height: 100%;
+  border-radius: 20px;
+  padding: 20px;
+  background: #171717;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  overflow: hidden;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+.sideBar:hover {
+  min-width: 280px;
+  max-width: 280px;
+}
+.sideBar:hover .sideBarLinkLabel {
+  opacity: 1;
+}
+.sideBar button {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.sideBar .sideBarHeader button img {
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+.sideBar .sideBarHeader button:hover img {
+  -webkit-filter: brightness(0.4);
+          filter: brightness(0.4);
+}
+.sideBar .sideBarHeader, .sideBar .sideBarContent, .sideBar .sideBarFooter {
+  width: 240px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+}
+.sideBar .sideBarContent {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.sideBar .helpButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.sideBar .sideBarLink {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 12px;
+}
+.sideBar .sideBarLink * {
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+.sideBar .sideBarLink:hover > img, .sideBar .sideBarLink:hover .sideBarLinkLabel {
+  -webkit-filter: brightness(0.6);
+          filter: brightness(0.6);
+}
+.sideBar .sideBarLink:hover .hoverEffectIcon {
+  opacity: 1;
+  margin-left: 0px;
+}
+.sideBar .sideBarLink:hover .hoverEffectIcon img {
+  -webkit-filter: brightness(1);
+          filter: brightness(1);
+}
+.sideBar .sideBarLinkLabel {
+  font-size: 16px;
+  font-weight: normal;
+  color: #B4B4B4;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+  opacity: 0;
+}
+.sideBar .hoverEffectIcon {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+  opacity: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.sideBar .hoverEffectIcon img {
+  width: 100%;
+  height: 100%;
+}
+.sideBar .sidebarDivider {
+  width: 100%;
+  height: 1px;
+  border-radius: 50%;
+  background: #444444;
+  margin: 20px 0;
+}
+.sideBar .sideBarFooter .sideBarLink .sideBarLinkLabel {
+  color: #CE3737;
+}
+
+@media screen and (max-width: 900px) {
+  .sideBar {
+    display: none;
+  }
+}/*# sourceMappingURL=index.css.map */enu .sideBarLink:hover .hoverEffectIcon img {
+  -webkit-filter: brightness(1);
+          filter: brightness(1);
+}
+.DashboardContentHeader .enixLogoMenu .mobileMenu .sideBarLinkLabel {
+  font-size: 16px;
+  font-weight: normal;
+  color: #b4b4b4;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+.DashboardContentHeader .enixLogoMenu .mobileMenu .hoverEffectIcon {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+  opacity: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.DashboardContentHeader .enixLogoMenu .mobileMenu .hoverEffectIcon img {
+  width: 100%;
+  height: 100%;
+}
+.DashboardContentHeader .enixLogoMenu .mobileMenu .sidebarDivider {
+  width: 100%;
+  height: 1px;
+  border-radius: 50%;
+  background: #444444;
+}
+.DashboardContentHeader .enixLogoMenu .helpButtons {
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.DashboardContentHeader .enixLogoMenu .helpButtons button {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.DashboardContentHeader .enixLogoMenu .plan {
+  padding: 20px;
+  border-radius: 10px;
+  background: #2f2f2f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.DashboardContentHeader .enixUserMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.DashboardContentHeader .enixUserMenu.openUserMenu .userDownMenu {
+  top: 85px;
+  opacity: 1;
+  visibility: visible;
+}
+.DashboardContentHeader .enixUserMenu.openUserMenu .userDownMenu .userDownMenuHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.DashboardContentHeader .enixUserMenu.openUserMenu .logoEnixArrow {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+@media screen and (max-width: 900px) {
+  .DashboardContentHeader .enixUserMenu.openUserMenu .userDownMenu {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+    top: 0;
+    right: 0;
+  }
+}
+.DashboardContentHeader .enixUserMenu * {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.DashboardContentHeader .enixUserMenu .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 6px;
+}
+.DashboardContentHeader .enixUserMenu .logoEnix {
+  width: 25px;
+  height: 25px;
+}
+.DashboardContentHeader .enixUserMenu .overlay {
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  .DashboardContentHeader .enixUserMenu .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10;
+  }
+}
+.DashboardContentHeader .enixUserMenu .userDownMenu {
+  width: 300px;
+  height: calc(100dvh - 125px);
+  padding: 20px 10px;
+  position: absolute;
+  background: #2f2f2f;
+  left: 0;
+  border-radius: 20px;
+  opacity: 0;
+  z-index: 15;
+  top: 95px;
+  visibility: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #434343 #2f2f2f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.DashboardContentHeader .enixUserMenu .userDownMenu * {
+  color: #fff;
+}
+.DashboardContentHeader .enixUserMenu .userDownMenu h3 {
+  padding: 0 10px;
+}
+.DashboardContentHeader .enixUserMenu .userDownMenu .sidebarDivider {
+  width: 100%;
+  height: 1px;
+  padding: 0 10px;
+  border-radius: 50%;
+  background: #444444;
+  margin: 15px 0 10px 0;
+}
+@media screen and (max-width: 900px) {
+  .DashboardContentHeader .enixUserMenu .userDownMenu {
+    position: fixed;
+    top: 0;
+    border-radius: 4px 0 0 4px;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    height: 100dvh;
+  }
+}
+.DashboardContentHeader .enixUserMenu .chatHistory {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: flex-strat;
+      -ms-flex-align: flex-strat;
+          align-items: flex-strat;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 7px;
+}
+.DashboardContentHeader .enixUserMenu .chatHistory .chatHistoryItem {
+  padding: 8px 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+  color: #ececec;
+  gap: 20px;
+}
+.DashboardContentHeader .enixUserMenu .chatHistory .chatHistoryItem h4 {
+  text-overflow: ellipsis;
+  font-weight: 400;
+  text-wrap: nowrap;
+  letter-spacing: 0.6px;
+  font-size: 14px;
+  line-height: 20px;
+  overflow: hidden;
+}
+.DashboardContentHeader .enixUserMenu .chatHistory .chatHistoryItem .editHistoryIcon {
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.DashboardContentHeader .enixUserMenu .chatHistory .chatHistoryItem .editHistoryIcon img {
+  -webkit-filter: brightness(0.4);
+          filter: brightness(0.4);
+  width: 20px;
+  height: 20px;
+}
+.DashboardContentHeader .enixUserMenu .chatHistory .chatHistoryItem .editHistoryIcon:hover img {
+  -webkit-filter: brightness(1.2);
+          filter: brightness(1.2);
+}
+.DashboardContentHeader .enixUserMenu .chatHistory .chatHistoryItem:hover {
+  background: rgba(28, 28, 28, 0.7137254902);
+}
+.DashboardContentHeader .enixUserMenu .chatHistory .chatHistoryItem:hover h4 {
+  max-width: 200px;
+}
+.DashboardContentHeader .enixUserMenu .chatHistory .chatHistoryItem:hover .editHistoryIcon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.DashboardContentHeader .headerTitle h3 {
+  font-size: 18px;
+  color: #b4b4b4;
+  font-weight: normal;
+}
+.DashboardContentHeader .headerTitle .getPlusButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px 15px;
+  border-radius: 8px;
+  gap: 10px;
+  background-color: #1f7251;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-size: 16px;
+  color: #ececec;
+}
+.DashboardContentHeader .headerTitle .getPlusButton img {
+  width: 15px;
+  height: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.DashboardContentHeader .headerTitle .getPlusButton:hover {
+  background-color: #3e63dd;
+  -webkit-box-shadow: 0px 0px 5px 0px #3e63dd;
+          box-shadow: 0px 0px 5px 0px #3e63dd;
+}
+.DashboardContentHeader .headerTitle .getPlusButton.activeUser {
+  background: radial-gradient(ellipse farthest-corner at right bottom, #fedb37 0%, #fdb931 8%, #9f7928 30%, #8a6e2f 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #ffffff 0%, #ffffac 8%, #d1b464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+}
+.DashboardContentHeader .headerTitle .getPlusButton.activeUser:hover {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(62, 99, 221, 0);
+          box-shadow: 0px 0px 5px 0px rgba(62, 99, 221, 0);
+}
+
+@media screen and (max-width: 900px) {
+  .DashboardContentHeader {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    background: rgba(0, 0, 0, 0);
+    padding: 0;
+    min-height: 35px;
+    max-height: 35px;
+  }
+  .DashboardContentHeader .enixLogoMenu.openLogoMenu .downMenu {
+    top: 45px;
+  }
+  .DashboardContentHeader .enixUserMenu .userDownMenu {
+    height: 100dvh;
+    top: 50px;
+    right: 0;
+    left: auto;
+  }
+  .DashboardContentHeader .enixLogoMenu .downMenu {
+    left: 0;
+    right: auto;
+  }
+  .DashboardContentHeader .enixUserMenu.openUserMenu .userDownMenu {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+    top: 0;
+    right: 0;
+  }
+  .DashboardContentHeader .enixUserMenu .userDownMenu {
+    position: fixed;
+    top: 0;
+    border-radius: 4px 0 0 4px;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    height: 100dvh;
+  }
+}/*# sourceMappingURL=index.css.map */
