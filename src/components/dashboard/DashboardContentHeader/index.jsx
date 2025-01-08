@@ -94,8 +94,24 @@ const DashboardContentHeader = () => {
             height={15}
           />
         </div>
+        {openUserMenu && (
+          <div
+            className="overlay"
+            onClick={() => setOpenUserMenu(!openUserMenu)}
+          ></div>
+        )}
         <div className="userDownMenu">
-          <h3>Suhbat tarixi</h3>
+          <div className="userDownMenuHeader">
+            <h3>Suhbat tarixi</h3>
+            <button onClick={() => setOpenUserMenu(!openUserMenu)}>
+              <Image
+                src="/images/closeIcon.svg"
+                alt="close"
+                width="10"
+                height="10"
+              />
+            </button>
+          </div>
           <div className="sidebarDivider"></div>
           <div className="chatHistory">
             {allChats.map(
