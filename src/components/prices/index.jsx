@@ -1,18 +1,20 @@
 "use client";
 import { Check, ArrowLeft } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 export default function Prices() {
-  const searchParams = useSearchParams();
-  const shouldShowToast = searchParams.get("toast") === "true";
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("personal");
   useEffect(() => {
-    if (shouldShowToast) {
-      toast.error("У вас закончился лимит");
+    if (typeof window !== "undefined") {
+      let searchParams = new URLSearchParams(window.location.search);
+      if (searchParams.get("toast")) {
+        toast.error("У вас закончился лимит");
+      }
     }
-  }, [shouldShowToast]);
+  }, []);
+  
   return (
     <>
       <ToastContainer />

@@ -100,7 +100,7 @@ const DashboardContentFunctionality = (props) => {
           })
           .catch((err) => {
             if (err.response.status === 406) {
-              router.push("/prices?toast=true");
+              router.push("/prices");
             }
             console.error(err);
             setModelAnswer([
