@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { CssVarsProvider } from "@mui/joy/styles";
+import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
 import GlobalStyles from "@mui/joy/GlobalStyles";
 import CssBaseline from "@mui/joy/CssBaseline";
 import Box from "@mui/joy/Box";
@@ -30,12 +30,40 @@ interface SignInFormElement extends HTMLFormElement {
   readonly elements: FormElements;
 }
 
+const theme = extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          solidBg: "#007bff",
+        },
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          solidBg: "#1e88e5",
+        },
+      },
+    },
+  },
+});
+
 const SignUpForm = () => {
   const router = useRouter();
   const [cookies, setCookie] = useCookies();
   const [isLoading, setIsLoading] = React.useState(false);
   const [isRegistered, setIsRegistered] = React.useState(false); // изменено название переменной на isRegistered
   const [phoneNum, setPhoneNum] = React.useState("+998");
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -52,7 +80,6 @@ const SignUpForm = () => {
     setPhoneNum(inputValue);
   };
 
-  
   const signUp = (event: React.FormEvent<SignInFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
@@ -102,11 +129,15 @@ const SignUpForm = () => {
     setIsLoading(false);
   };
 
-
   return (
-    <CssVarsProvider disableTransitionOnChange>
+    <CssVarsProvider
+      disableTransitionOnChange
+      defaultMode="dark"
+      disableNestedContext
+      theme={theme}
+    >
       <CssBaseline />
-      <ToastContainer />
+      <ToastContainer theme="dark" />
       <GlobalStyles
         styles={{
           ":root": {
@@ -137,7 +168,6 @@ const SignUpForm = () => {
             px: 2,
           }}
         >
-         
           <Box
             component="main"
             sx={{

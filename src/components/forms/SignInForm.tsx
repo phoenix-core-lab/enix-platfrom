@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { CssVarsProvider } from "@mui/joy/styles";
+import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
 import { useCookies } from "react-cookie";
 import GlobalStyles from "@mui/joy/GlobalStyles";
 import CssBaseline from "@mui/joy/CssBaseline";
@@ -33,19 +33,47 @@ interface SignInFormElement extends HTMLFormElement {
   readonly elements: FormElements;
 }
 
+const theme = extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          solidBg: "#007bff",
+        },
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          solidBg: "#1e88e5",
+        },
+      },
+    },
+  },
+});
+
 const SigninForm = () => {
   const router = useRouter();
   const [cookies, setCookie] = useCookies([
     "secretToken",
     "phoneNumber",
     "isActiveUser",
-    "subscriptionDate"
+    "subscriptionDate",
   ]);
   const open = false;
   const [isLoading, setIsLoading] = React.useState(false);
   const [isOpenChangePassword, setIsOpenChangePassword] = React.useState(false);
   const isOpenSendPassword = true;
   const [phoneNum, setPhoneNum] = React.useState("+998");
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -96,14 +124,14 @@ const SigninForm = () => {
   };
 
   return (
-    <CssVarsProvider defaultMode="dark">
+    <CssVarsProvider defaultMode="dark" disableNestedContext theme={theme}>
       <CssBaseline />
-      <ToastContainer />
+      <ToastContainer theme="dark" />
       <GlobalStyles
         styles={{
           ":root": {
             "--Form-maxWidth": "800px",
-            "--Transition-duration": "0.4s", 
+            "--Transition-duration": "0.4s",
           },
         }}
       />
@@ -281,11 +309,7 @@ const SigninForm = () => {
                         Парольни унутдингизми?
                       </Link>
                     </Box>
-                    <Button
-                      type="submit"
-                      loading={isLoading}
-                      fullWidth
-                    >
+                    <Button type="submit" loading={isLoading} fullWidth>
                       Кириш
                     </Button>
                   </Stack>

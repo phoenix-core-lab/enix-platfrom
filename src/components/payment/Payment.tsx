@@ -33,7 +33,7 @@ const Payment: React.FC = () => {
   });
   const [isOtpStep, setIsOtpStep] = useState(false);
   const [smsCode, setSmsCode] = useState<string>("");
-  const [cookies] = useCookies(["secretToken"]);
+  const [cookies, setCookie] = useCookies(["secretToken", "isActiveUser"]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
@@ -125,6 +125,7 @@ const Payment: React.FC = () => {
       );
       console.log("Оплата завершена:", response.data);
       alert("Оплата успешно произведена!");
+      setCookie("isActiveUser", true, { path: "/" });
       router.push("/");
     } catch (error) {
       const apiError = error as { response?: { data?: ApiErrorResponse } };
@@ -193,7 +194,6 @@ const Payment: React.FC = () => {
               <form onSubmit={handleSubmit} className="flex flex-col h-full">
                 <h2 className="mb-4 text-lg font-medium">Метод оплаты</h2>
                 <div className="grid md:grid-cols-2 gap-4 mb-4 sm:grid-cols-1">
-
                   <div className="">
                     <div className="flex items-center border rounded-md p-3">
                       <CreditCard className="mr-2 h-5 w-5 text-gray-400" />

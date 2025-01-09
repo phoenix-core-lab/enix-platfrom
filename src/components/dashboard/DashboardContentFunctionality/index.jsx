@@ -344,7 +344,7 @@ const DashboardContentFunctionality = (props) => {
 
   return (
     <div className="dashboardContentFunctionality">
-      <ToastContainer />
+      <ToastContainer theme="dark" />
       <AnimatePresence>
         {showAnswer && (
           <motion.div
