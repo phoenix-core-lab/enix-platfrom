@@ -217,7 +217,7 @@
       z-index: 15;
       top: 95px;
       visibility: hidden;
-      overflow-y: auto;
+      // overflow-y: auto;
       scrollbar-width: thin;
       scrollbar-color: #434343 #2f2f2f;
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -255,16 +255,29 @@
       justify-content: flex-start;
       gap: 7px;
 
-      .chatHistoryItem {
+      .chatHistoryItem { 
         padding: 8px 10px;
         border-radius: 8px;
-        overflow: hidden;
         display: flex;
         justify-content: space-between;
         align-items: center;
         text-decoration: none;
         color: #ececec;
         gap: 20px;
+
+        .miniMenu {
+          position: relative;
+
+          .miniMenuOpenButton {
+            padding: 0.5rem; // эквивалент p-2
+            border-radius: 9999px; // эквивалент rounded-full
+            transition: background-color 200ms; // эквивалент transition-colors и duration-200
+
+            &:hover {
+              background-color: rgba(55, 65, 81, 0.5);
+            }
+          }
+        }
 
         h4 {
           text-overflow: ellipsis;
@@ -303,6 +316,7 @@
 
           .editHistoryIcon {
             display: flex;
+            position: relative;
           }
         }
       }

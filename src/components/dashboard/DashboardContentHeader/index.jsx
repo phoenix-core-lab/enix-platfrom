@@ -20,6 +20,14 @@ const DashboardContentHeader = () => {
   const [activeUser, setActiveUser] = React.useState(false);
   const userMenuRef = React.useRef(null);
   const logoMenuRef = React.useRef(null);
+  const [openMiniMenus, setOpenMiniMenus] = React.useState({});
+
+  const toggleMiniMenu = (chatId) => {
+    setOpenMiniMenus((prevState) => ({
+      ...prevState,
+      [chatId]: !prevState[chatId],
+    }));
+  };
 
   const handleGetChats = () => {
     axios
@@ -37,21 +45,40 @@ const DashboardContentHeader = () => {
         router.push("/signin");
       });
   };
+  const deleteChat = (chatId) => {
+    axios
+      .delete(process.env.NEXT_PUBLIC_APP_API_URL + "/chat/" + chatId, {
+        headers: {
+          Authorization: `Bearer ${cookies.secretToken}`,
+        },
+      })
+      .then((res) => {
+        handleGetChats();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   const handleClickOutside = (event) => {
+    // Проверяем, произошел ли клик вне пользовательского меню
     if (
       userMenuRef.current &&
-      !userMenuRef.current.contains(event.target) &&
+      !userMenuRef.current.contains(event.target) && // Не кликнут внутри меню
       openUserMenu
     ) {
+      console.log("Закрытие пользовательского меню");
       setOpenUserMenu(false);
     }
 
+    // Проверяем, произошел ли клик вне главного меню
     if (
       logoMenuRef.current &&
-      !logoMenuRef.current.contains(event.target) &&
+      !logoMenuRef.current.contains(event.target) && // Не кликнут внутри главного меню
+      !Object.values(openMiniMenus).some((isOpen) => isOpen) && // Мини-меню не открыты
       openLogoMenu
     ) {
+      console.log("Закрытие главного меню");
       setOpenLogoMenu(false);
     }
   };
@@ -127,20 +154,51 @@ const DashboardContentHeader = () => {
                     className="chatHistoryItem"
                   >
                     <h4>{chat.chat_title}</h4>
-                    <div
-                      className="editHistoryIcon"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        alert("Редактирование истории!");
-                      }}
-                    >
-                      <Image
-                        src="/images/dots.svg"
-                        alt="website"
-                        width="20"
-                        height="20"
-                      />
+                    <div className="miniMenu">
+                      <button
+                        onClick={(event) => {
+                          event.preventDefault();
+                          event.stopPropagation();
+                          console.log("Toggle menu for chat:", chat.chat_id);
+                          toggleMiniMenu(chat.chat_id);
+                        }}
+                        className="miniMenuOpenButton"
+                      >
+                        <Image
+                          src="/images/dots.svg"
+                          alt="dots"
+                          width="20"
+                          height="20"
+                        />
+                      </button>
+
+                      {openMiniMenus[chat.chat_id] && (
+                        <>
+                          <div
+                            className="fixed inset-0 z-10"
+                            onClick={() => toggleMiniMenu(chat.chat_id)}
+                          />
+                          <div className="absolute left-0 mt-2 w-56 bg-[#171717] rounded-xl shadow-xl py-1.5 z-20 border border-gray-700/50 animate-in fade-in slide-in-from-top-2 duration-200">
+                            <div className="px-1.5">
+                              <button className="w-full px-3 py-2.5 flex items-center gap-3 text-gray-200 hover:bg-gray-700/50 rounded-lg transition-colors duration-200 group">
+                                <span className="font-medium">Share</span>
+                              </button>
+                              <button className="w-full px-3 py-2.5 flex items-center gap-3 text-gray-200 hover:bg-gray-700/50 rounded-lg transition-colors duration-200 group">
+                                <span className="font-medium">Rename</span>
+                              </button>
+                              <button className="w-full px-3 py-2.5 flex items-center gap-3 text-gray-200 hover:bg-gray-700/50 rounded-lg transition-colors duration-200 group">
+                                <span className="font-medium">Archive</span>
+                              </button>
+                              <button
+                                onClick={() => deleteChat(chat.chat_id)}
+                                className="w-full px-3 py-2.5 flex items-center gap-3 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors duration-200 group"
+                              >
+                                <span className="font-medium">Delete</span>
+                              </button>
+                            </div>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </Link>
                 )
