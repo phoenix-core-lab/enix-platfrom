@@ -1,122 +1,127 @@
-.sideBar{
-    min-width: 65px;
-    max-width: 65px;
-    height: 100%;
-    border-radius: 20px;
-    padding: 20px;
-    background: #171717;
+.sideBar {
+  min-width: 65px;
+  max-width: 65px;
+  height: 100%;
+  border-radius: 20px;
+  padding: 20px;
+  background: #171717;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow: hidden;
+  transition: 0.3s all;
+
+  &:hover {
+    min-width: 280px;
+    max-width: 280px;
+    .sideBarLinkLabel {
+      opacity: 1;
+    }
+  }
+
+  button {
+    background: #00000000;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .sideBarHeader button {
+    img {
+      transition: 0.3s all;
+    }
+    &:hover {
+      img {
+        filter: brightness(0.4);
+      }
+    }
+  }
+
+  .sideBarHeader,
+  .sideBarContent,
+  .sideBarFooter {
+    width: 240px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
+  }
+
+  .sideBarContent {
+    flex: 1;
+  }
+
+  .helpButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sideBarLink {
+    width: 100%;
+    display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
-    overflow: hidden;
+    align-items: center;
+    gap: 12px;
+    * {
+      transition: 0.3s all;
+    }
+
+    &:hover {
+      & > img,
+      .sideBarLinkLabel {
+        filter: brightness(0.6);
+      }
+      .hoverEffectIcon {
+        opacity: 1;
+        margin-left: 0px;
+        img {
+          filter: brightness(1);
+        }
+      }
+    }
+  }
+
+  .sideBarLinkLabel {
+    font-size: 16px;
+    font-weight: normal;
+    color: #b4b4b4;
     transition: 0.3s all;
+    opacity: 0;
+  }
 
-    &:hover{
-        min-width: 280px;
-        max-width: 280px;
-        .sideBarLinkLabel{
-            opacity: 1;
-        }
+  .hoverEffectIcon {
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+    opacity: 0;
+    transition: 0.3s;
+    img {
+      width: 100%;
+      height: 100%;
     }
+  }
 
-    button{
-        background: #00000000;
-        border: none;
-        outline: none;
-        cursor: pointer;
+  .sidebarDivider {
+    width: 100%;
+    height: 1px;
+    border-radius: 50%;
+    background: #444444;
+    margin: 20px 0;
+  }
+
+  .sideBarFooter {
+    .sideBarLink .sideBarLinkLabel {
+      color: #ce3737;
     }
-
-    .sideBarHeader button{
-        img{
-            transition: 0.3s all;
-        }
-        &:hover{
-            img{
-                filter: brightness(0.4);
-            }
-        }
+    .sideBarLink .sideBarLinkLabelLanguage {
+      color: wheat;
     }
-
-    .sideBarHeader, .sideBarContent, .sideBarFooter{
-        width: 240px;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }   
-
-    .sideBarContent{
-        flex: 1;
-    }
-
-    .helpButtons{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .sideBarLink{
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 12px;
-        *{
-            transition: 0.3s all;
-        }
-
-        &:hover{
-            &>img, .sideBarLinkLabel{
-             filter: brightness(0.6);
-             
-            }    
-            .hoverEffectIcon{
-                opacity: 1;
-                margin-left: 0px;
-                img{
-                    filter: brightness(1);
-                }
-            }
-        }
-    }
-
-    .sideBarLinkLabel{
-        font-size: 16px;
-        font-weight: normal;
-        color: #B4B4B4;
-        transition: 0.3s all;
-        opacity: 0;
-    }
-
-    .hoverEffectIcon{
-        width: 20px;
-        height: 20px;
-        margin-left: 20px;
-        opacity: 0;
-        transition: 0.3s;
-        img{
-            width: 100%;
-            height: 100%;  
-        }
-    }
-
-    .sidebarDivider{
-        width: 100%;
-        height: 1px;
-        border-radius: 50%;
-        background: #444444;
-        margin: 20px 0;
-    }
-
-    .sideBarFooter{
-        .sideBarLink .sideBarLinkLabel{
-            color: #CE3737;
-        }
-    }
+  }
 }
 
-@media screen and (max-width: 900px){
-    .sideBar{
-        display: none;
-    }
+@media screen and (max-width: 900px) {
+  .sideBar {
+    display: none;
+  }
 }

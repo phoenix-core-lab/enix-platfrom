@@ -9,11 +9,11 @@ import Button from "@mui/joy/Button";
 import Divider from "@mui/joy/Divider";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
-import Link from "@mui/joy/Link";
+import { Link } from "@/i18n/routing";
 import Input from "@mui/joy/Input";
 import Typography from "@mui/joy/Typography";
 import Stack from "@mui/joy/Stack";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -198,8 +198,8 @@ const SignUpForm = () => {
                 </Typography>
                 <Typography level="body-sm">
                   Аллақачон аккаунтингиз борми?{" "}
-                  <Link href="/signin" level="title-sm">
-                    Кириш
+                  <Link href="/signin">
+                    <Typography color="primary">Кириш</Typography>
                   </Link>
                 </Typography>
               </Stack>
@@ -258,7 +258,12 @@ const SignUpForm = () => {
                     />
                   </FormControl>
                   <Stack gap={4} sx={{ mt: 2 }}>
-                    <Button type="submit" loading={isLoading} fullWidth>
+                    <Button
+                      color="primary"
+                      type="submit"
+                      loading={isLoading}
+                      fullWidth
+                    >
                       Рўйхатдан ўтиш
                     </Button>
                   </Stack>

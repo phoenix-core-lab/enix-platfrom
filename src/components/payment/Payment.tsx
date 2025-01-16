@@ -1,7 +1,7 @@
 "use client";
 import { ArrowLeft, CreditCard } from "lucide-react";
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 

@@ -1,0 +1,84 @@
+{
+  "SignIn": {
+    "newUser": "",
+    "register": "",
+    "telphoneNumber": "",
+    "password": "",
+    "rememberMe": "",
+    "forgotPassword": "",
+    "signIn": ""
+  },
+  "Register": {
+    "alreadyHaveAccount": "",
+    "login": "",
+    "name": "",
+    "telphoneNumber": "",
+    "password": "",
+    "code": "",
+    "register": ""
+  },
+  "Dashboard": {
+    "plus": "",
+    "title": "",
+    "text": "",
+    "prompt1": "",
+    "prompt2": "",
+    "prompt3": "",
+    "sideBar": {
+      "title": "",
+      "text": "",
+      "text2": ""
+    },
+    "history": { "title": "" }
+  },
+  "Plan": {
+    "Premium": {
+      "Maintitle": "",
+      "topText": "",
+      "title": "",
+      "price": "",
+      "priceSum": "",
+      "priceMonth": "",
+      "subtitle": "",
+      "buttonText": "",
+      "text": "",
+      "text2": "",
+      "text3": "",
+      "text4": "",
+      "text5": "",
+      "text6": "",
+      "bottomText": ""
+    },
+    "Free": {
+      "Maintitle": "",
+      "price": "",
+      "priceSum": "",
+      "priceMonth": "",
+      "subtitle": "",
+      "buttonText": "",
+      "text": "",
+      "text2": "",
+      "text3": "",
+      "text4": "",
+      "text5": "",
+      "alreadyHavePremium": "",
+      "linkText": ""
+    },
+    "bottomText": "",
+    "BottomLink": ""
+  },
+  "Payment": {
+    "title": "",
+    "titleText": "",
+    "title1": "",
+    "title1Text": "",
+    "text1Priice": "",
+    "title2": "",
+    "title2Price": "",
+    "title3": "",
+    "title3Price": "",
+    "PayMethod": "",
+    "ChoosePaymentWay": "",
+    "ButtonText": ""
+  }
+}

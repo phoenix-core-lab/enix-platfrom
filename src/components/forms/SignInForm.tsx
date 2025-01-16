@@ -11,13 +11,13 @@ import Checkbox from "@mui/joy/Checkbox";
 import Divider from "@mui/joy/Divider";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
-import Link from "@mui/joy/Link";
+import { Link } from "@/i18n/routing";
 import Input from "@mui/joy/Input";
 import Typography from "@mui/joy/Typography";
 import Stack from "@mui/joy/Stack";
-import { useRouter } from "next/navigation";
-
+import { useRouter } from "@/i18n/routing";
 import { ToastContainer, toast } from "react-toastify";
+import { useLocale } from "next-intl";
 import "react-toastify/dist/ReactToastify.css";
 
 import axios from "axios";
@@ -66,6 +66,7 @@ const SigninForm = () => {
   const isOpenSendPassword = true;
   const [phoneNum, setPhoneNum] = React.useState("+998");
   const [isMounted, setIsMounted] = React.useState(false);
+  const locale = useLocale();
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -107,7 +108,7 @@ const SigninForm = () => {
           setCookie("isActiveUser", res.data.is_active, { path: "/" });
           setCookie("subscriptionDate", res.data.until, { path: "/" });
           setCookie("secretToken", token, { path: "/" });
-          router.push("/dashboard");
+          router.push("dashboard");
         } else {
           toast.error("Токенни олиш мумкин бўлмади.");
         }
@@ -187,8 +188,8 @@ const SigninForm = () => {
                 </Typography>
                 <Typography level="body-sm">
                   Янги фойдаланувчи?{" "}
-                  <Link href="/signup" level="title-sm">
-                    Рўйхатдан ўтиш
+                  <Link href="/signup">
+                    <Typography color="primary">Рўйхатдан ўтиш</Typography>
                   </Link>
                 </Typography>
               </Stack>
@@ -208,13 +209,12 @@ const SigninForm = () => {
                         }}
                       >
                         <Typography level="body-sm">Парольни тиклаш</Typography>
-                        <Link
-                          level="title-sm"
+                        <Button
                           onClick={() => setIsOpenChangePassword(false)}
                           sx={{ fontWeight: "400" }}
                         >
                           Оркага қайтиш
-                        </Link>
+                        </Button>
                       </Box>
                       <Box
                         sx={{
@@ -301,12 +301,10 @@ const SigninForm = () => {
                         label="Мени эслаб қолиш"
                         name="persistent"
                       />
-                      <Link
-                        level="title-sm"
-                        href="/signup"
-                        sx={{ fontWeight: "400" }}
-                      >
-                        Парольни унутдингизми?
+                      <Link href="/signup">
+                        <Typography fontWeight={400} color="primary">
+                          Парольни унутдингизми?
+                        </Typography>
                       </Link>
                     </Box>
                     <Button type="submit" loading={isLoading} fullWidth>

@@ -2,12 +2,14 @@
 import React from "react";
 import "./index.scss";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { CookiesProvider, useCookies } from "react-cookie";
 import axios from "axios";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useLocale } from "next-intl";
 
 const DashboardContentHeader = () => {
+  const locale = useLocale();
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(
     "secretToken",
@@ -336,6 +338,17 @@ const DashboardContentHeader = () => {
                 />
               </div>
             </Link>
+            <button className="sideBarLink">
+              <Image
+                src="/images/language.svg"
+                alt="website"
+                width="25"
+                height="25"
+              />
+              <h3 className="sideBarLinkLabel sideBarLinkLabelLanguage">
+                {locale === "uz" ? "Uzbek" : "Русский"}
+              </h3>
+            </button>
           </div>
           <div className="plan freePlan">
             <div className="planIcon"></div>

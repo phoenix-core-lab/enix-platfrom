@@ -3,6 +3,7 @@ import { Check, ArrowLeft } from "lucide-react";
 import React, { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
+import { Link } from "@/i18n/routing";
 export default function Prices() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("personal");
@@ -14,10 +15,10 @@ export default function Prices() {
       }
     }
   }, []);
-  
+
   return (
     <>
-      <ToastContainer theme="dark"/>
+      <ToastContainer theme="dark" />
       <div className="min-h-screen bg-[#1A1A1A] text-white pt-6 pb-12 px-4">
         <div className="max-w-7xl mx-auto">
           <button
@@ -154,9 +155,12 @@ export default function Prices() {
                 </ul>
                 <div className="text-sm text-gray-400">
                   У вас уже есть Premium план?{" "}
-                  <a href="/payment" className="text-[#00A67E] hover:underline">
+                  <Link
+                    href="/payment"
+                    className="text-[#00A67E] hover:underline"
+                  >
                     помощь по выставлению счетов
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -210,9 +214,9 @@ export default function Prices() {
                     <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
                     <span>
                       Данные команды исключены из обучения по умолчанию.{" "}
-                      <a className="text-[#00A67E] hover:underline">
+                      <Link className="text-[#00A67E] hover:underline">
                         Узнать больше
-                      </a>
+                      </Link>
                     </span>
                   </li>
                 </ul>
@@ -227,12 +231,12 @@ export default function Prices() {
             <p className="text-gray-400 mb-2">
               Вам нужны дополнительные возможности для вашего бизнеса?
             </p>
-            <a
+            <Link
               href="https://t.me/timur_ktr"
               className="text-[#00A67E] hover:underline"
             >
               См. Enix Enterprise
-            </a>
+            </Link>
           </div>
         </div>
       </div>

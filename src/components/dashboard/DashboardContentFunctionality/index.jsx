@@ -4,7 +4,7 @@ import * as React from "react";
 import { useRef, useCallback } from "react";
 import "./index.scss";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { AnimatePresence, motion } from "framer-motion";

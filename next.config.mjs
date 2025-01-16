@@ -1,6 +1,9 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+const withNextIntl = createNextIntlPlugin();
+
 /** @type {import('next').NextConfig} */
-// https://giphy.com add
 const nextConfig = {
+  output: 'standalone',
   images: {
     remotePatterns: [
       {
@@ -15,4 +18,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default withNextIntl(nextConfig);

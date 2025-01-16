@@ -2,12 +2,14 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import "./index.scss";
 import { CookiesProvider, useCookies } from "react-cookie";
+import { useLocale } from "next-intl";
 
 const SideBar = () => {
   const [cookies, setCookie, removeCookie] = useCookies("secretToken");
+  const locale = useLocale();
   return (
     <div className="sideBar">
       <div className="sideBarHeader">
@@ -108,6 +110,17 @@ const SideBar = () => {
         </Link>
       </div>
       <div className="sideBarFooter">
+        <button className="sideBarLink">
+          <Image
+            src="/images/language.svg"
+            alt="website"
+            width="25"
+            height="25"
+          />
+          <h3 className="sideBarLinkLabel sideBarLinkLabelLanguage">
+            {locale === "uz" ? "Uzbek" : "Русский"}
+          </h3>
+        </button>
         <button
           className="sideBarLink"
           href={"https://enix.uz/"}
