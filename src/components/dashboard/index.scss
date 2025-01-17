@@ -1,3 +1,13 @@
+.dashboardWrapper{
+    width: 100%;
+    height: 100dvh;
+    min-height: 500px;
+    display: flex;
+    justify-content: flex-start;
+    background: #212121;
+    position: relative;
+}
+
 .dashboardContainer {
     width: 100%;
     height: 100dvh;

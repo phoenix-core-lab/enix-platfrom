@@ -59,6 +59,7 @@ const SignUpForm = () => {
   const [isMounted, setIsMounted] = React.useState(false);
   const t = useTranslations("Register");
   React.useEffect(() => {
+    localStorage.setItem("joy-mode", "dark");
     setIsMounted(true);
   }, []);
 

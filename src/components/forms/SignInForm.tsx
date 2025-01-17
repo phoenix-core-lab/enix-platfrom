@@ -36,13 +36,6 @@ interface SignInFormElement extends HTMLFormElement {
 
 const theme = extendTheme({
   colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          solidBg: "#007bff",
-        },
-      },
-    },
     dark: {
       palette: {
         primary: {
@@ -71,6 +64,7 @@ const SigninForm = () => {
   const locale = useLocale();
 
   React.useEffect(() => {
+    localStorage.setItem("joy-mode", "dark");
     setIsMounted(true);
   }, []);
 
@@ -125,7 +119,7 @@ const SigninForm = () => {
   };
 
   return (
-    <CssVarsProvider defaultMode="dark" disableNestedContext theme={theme}>
+    <CssVarsProvider theme={theme} disableNestedContext>
       <CssBaseline />
       <ToastContainer theme="dark" />
       <GlobalStyles

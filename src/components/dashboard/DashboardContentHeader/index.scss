@@ -5,27 +5,22 @@
   background: #171717;
   border-radius: 20px;
   padding: 20px;
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  .logoChatEnixArrow {
+    transform: rotate(-90deg);
+  }
+
+  .logoEnixArrow {
+    transform: rotate(90deg);
+  }
 
   .enixLogoMenu {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    &.openLogoMenu {
-      .downMenu {
-        top: 60px;
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .logoEnixArrow {
-        transform: rotate(180deg);
-      }
-    }
 
     * {
       transition: all 0.3s;
@@ -41,107 +36,7 @@
     .logoEnix {
       width: 25px;
       height: 25px;
-    }
-
-    .downMenu {
-      display: flex;
-      flex-direction: column;
-      width: 300px;
-      padding: 10px;
-      position: absolute;
-      z-index: 2;
-      background: #2f2f2f;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      right: 0;
-      border-radius: 20px;
-      opacity: 0;
-      top: 95px;
-      visibility: hidden;
-      gap: 10px;
-    }
-
-    .mobileMenu {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-
-      .sideBarLink {
-        width: 100%;
-        padding: 5px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 12px;
-
-        * {
-          transition: 0.3s all;
-        }
-
-        &:hover {
-          & > img,
-          .sideBarLinkLabel {
-            filter: brightness(0.6);
-          }
-
-          .hoverEffectIcon {
-            opacity: 1;
-            margin-left: 0px;
-
-            img {
-              filter: brightness(1);
-            }
-          }
-        }
-      }
-
-      .sideBarLinkLabel {
-        font-size: 16px;
-        font-weight: normal;
-        color: #b4b4b4;
-        transition: 0.3s all;
-      }
-
-      .hoverEffectIcon {
-        width: 20px;
-        height: 20px;
-        margin-left: 20px;
-        opacity: 0;
-        transition: 0.3s;
-
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-      .sidebarDivider {
-        width: 100%;
-        height: 1px;
-        border-radius: 50%;
-        background: #444444;
-      }
-    }
-
-    .helpButtons {
-      padding: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      button {
-        background: #00000000;
-        border: none;
-        outline: none;
-        cursor: pointer;
-      }
-    }
-
-    .plan {
-      padding: 20px;
-      border-radius: 10px;
-      background: #2f2f2f;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: rotate(90deg);
     }
   }
 
@@ -149,31 +44,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    &.openUserMenu {
-      .userDownMenu {
-        top: 85px;
-        opacity: 1;
-        visibility: visible;
-
-        .userDownMenuHeader {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-      }
-
-      .logoEnixArrow {
-        transform: rotate(180deg);
-      }
-      @media screen and (max-width: 900px) {
-        .userDownMenu {
-          transform: translateX(0%);
-          top: 0;
-          right: 0;
-        }
-      }
-    }
 
     * {
       transition: all 0.3s;
@@ -202,123 +72,6 @@
         height: 100%;
         background: rgba(0, 0, 0, 0.6);
         z-index: 10;
-      }
-    }
-
-    .userDownMenu {
-      width: 300px;
-      height: calc(100dvh - 125px);
-      padding: 20px 10px;
-      position: absolute;
-      background: #2f2f2f;
-      left: 0;
-      border-radius: 20px;
-      opacity: 0;
-      z-index: 15;
-      top: 95px;
-      visibility: hidden;
-      // overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #434343 #2f2f2f;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-
-      * {
-        color: #fff;
-      }
-
-      h3 {
-        padding: 0 10px;
-      }
-
-      .sidebarDivider {
-        width: 100%;
-        height: 1px;
-        padding: 0 10px;
-        border-radius: 50%;
-        background: #444444;
-        margin: 15px 0 10px 0;
-      }
-
-      @media screen and (max-width: 900px) {
-        position: fixed;
-        top: 0;
-        border-radius: 4px 0 0 4px;
-        transform: translateX(100%);
-        height: 100dvh;
-      }
-    }
-
-    .chatHistory {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-strat;
-      justify-content: flex-start;
-      gap: 7px;
-
-      .chatHistoryItem { 
-        padding: 8px 10px;
-        border-radius: 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        text-decoration: none;
-        color: #ececec;
-        gap: 20px;
-
-        .miniMenu {
-          position: relative;
-
-          .miniMenuOpenButton {
-            padding: 0.5rem; // эквивалент p-2
-            border-radius: 9999px; // эквивалент rounded-full
-            transition: background-color 200ms; // эквивалент transition-colors и duration-200
-
-            &:hover {
-              background-color: rgba(55, 65, 81, 0.5);
-            }
-          }
-        }
-
-        h4 {
-          text-overflow: ellipsis;
-          font-weight: 400;
-          text-wrap: nowrap;
-          letter-spacing: 0.6px;
-          font-size: 14px;
-          line-height: 20px;
-          overflow: hidden;
-        }
-
-        .editHistoryIcon {
-          display: none;
-          justify-content: center;
-          align-items: center;
-
-          img {
-            filter: brightness(0.4);
-            width: 20px;
-            height: 20px;
-          }
-
-          &:hover {
-            img {
-              filter: brightness(1.2);
-            }
-          }
-        }
-
-        &:hover {
-          background: #1c1c1cb6;
-
-          h4 {
-            max-width: 200px;
-          }
-
-          .editHistoryIcon {
-            display: flex;
-            position: relative;
-          }
-        }
       }
     }
   }
@@ -387,35 +140,5 @@
     padding: 0;
     min-height: 35px;
     max-height: 35px;
-  }
-
-  .DashboardContentHeader .enixLogoMenu.openLogoMenu .downMenu {
-    top: 45px;
-  }
-
-  .DashboardContentHeader .enixUserMenu .userDownMenu {
-    height: 100dvh;
-    top: 50px;
-    right: 0;
-    left: auto;
-  }
-
-  .DashboardContentHeader .enixLogoMenu .downMenu {
-    left: 0;
-    right: auto;
-  }
-
-  .DashboardContentHeader .enixUserMenu.openUserMenu .userDownMenu {
-    transform: translateX(0%);
-    top: 0;
-    right: 0;
-  }
-
-  .DashboardContentHeader .enixUserMenu .userDownMenu {
-    position: fixed;
-    top: 0;
-    border-radius: 4px 0 0 4px;
-    transform: translateX(100%);
-    height: 100dvh;
   }
 }
