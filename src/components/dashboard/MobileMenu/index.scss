@@ -11,9 +11,8 @@
 .dashboardWrapper.openLogoMenu {
     .downMenu {
         margin-right: 0px !important;
-
     }
-    
+
     .logoEnixArrow {
         transform: rotate(-90deg);
     }
@@ -31,6 +30,7 @@
     background: #2f2f2f;
     gap: 10px;
     position: relative;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
 
     .userDownMenuHeader {
         display: flex;
@@ -41,7 +41,7 @@
         width: 300px;
         display: flex;
         justify-content: space-between;
-        padding: 15px 10px 15px 18px;
+        padding: 15px 18px 15px 18px;
         z-index: 10;
         background: #2f2f2f;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -72,9 +72,10 @@
             width: 100%;
             padding: 5px;
             display: flex;
+            flex-wrap: nowrap;
             justify-content: flex-start;
             align-items: center;
-            gap: 12px;
+            gap: 5px;
 
             * {
                 transition: 0.3s all;
@@ -217,18 +218,60 @@
 
 }
 
+.downMenuShadow {
+    transition: 0.3s;
+}
+
 @media screen and (max-width: 1400px) {
     .downMenu {
         position: absolute;
         top: 0;
-        left: -300px;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        right: 0;
         z-index: 999;
     }
 
+    .downMenuShadow {
+        position: absolute;
+        z-index: 999;
+        width: 100%;
+        right: -100%;
+        height: 100dvh;
+        background: #00000097;
+    }
 
-    .dashboardWrapper.openLogoMenu .downMenu {
+
+    .dashboardWrapper.openLogoMenu .downMenu,
+    .dashboardWrapper.openLogoMenu .downMenuShadow {
         margin-right: 0px !important;
+        right: 0;
+    }
+
+    .downMenu,
+    .userDownMenuHeader {
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        border-right: none;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .downMenu {
         left: 0;
+    }
+
+
+    .dashboardWrapper.openLogoMenu .downMenu,
+    .dashboardWrapper.openLogoMenu .downMenuShadow {
+        left: 0;
+    }
+
+    .downMenuShadow {
+        left: -100%;
+    }
+
+    .downMenu,
+    .userDownMenuHeader {
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        border-left: none;
     }
 }

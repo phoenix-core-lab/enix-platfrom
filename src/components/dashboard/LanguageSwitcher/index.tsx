@@ -1,24 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useRouter, usePathname } from "@/i18n/routing";
 import "./index.scss"; // Import global SCSS file
+import { useLocale } from "next-intl";
 import Image from "next/image";
 
 const LanguageSwitcher = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const [language, setLanguage] = React.useState<string>("uz");
-
-  useEffect(() => {
-    // Determine language from pathname
-    const currentLanguage = pathname?.startsWith("/ru") ? "ru" : "uz";
-    setLanguage(currentLanguage);
-  }, [pathname]);
+  const locale = useLocale();
 
   const handleLanguageChange = () => {
-    const newLanguage = language === "uz" ? "ru" : "uz";
-    const newPathname = pathname?.replace(/^\/(uz|ru)/, "") || "";
-    router.push(`/${newLanguage}${newPathname}`);
-    setLanguage(newLanguage);
+    const newLocale = locale === "uz" ? "ru" : "uz";
+    router.push(pathname, { locale: newLocale });
   };
 
   return (
@@ -31,7 +24,7 @@ const LanguageSwitcher = () => {
           height="25"
         />
         <h3 className="sideBarLinkLabel sideBarLinkLabelLanguage">
-          {language === "uz" ? "Uzbek" : "Русский"}
+          {locale === "uz" ? "Uzbek" : "Русский"}
         </h3>
       </button>
     </div>

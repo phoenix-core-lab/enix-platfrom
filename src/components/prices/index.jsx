@@ -39,7 +39,7 @@ export default function Prices() {
             {t("Back")}
           </button>
           <h1 className="text-4xl font-bold text-center mb-8">
-            {t("Maintitle")}
+           {isActiveUser ? t("Soldtitle") : t("Maintitle")}
           </h1>
 
           {activeTab === "personal" ? (

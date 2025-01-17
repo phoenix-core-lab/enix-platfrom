@@ -7,7 +7,6 @@ import GlobalStyles from "@mui/joy/GlobalStyles";
 import CssBaseline from "@mui/joy/CssBaseline";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
-import Checkbox from "@mui/joy/Checkbox";
 import Divider from "@mui/joy/Divider";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
@@ -17,7 +16,6 @@ import Typography from "@mui/joy/Typography";
 import Stack from "@mui/joy/Stack";
 import { useRouter } from "@/i18n/routing";
 import { ToastContainer, toast } from "react-toastify";
-import { useLocale } from "next-intl";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
 import axios from "axios";
@@ -61,7 +59,6 @@ const SigninForm = () => {
   const isOpenSendPassword = true;
   const [phoneNum, setPhoneNum] = React.useState("+998");
   const [isMounted, setIsMounted] = React.useState(false);
-  const locale = useLocale();
 
   React.useEffect(() => {
     localStorage.setItem("joy-mode", "dark");
@@ -143,7 +140,7 @@ const SigninForm = () => {
           backdropFilter: "blur(12px)",
         }}
       >
-        <Box padding={2}>
+        <Box padding={2} sx={{position: "absolute", top: 0, left: 0}}>
           <LanguageSwitcher />
         </Box>
         <Box
@@ -185,7 +182,7 @@ const SigninForm = () => {
                 </Typography>
                 <Typography level="body-sm">
                   {t("newUser")}
-                  <Link href="/signup">
+                  <Link href="/signup" className="authLink">
                     <Typography color="primary">{t("register")}</Typography>
                   </Link>
                 </Typography>
@@ -234,7 +231,6 @@ const SigninForm = () => {
                       </Box>
                     </form>
                   ) : (
-                    // <form onSubmit={(e) => handleChangePassword(e)}>
                     <form>
                       <Typography level="body-sm">
                         {t("confirmCode")}

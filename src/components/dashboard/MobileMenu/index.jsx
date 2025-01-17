@@ -7,8 +7,12 @@ import { useRouter } from "@/i18n/routing";
 import { CookiesProvider, useCookies } from "react-cookie";
 import { useMainContext } from "@/providers/contextProvider";
 import axios from "axios";
+import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
+import LanguageSwitcher from "../LanguageSwitcher";
+
 const MobileMenu = () => {
+  const t = useTranslations("Dashboard");
   const locale = useLocale();
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(
@@ -25,92 +29,95 @@ const MobileMenu = () => {
   }, [cookies]);
 
   return (
-    <div className="downMenu">
-      <div className="userDownMenuHeader">
-        <button onClick={() => setOpenLogoMenu(!openLogoMenu)}>
-          <Image
-            src="/images/closeIcon.svg"
-            alt="close"
-            width="15"
-            height="15"
-          />
-        </button>
-        <h3>Меню</h3>
-      </div>
-      <div className="mobileMenu">
-        <Link className="sideBarLink" href={"/dashboard"}>
-          <Image
-            src="/images/duplicate.svg"
-            alt="albums"
-            width="25"
-            height="25"
-          />
-          <h3 className="sideBarLinkLabel">Новый чат</h3>
-          <div className="hoverEffectIcon">
+    <div className="downMenuShadow" onClick={() => setOpenLogoMenu(!openLogoMenu)}>
+      <div className="downMenu" onClick={(e) => e.stopPropagation()}>
+        <div className="userDownMenuHeader">
+          <h3>{t("menu")}</h3>
+
+          <button onClick={() => setOpenLogoMenu(!openLogoMenu)}>
             <Image
-              src="/images/arrow-forward-circle.svg"
-              alt="website"
-              width="20"
-              height="20"
+              src="/images/closeIcon.svg"
+              alt="close"
+              width="15"
+              height="15"
             />
-          </div>
-        </Link>
-        <Link className="sideBarLink" href={"https://enix.uz/"}>
-          <Image
-            src="/images/planet.svg"
-            alt="website"
-            width="25"
-            height="25"
-          />
-          <h3 className="sideBarLinkLabel">Veb-saytga o&apos;ting</h3>
-          <div className="hoverEffectIcon">
+          </button>
+        </div>
+        <div className="mobileMenu">
+          <Link className="sideBarLink" href={"/dashboard"} onClick={() => setOpenLogoMenu(!openLogoMenu)}>
             <Image
-              src="/images/arrow-forward-circle.svg"
-              alt="website"
-              width="20"
-              height="20"
+              src="/images/duplicate.svg"
+              alt="albums"
+              width="25"
+              height="25"
             />
-          </div>
-        </Link>
-        <div className="sidebarDivider"></div>
-        <Link className="sideBarLink" href={"/dashboard/text"}>
-          <Image
-            src="/images/document-text.svg"
-            alt="website"
-            width="25"
-            height="25"
-          />
-          <h3 className="sideBarLinkLabel">Matn bilan ishlash</h3>
-          <div className="hoverEffectIcon">
+            <h3 className="sideBarLinkLabel">{t("newChat")}</h3>
+            <div className="hoverEffectIcon">
+              <Image
+                src="/images/arrow-forward-circle.svg"
+                alt="website"
+                width="20"
+                height="20"
+              />
+            </div>
+          </Link>
+          <LanguageSwitcher />
+          <Link className="sideBarLink" href={"https://enix.uz/"} onClick={() => setOpenLogoMenu(!openLogoMenu)}>
             <Image
-              src="/images/arrow-forward-circle.svg"
+              src="/images/planet.svg"
               alt="website"
-              width="20"
-              height="20"
+              width="25"
+              height="25"
             />
-          </div>
-        </Link>
-        <Link className="sideBarLink" href={"/dashboard/image"}>
-          <Image
-            src="/images/images.svg"
-            alt="website"
-            width="22"
-            height="25"
-            style={{ marginLeft: "2px" }}
-          />
-          <h3 className="sideBarLinkLabel">Fotosuratlar ishlash</h3>
-          <div className="hoverEffectIcon imageGenerateIcon">
+            <h3 className="sideBarLinkLabel">{t("sideBar.title")}</h3>
+            <div className="hoverEffectIcon">
+              <Image
+                src="/images/arrow-forward-circle.svg"
+                alt="website"
+                width="20"
+                height="20"
+              />
+            </div>
+          </Link>
+          <div className="sidebarDivider"></div>
+          <Link className="sideBarLink" href={"/dashboard/text"} onClick={() => setOpenLogoMenu(!openLogoMenu)}>
             <Image
-              src="/images/arrow-forward-circle.svg"
+              src="/images/document-text.svg"
               alt="website"
-              width="20"
-              height="20"
+              width="25"
+              height="25"
             />
-          </div>
-        </Link>
-      </div>
-      <div className="mobileMenuFunctions">
-        {/* {activeUser ? (
+            <h3 className="sideBarLinkLabel">{t("sideBar.text")}</h3>
+            <div className="hoverEffectIcon">
+              <Image
+                src="/images/arrow-forward-circle.svg"
+                alt="website"
+                width="20"
+                height="20"
+              />
+            </div>
+          </Link>
+          <Link className="sideBarLink" href={"/dashboard/image"} onClick={() => setOpenLogoMenu(!openLogoMenu)}>
+            <Image
+              src="/images/images.svg"
+              alt="website"
+              width="22"
+              height="25"
+              style={{ marginLeft: "2px" }}
+            />
+            <h3 className="sideBarLinkLabel">{t("sideBar.text2")}</h3>
+            <div className="hoverEffectIcon imageGenerateIcon">
+              <Image
+                src="/images/arrow-forward-circle.svg"
+                alt="website"
+                width="20"
+                height="20"
+              />
+            </div>
+          </Link>
+        </div>
+        <div className="mobileMenuFunctions">
+          {/* {activeUser ? (
           <Link href="/prices" className="plan plusPlan">
             Плюс активен
             <Image
@@ -134,17 +141,23 @@ const MobileMenu = () => {
           </Link>
         )} */}
 
-        <button
-          className="mobileExitButton"
-          title="Yangi so'rov yarating"
-          onClick={() => {
-            removeCookie("secretToken");
-            window.location.href = `${locale}/signin`;
-          }}
-        >
-          Выйти из платформы
-          <Image src="/images/enter.svg" alt="albums" width="25" height="25" />
-        </button>
+          <button
+            className="mobileExitButton"
+            title="Yangi so'rov yarating"
+            onClick={() => {
+              removeCookie("secretToken");
+              window.location.href = `${locale}/signin`;
+            }}
+          >
+            {t("sideBar.exit")}
+            <Image
+              src="/images/enter.svg"
+              alt="albums"
+              width="25"
+              height="25"
+            />
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { useTranslations } from "next-intl";
+import Flag from "react-world-flags";
 
 const renderButton = (buttonText, index) => (
   <motion.button
@@ -54,6 +55,7 @@ const DashboardContentFunctionality = (props) => {
   const [isTyping, setIsTyping] = useState(false);
   const typingIntervalRef = useRef(null);
   const chatFieldRef = useRef(null);
+  const [language, setLanguage] = useState("");
 
   const typeEffect = (text) => {
     setIsTyping(true);
@@ -74,36 +76,41 @@ const DashboardContentFunctionality = (props) => {
   };
 
   const getChatByChatId = useCallback(
-    (chatId) => {
-      if (chatId) {
-        setShowAnswer(true);
-        axios
-          .get(process.env.NEXT_PUBLIC_APP_API_URL + "/chat/" + chatId, {
-            headers: {
-              Authorization: `Bearer ${cookies.secretToken}`,
-            },
-          })
-          .then((res) => {
-            if (Array.isArray(res.data)) {
-              setModelAnswer(res.data.reverse());
-              if (props.type === "text" && res.data.length > 0) {
-                typeEffect(res.data[res.data.length - 1].message);
-              }
-            }
-          })
-          .catch((err) => {
-            if (err.response.status === 406) {
-              router.push("/prices");
-            }
-            console.error(err);
-            setModelAnswer([
-              {
-                from_user: false,
-                message: "Xato yuz berdi. Yana urinib ko'ring.",
-              },
-            ]);
-            typeEffect("Xato yuz berdi. Yana urinib ko'ring.");
-          });
+    async (chatId) => {
+      if (!chatId) return;
+
+      if (props.type === "image") setLanguage("uz");
+      setShowAnswer(true);
+
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_APP_API_URL}/chat/${chatId}`,
+          {
+            headers: { Authorization: `Bearer ${cookies.secretToken}` },
+          }
+        );
+
+        const data = response.data;
+
+        if (!data || data.length < 1) {
+          return router.push("/");
+        }
+
+        if (Array.isArray(data)) {
+          setModelAnswer(data.reverse());
+
+          if (props.type === "text" && data.length > 0) {
+            typeEffect(data[data.length - 1].message);
+          }
+        }
+      } catch (error) {
+        if (error.response?.status === 402) {
+          return router.push("/prices");
+        }
+
+        const errorMessage = "Xato yuz berdi. Yana urinib ko'ring.";
+        setModelAnswer([{ from_user: false, message: errorMessage }]);
+        typeEffect(errorMessage);
       }
     },
     [cookies.secretToken]
@@ -192,6 +199,7 @@ const DashboardContentFunctionality = (props) => {
           chat_title: "",
           message: formElements.message.value,
           message_type: props.type,
+          language: language,
         },
         {
           headers: {
@@ -255,6 +263,7 @@ const DashboardContentFunctionality = (props) => {
         {
           message_type: props.type,
           message: formElements.message.value,
+          language: language,
         },
         {
           headers: {
@@ -339,7 +348,7 @@ const DashboardContentFunctionality = (props) => {
     <div className="dashboardContentFunctionality">
       <ToastContainer theme="dark" />
       <AnimatePresence>
-        {showAnswer && (
+        {(showAnswer && language) && (
           <motion.div
             key="chatBox"
             initial={{ opacity: 0, y: 20 }}
@@ -376,27 +385,35 @@ const DashboardContentFunctionality = (props) => {
                               : item.message}
                           </ReactMarkdown>
                         )}
-                        {props.type === "image" && item.file_url ? (
-                          <Image
-                            src={
-                              process.env.NEXT_PUBLIC_APP_API_URL +
-                              "/images/" +
-                              item.file_url
-                            }
-                            alt="modelImage"
-                            width={300}
-                            height={300}
-                          />
-                        ) : (
-                          props.type === "image" &&
-                          !item.file_url && (
+
+                        {props.type === "image" ? (
+                          item.file_url ? (
+                            item.file_url === "no.png" ? (
+                              <ReactMarkdown>
+                                Я не могу выполнить этот запрос. Если тебе нужны
+                                иллюстрации в художественном стиле, могу
+                                нарисовать что-то подобное, но в пределах
+                                правил. Например, стильную портретную или
+                                фантазийную картину. Дай знать, если у тебя есть
+                                какие-то предпочтения! 😊
+                              </ReactMarkdown>
+                            ) : (
+                              <Image
+                                src={`${process.env.NEXT_PUBLIC_APP_API_URL}/images/${item.file_url}`}
+                                alt="modelImage"
+                                width={300}
+                                height={300}
+                              />
+                            )
+                          ) : (
                             <ReactMarkdown>
                               {index === modelAnswer.length - 1
                                 ? typedModelAnswer
                                 : item.message}
                             </ReactMarkdown>
                           )
-                        )}
+                        ) : null}
+
                         {!item.from_user && (
                           <div className="copyContainer">
                             {props.type === "text" ? (
@@ -461,7 +478,7 @@ const DashboardContentFunctionality = (props) => {
         )}
       </AnimatePresence>
 
-      {!showAnswer && (
+      {(!showAnswer && language) && (
         <motion.h3
           className="contentHeader"
           initial={{ opacity: 0, y: -20 }}
@@ -472,55 +489,67 @@ const DashboardContentFunctionality = (props) => {
         </motion.h3>
       )}
 
-      <motion.div
-        key="textForm"
-        initial={{ y: !showAnswer ? 0 : 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
-        className="textForm"
-      >
-        <form
-          id="textFormModel"
-          onSubmit={(e) =>
-            showAnswer ? handleGetUpdatedResult(e) : handleGetResult(e)
-          }
+      {language && (
+        <motion.div
+          key="textForm"
+          initial={{ y: !showAnswer ? 0 : 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
+          className="textForm"
         >
-          <motion.textarea
-            required
-            className="textInput"
-            placeholder={t("title3")}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
-            name="message"
-            onKeyDown={handleSendOnEnter}
-            disabled={loading}
-          />
-
-          {isTyping ? (
-            <button
-              className="sendButton"
-              type="button"
-              onClick={() => stopTyping()}
-            >
-              <Image src="/images/stop.svg" alt="send" width={40} height={40} />
-            </button>
-          ) : (
-            <motion.button
-              className="sendButton"
-              type="submit"
+          <form
+            id="textFormModel"
+            onSubmit={(e) =>
+              showAnswer ? handleGetUpdatedResult(e) : handleGetResult(e)
+            }
+          >
+            <motion.textarea
+              required
+              className="textInput"
+              placeholder={t("title3")}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
-              disabled={loading && !isTyping}
-            >
-              <Image src="/images/send.svg" alt="send" width={40} height={40} />
-            </motion.button>
-          )}
-        </form>
-      </motion.div>
+              name="message"
+              onKeyDown={handleSendOnEnter}
+              disabled={loading}
+            />
 
-      {!showAnswer && (
+            {isTyping ? (
+              <button
+                className="sendButton"
+                type="button"
+                onClick={() => stopTyping()}
+              >
+                <Image
+                  src="/images/stop.svg"
+                  alt="send"
+                  width={40}
+                  height={40}
+                />
+              </button>
+            ) : (
+              <motion.button
+                className="sendButton"
+                type="submit"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
+                disabled={loading && !isTyping}
+              >
+                <Image
+                  src="/images/send.svg"
+                  alt="send"
+                  width={40}
+                  height={40}
+                />
+              </motion.button>
+            )}
+          </form>
+        </motion.div>
+      )}
+
+      {!showAnswer && language && (
         <div className="helperButtons">
           {props.type === "text" ? (
             <motion.button
@@ -583,6 +612,45 @@ const DashboardContentFunctionality = (props) => {
                   <div className="helperButtonText">{buttonText}</div>
                 </motion.button>
               ))}
+        </div>
+      )}
+
+      {!language && (
+        <div className="modelLanguageWrapper">
+          <motion.h3
+            className="contentHeader"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
+          >
+            {t("chooseLang")}
+          </motion.h3>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="modelLanguageContainer"
+          >
+            <div className="languageButton" onClick={() => setLanguage("ru")}>
+              <div className="languageButtonText">{t("ru")}</div>
+              <div className="flag">
+                <Flag code="RU" />
+              </div>
+            </div>
+            <div className="languageButton" onClick={() => setLanguage("uz")}>
+              <div className="languageButtonText">{t("uz")}</div>
+              <div className="flag">
+                <Flag code="UZ" />
+              </div>
+            </div>
+            <div className="languageButton" onClick={() => setLanguage("en")}>
+              <div className="languageButtonText">{t("en")}</div>
+              <div className="flag">
+                <Flag code="GB" />
+              </div>
+            </div>
+          </motion.div>
         </div>
       )}
     </div>

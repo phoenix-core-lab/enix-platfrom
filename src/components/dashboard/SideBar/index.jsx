@@ -6,10 +6,12 @@ import { Link } from "@/i18n/routing";
 import "./index.scss";
 import { CookiesProvider, useCookies } from "react-cookie";
 import { useLocale } from "next-intl";
+import { useRouter } from "@/i18n/routing";
 import LanguageSwitcher from "../LanguageSwitcher";
 import { useTranslations } from "next-intl";
 
 const SideBar = () => {
+  const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies("secretToken");
   const locale = useLocale();
   const t = useTranslations("Dashboard.sideBar");
@@ -20,7 +22,7 @@ const SideBar = () => {
           <button
             title="Yangi so'rov yarating"
             onClick={() => {
-              window.location.reload();
+              router.push("/");
             }}
           >
             <Image
@@ -33,7 +35,7 @@ const SideBar = () => {
           <button
             title="Yangi so'rov yarating"
             onClick={() => {
-              window.location.reload();
+              router.push("/");
             }}
           >
             <Image

@@ -19,29 +19,27 @@
         width: 300px;
         display: flex;
         justify-content: space-between;
-        padding: 15px 20px 15px 10px;
+        padding: 15px 20px 15px 20px;
         z-index: 10;
         background: #2f2f2f;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-        h3 {
-            padding: 0 10px;
-        }
-
-        button{
+        button {
             transition: all 0.3s;
         }
 
-        button:hover{
+        button:hover {
             opacity: 0.5;
         }
+
+
     }
 
     * {
         color: #fff;
     }
 
-    
+
 
     // .sidebarDivider {
     //     width: 100%;
@@ -55,11 +53,12 @@
     .chatHistory {
         display: flex;
         flex-direction: column;
-        align-items: flex-strat;
+        align-items: flex-start;
         justify-content: flex-start;
-        padding: 64px 0 20px 10px;
+        padding: 64px 10px 20px 10px;
 
         .chatHistoryItem {
+            width: 100%;
             position: relative;
             padding: 5px 10px;
             border-radius: 8px;
@@ -72,6 +71,7 @@
 
             .miniMenu {
                 visibility: hidden;
+
                 .miniMenuOpenButton {
                     margin-bottom: 1px;
                     padding: 0.5rem;
@@ -156,13 +156,6 @@
     }
 }
 
-.DashboardContentHeader .userDownMenu {
-    height: 100dvh;
-    top: 50px;
-    right: 0;
-    left: auto;
-}
-
 .DashboardContentHeader.openUserMenu .userDownMenu {
     transform: translateX(0%);
     top: 0;
@@ -170,28 +163,71 @@
 }
 
 .DashboardContentHeader .userDownMenu {
+    height: 100dvh;
     position: fixed;
     top: 0;
     border-radius: 4px 0 0 4px;
     transform: translateX(100%);
-    height: 100dvh;
+}
+
+.menuShadow {
+    transition: 0.3s;
+    right: -100%;
 }
 
 @media screen and (max-width: 1400px) {
     .userDownMenu {
         position: absolute;
         top: 0;
-        right: -300px;
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        left: 0;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
         z-index: 999;
+
+        .userDownMenuHeader{
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: none;
+        }
     }
 
     .dashboardWrapper {
         &.openUserMenu {
+            .menuShadow,
             .userDownMenu {
-                right: 0 !important;
-                left: auto;
+                left: 0 !important;
+                right: auto !important;
             }
         }
+    }
+
+    .menuShadow {
+        position: absolute;
+        z-index: 999;
+        width: 100%;
+        left: -100%;
+        height: 100dvh;
+        background: #00000097;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .userDownMenu {
+        right: 0;
+        left: auto;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .dashboardWrapper {
+        &.openUserMenu {
+            .menuShadow,
+            .userDownMenu {
+                right: 0 !important;
+                left: auto !important;
+            }
+        }
+    }
+
+    .menuShadow {
+        right: -100%;
+        left: auto;
     }
 }

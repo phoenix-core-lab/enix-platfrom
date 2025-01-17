@@ -161,7 +161,7 @@ const SignUpForm = () => {
           backdropFilter: "blur(12px)",
         }}
       >
-        <Box padding={2}>
+        <Box padding={2} sx={{position: "absolute", top: 0, left: 0}}>
           <LanguageSwitcher />
         </Box>
         <Box
@@ -202,8 +202,8 @@ const SignUpForm = () => {
                   ENIX AI!
                 </Typography>
                 <Typography level="body-sm">
-                  {t("alreadyHaveAccount")}
-                  <Link href="/signin">
+                  {t("alreadyHaveAccount")} 
+                  <Link href="/signin" className="authLink">
                     <Typography color="primary">{t("login")}</Typography>
                   </Link>
                 </Typography>
