@@ -4,7 +4,6 @@ import "./index.scss";
 import Image from "next/image";
 import { CookiesProvider, useCookies } from "react-cookie";
 import axios from "axios";
-import Link from "next/link";
 import { useMainContext } from "@/providers/contextProvider";
 import { Link } from "@/i18n/routing";
 import { useRouter } from "@/i18n/routing";
@@ -12,6 +11,7 @@ import LanguageSwitcher from "../LanguageSwitcher";
 import { useTranslations } from "next-intl";
 
 const DashboardContentHeader = () => {
+  const t = useTranslations("Dashboard");
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(
     "secretToken",

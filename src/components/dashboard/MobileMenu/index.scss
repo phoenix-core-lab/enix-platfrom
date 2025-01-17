@@ -1,0 +1,234 @@
+// .dashboardWrapper {
+//     &.openUserMenu {
+//         .downMenu {
+//             top: 60px;
+//             opacity: 1;
+//             visibility: visible;
+//         }
+//     }
+// }
+
+.dashboardWrapper.openLogoMenu {
+    .downMenu {
+        margin-right: 0px !important;
+
+    }
+    
+    .logoEnixArrow {
+        transform: rotate(-90deg);
+    }
+}
+
+.downMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 300px;
+    max-width: 300px;
+    margin-right: -300px;
+    transition: all 0.3s;
+    height: 100dvh;
+    background: #2f2f2f;
+    gap: 10px;
+    position: relative;
+
+    .userDownMenuHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 20px;
+        position: fixed;
+        width: 300px;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 10px 15px 18px;
+        z-index: 10;
+        background: #2f2f2f;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        h3 {
+            font-size: 16px;
+            color: white;
+        }
+
+        button {
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.5;
+        }
+    }
+
+    .mobileMenu {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 65px 10px 10px 10px;
+
+
+        .sideBarLink {
+            width: 100%;
+            padding: 5px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 12px;
+
+            * {
+                transition: 0.3s all;
+            }
+
+            &:hover {
+
+                &>img,
+                .sideBarLinkLabel {
+                    filter: brightness(0.6);
+                }
+
+                .hoverEffectIcon {
+                    opacity: 1;
+                    margin-left: 0px;
+
+                    img {
+                        filter: brightness(1);
+                    }
+                }
+            }
+        }
+
+        .sideBarLinkLabel {
+            font-size: 16px;
+            font-weight: normal;
+            color: #b4b4b4;
+            transition: 0.3s all;
+        }
+
+        .hoverEffectIcon {
+            width: 20px;
+            height: 20px;
+            margin-left: 20px;
+            opacity: 0;
+            transition: 0.3s;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .sidebarDivider {
+            width: 100%;
+            height: 1px;
+            border-radius: 50%;
+            background: #444444;
+        }
+    }
+
+    .mobileMenuFunctions {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .mobileExitButton {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 8px 15px;
+        border-radius: 8px;
+        gap: 10px;
+        transition: all 0.3s;
+        font-size: 16px;
+        color: #ce3737;
+        border: 1px solid #ce3737;
+
+        img {
+            transition: all 0.3s;
+        }
+
+
+        &:hover {
+            background-color: #ce3737;
+            color: white;
+            padding-left: 45px;
+
+            img {
+                opacity: 0;
+            }
+        }
+    }
+
+    .plan {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 8px 15px;
+        border-radius: 8px;
+        gap: 10px;
+        transition: all 0.3s;
+        font-size: 16px;
+        color: #ececec;
+
+        img {
+            width: 15px;
+            height: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &.freePlan {
+            background-color: #1f7251;
+        }
+
+        &:hover {
+            background-color: #3e63dd;
+            box-shadow: 0px 0px 5px 0px #3e63dd;
+        }
+
+        &.plusPlan {
+            background: radial-gradient(ellipse farthest-corner at right bottom,
+                    #fedb37 0%,
+                    #fdb931 8%,
+                    #9f7928 30%,
+                    #8a6e2f 40%,
+                    transparent 80%),
+                radial-gradient(ellipse farthest-corner at left top,
+                    #ffffff 0%,
+                    #ffffac 8%,
+                    #d1b464 25%,
+                    #5d4a1f 62.5%,
+                    #5d4a1f 100%);
+
+            &:hover {
+                box-shadow: 0px 0px 5px 0px #3e63dd00;
+            }
+        }
+    }
+
+
+}
+
+@media screen and (max-width: 1400px) {
+    .downMenu {
+        position: absolute;
+        top: 0;
+        left: -300px;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 999;
+    }
+
+
+    .dashboardWrapper.openLogoMenu .downMenu {
+        margin-right: 0px !important;
+        left: 0;
+    }
+}
