@@ -130,9 +130,9 @@ const DashboardContentFunctionality = (props) => {
 
         URL.revokeObjectURL(url);
 
-        toast.success("Fayl muvaffaqiyatli yuklab olindi");
+        toast.success(t("Tostify.successDownload"));
       } catch (error) {
-        toast.error("Rasmni yuklab bo'lmadi");
+        toast.error(t("Tostify.errorDownload"));
       }
     } else {
       const blob = new Blob([modelMessage], { type: "text/plain" });
@@ -142,13 +142,13 @@ const DashboardContentFunctionality = (props) => {
       a.download = "result.txt";
       a.click();
       URL.revokeObjectURL(url);
-      toast.success("Fayl muvaffaqiyatli yuklab olindi");
+      toast.success(t("Tostify.successDownload"));
     }
   };
 
   const handleCopy = (modelMessage) => {
     navigator.clipboard.writeText(modelMessage);
-    toast.success("Matn muvaffaqiyatli nusxa ko'chirildi");
+    toast.success(t("Tostify.successTextCopy"));
   };
 
   const stopTyping = () => {

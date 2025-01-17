@@ -7,16 +7,30 @@
     "rememberMe": "Meni eslab qol",
     "forgotPassword": "Parolingizni unutdingizmi?",
     "signIn": "Kirish",
-    "or": "yoki"
+    "or": "yoki",
+    "resetPassword": "Parolni tiklash",
+    "cancel": "Orqaga qaytish",
+    "send": "Yuborish",
+    "confirmCode": "Tasdiqlash kodi Telefon raqamiga yuborildi -",
+    "oldPassword": "Eski parol",
+    "newPassword": "Yangi parol",
+    "confirmCode2": "Tasdiqlash kodi",
+    "Tostify": {
+      "errorGetToken": "Tokenni olish mumkin bo'lmadi.",
+      "authError": "Notog'ri login yoki parol! Yoki hali akkauntni faollashtirmagansiz."
+    }
   },
   "Register": {
+    "registration": "Ro‘yxatdan o‘tish",
     "alreadyHaveAccount": "Sizda allaqachon hisob mavjudmi?",
     "login": "Kirish",
     "name": "Ismingiz",
     "telphoneNumber": "Telefon raqamingiz",
     "password": "Parol",
     "code": "O'zingiz uchun maxsus parol yarating",
-    "register": "Keyingisi"
+    "register": "Keyingisi",
+    "or": "yoki",
+    "confirmCode": "Telefon raqamingizga tasdiqlash kodi yuborildi!"
   },
   "Dashboard": {
     "notice": "ENIX xatolarga yo'l qo'yishi mumkin. Muhim ma'lumotlarni tekshirishni tavsiya etamiz.",
@@ -37,7 +51,12 @@
       "text2": "Fotosuratlar ishlash",
       "exit": "Tizimdan chiqish"
     },
-    "history": { "title": "Suhbatlar tarixi", "delete": "O'chirish" }
+    "history": { "title": "Suhbatlar tarixi", "delete": "O'chirish" },
+    "Tostify": {
+      "successDownload": "Fayl muvaffaqiyatli yuklab olindi",
+      "errorDownload": "Rasmni yuklab bo'lmadi",
+      "successTextCopy": "Matn muvaffaqiyatli nusxa ko'chirildi"
+    }
   },
   "Plan": {
     "Maintitle": "Rejangizni yangilang",
@@ -70,12 +89,15 @@
       "linkText": "Hisob-kitob bo‘yicha yordam"
     },
     "bottomText": "Biznesingiz uchun qo‘shimcha imkoniyatlar kerakmi?",
-    "BottomLink": "Enix Enterprise-ni ko‘ring"
+    "BottomLink": "Enix Enterprise-ni ko‘ring",
+    "Tostify": {
+      "errorLimit": "Siz o'zingizning chegarangizga yetdingiz"
+    }
   },
   "Payment": {
     "back": "Orqaga",
     "title": "Enix Premium obunasi uchun ro‘yxatdan o‘tish",
-    "titleText": "oyiga bir marta",
+    "titleText": " oyiga bir marta",
     "title1": "Enix Premium obunasi",
     "title1Text": "Hisob har oyda chiqariladi",
     "text1Priice": "15 000 so‘m",
@@ -86,6 +108,16 @@
     "PayMethod": "To‘lov usuli",
     "ChoosePaymentWay": "To'lov usulini tanlang",
     "ButtonText": "Obuna bo‘lish",
-    "confirm": "Tasdiqlash"
+    "confirm": "Tasdiqlash",
+    "EnterSmsCode": "SMS-kodni kiriting",
+    "expire_datePlaceholder": "ММ/YY",
+    "Toastify": {
+      "errorCardNumber": "To'g'ri karta raqamini kiriting (16 raqam).",
+      "errorExpire_date": "Muddati tugash sanasini MM/YY formatida kiriting.",
+      "errorPaymentMethod": "Iltimos, to'lov usulini tanlang.",
+      "errorAuth": "Avtorizatsiya xatosi. Iltimos, tizimga kiring.",
+      "successPayment": "To'lov muvaffaqiyatli amalga oshirildi!",
+      "errorSmsCode": "SMS-kodni qayta ishlashda xato yuz berdi."
+    }
   }
 }

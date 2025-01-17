@@ -13,7 +13,7 @@ export default function Prices() {
     if (typeof window !== "undefined") {
       let searchParams = new URLSearchParams(window.location.search);
       if (searchParams.get("toast")) {
-        toast.error("У вас закончился лимит");
+        toast.error(t("Tostify.errorLimit"));
       }
     }
   }, []);

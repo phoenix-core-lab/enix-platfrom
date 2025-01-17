@@ -112,14 +112,12 @@ const SigninForm = () => {
           setCookie("secretToken", token, { path: "/" });
           router.push("dashboard");
         } else {
-          toast.error("Токенни олиш мумкин бўлмади.");
+          toast.error(t("Tostify.errorGetToken"));
         }
       })
       .catch((err) => {
         console.error("Ошибка авторизации:", err);
-        toast.error(
-          "Нотўғри логин ёки пароль! Ёки ҳали аккаунтни фаоллаштирмагансиз."
-        );
+        toast.error(t("Tostify.authError"));
       })
       .finally(() => {
         setIsLoading(false);
@@ -213,12 +211,14 @@ const SigninForm = () => {
                           alignItems: "center",
                         }}
                       >
-                        <Typography level="body-sm">Парольни тиклаш</Typography>
+                        <Typography level="body-sm">
+                          {t("resetPassword")}
+                        </Typography>
                         <Button
                           onClick={() => setIsOpenChangePassword(false)}
                           sx={{ fontWeight: "400" }}
                         >
-                          Оркага қайтиш
+                          {t("cancel")}
                         </Button>
                       </Box>
                       <Box
@@ -229,12 +229,12 @@ const SigninForm = () => {
                         }}
                       >
                         <FormControl required>
-                          <FormLabel>Телефон рақами</FormLabel>
+                          <FormLabel>{t("telphoneNumber")}</FormLabel>
                           <Input type="tel" name="resetPhone" />
                         </FormControl>
                         <Box>
                           <Button type="submit" loading={isLoading} fullWidth>
-                            Отправить
+                            {t("send")}
                           </Button>
                         </Box>
                       </Box>
@@ -243,7 +243,7 @@ const SigninForm = () => {
                     // <form onSubmit={(e) => handleChangePassword(e)}>
                     <form>
                       <Typography level="body-sm">
-                        Код подтверждения отправлен на Телефон рақами -{" "}
+                        {t("confirmCode")}
                         <b>{phoneNum}</b>
                       </Typography>
                       <Box
@@ -254,20 +254,20 @@ const SigninForm = () => {
                         }}
                       >
                         <FormControl sx={{ display: "none" }}>
-                          <FormLabel>Старый пароль</FormLabel>
+                          <FormLabel>{t("oldPassword")}</FormLabel>
                           <Input type="text" name="oldPass" />
                         </FormControl>
                         <FormControl required>
-                          <FormLabel>Новый пароль</FormLabel>
+                          <FormLabel>{t("newPassword")}</FormLabel>
                           <Input type="text" name="newPass" />
                         </FormControl>
                         <FormControl required>
-                          <FormLabel>Код подтверждения</FormLabel>
+                          <FormLabel>{t("confirmCode2")}</FormLabel>
                           <Input type="text" name="checkPass" />
                         </FormControl>
                         <Box>
                           <Button type="submit" loading={isLoading} fullWidth>
-                            Отправить
+                            {t("send")}
                           </Button>
                         </Box>
                       </Box>
@@ -301,11 +301,6 @@ const SigninForm = () => {
                         alignItems: "center",
                       }}
                     >
-                      <Checkbox
-                        size="sm"
-                        label="Мени эслаб қолиш"
-                        name="persistent"
-                      />
                       <Link href="/signup">
                         <Typography fontWeight={400} color="primary">
                           {t("forgotPassword")}

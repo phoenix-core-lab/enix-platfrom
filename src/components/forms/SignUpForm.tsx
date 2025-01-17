@@ -16,10 +16,10 @@ import Stack from "@mui/joy/Stack";
 import { useRouter } from "@/i18n/routing";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import LanguageSwitcher from "../dashboard/LanguageSwitcher";
+import { useTranslations } from "next-intl";
 
 interface FormElements extends HTMLFormControlsCollection {
   name: HTMLInputElement;
@@ -57,7 +57,7 @@ const SignUpForm = () => {
   const [isRegistered, setIsRegistered] = React.useState(false); // изменено название переменной на isRegistered
   const [phoneNum, setPhoneNum] = React.useState("+998");
   const [isMounted, setIsMounted] = React.useState(false);
-
+  const t = useTranslations("Register");
   React.useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -198,17 +198,17 @@ const SignUpForm = () => {
             <Stack gap={4} sx={{ mb: 0 }}>
               <Stack gap={1}>
                 <Typography component="h1" level="h3">
-                  Регистрация ENIX AI!
+                  ENIX AI!
                 </Typography>
                 <Typography level="body-sm">
-                  Аллақачон аккаунтингиз борми?{" "}
+                  {t("alreadyHaveAccount")}
                   <Link href="/signin">
-                    <Typography color="primary">Кириш</Typography>
+                    <Typography color="primary">{t("login")}</Typography>
                   </Link>
                 </Typography>
               </Stack>
             </Stack>
-            <Divider>или</Divider>
+            <Divider>{t("or")}</Divider>
             {!isRegistered ? (
               <Stack gap={4} sx={{ mt: 2 }}>
                 <form
@@ -217,11 +217,11 @@ const SignUpForm = () => {
                   }}
                 >
                   <FormControl required>
-                    <FormLabel>Исм</FormLabel>
+                    <FormLabel>{t("name")}</FormLabel>
                     <Input type="text" name="name" />
                   </FormControl>
                   <FormControl required>
-                    <FormLabel>Сизнинг телефон рақамингиз</FormLabel>
+                    <FormLabel>{t("telphoneNumber")}</FormLabel>
                     <Input
                       type="phone"
                       name="phone"
@@ -230,14 +230,12 @@ const SignUpForm = () => {
                     />
                   </FormControl>
                   <FormControl required>
-                    <FormLabel>
-                      Пароль (ўзингизга пароль ўйлаб топинг)
-                    </FormLabel>
+                    <FormLabel>{t("password")}</FormLabel>
                     <Input type="password" name="password" />
                   </FormControl>
                   <Stack gap={4} sx={{ mt: 2 }}>
                     <Button type="submit" loading={isLoading} fullWidth>
-                      Кейин
+                      {t("register")}
                     </Button>
                   </Stack>
                 </form>
@@ -250,10 +248,7 @@ const SignUpForm = () => {
                   }}
                 >
                   <FormControl required>
-                    <FormLabel>
-                      Тасдиқлаш коди сизга телефон рақамингизга юборилди!
-                    </FormLabel>
-
+                    <FormLabel>{t("confirmCode")}</FormLabel>
                     <Input
                       type="number"
                       name="code"
@@ -268,7 +263,7 @@ const SignUpForm = () => {
                       loading={isLoading}
                       fullWidth
                     >
-                      Рўйхатдан ўтиш
+                      {t("registration")}
                     </Button>
                   </Stack>
                 </form>

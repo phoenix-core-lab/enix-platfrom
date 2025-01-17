@@ -7,16 +7,30 @@
     "rememberMe": "запомнить меня",
     "forgotPassword": "Забыли пароль?",
     "signIn": "вход",
-    "or": "или"
+    "or": "или",
+    "resetPassword": "Парольни тиклаш",
+    "cancel": "Оркага қайтиш",
+    "send": "Отправить",
+    "confirmCode": "Код подтверждения отправлен на Телефон рақами -",
+    "oldPassword": "Старый пароль",
+    "newPassword": "Новый пароль",
+    "confirmCode2": "Код подтверждения",
+    "Tostify": {
+      "errorGetToken": "Не удалось получить токен.",
+      "authError": "Неверный логин или пароль! Или вы еще не активировали аккаунт."
+    }
   },
   "Register": {
+    "registration": "Регистрация",
     "alreadyHaveAccount": "У вас уже есть аккаунт?",
     "login": "вход",
     "name": "имя",
-    "telphoneNumber": "ваш номер телефона",
+    "telphoneNumber": "Ваш номер телефона",
     "password": "пароль",
-    "code": "придумай свой собвственый пароль ",
-    "register": "далее"
+    "code": "Придумай свой собвственый пароль ",
+    "register": "Далее",
+    "or": "или",
+    "confirmCode": "На ваш номер телефона был отправлен проверочный код!"
   },
   "Dashboard": {
     "notice": "ENIX может совершать ошибки. Мы рекомендуем проверить важную информацию.",
@@ -37,7 +51,12 @@
       "text2": "Работать с фото",
       "exit": "Выход из системы"
     },
-    "history": { "title": "История разговоров", "delete": "Удалить" }
+    "history": { "title": "История разговоров", "delete": "Удалить" },
+    "Tostify": {
+      "successDownload": "Файл успешно загружен",
+      "errorDownload": "Не удалось загрузить изображение",
+      "successTextCopy": "Текст успешно скопирован"
+    }
   },
   "Plan": {
     "Maintitle": "Обновите свой план",
@@ -70,13 +89,16 @@
       "linkText": "помощь по выставлению счетов"
     },
     "bottomText": "Вам нужны дополнительные возможности для вашего бизнеса?",
-    "BottomLink": "См. Enix Enterprise"
+    "BottomLink": "См. Enix Enterprise",
+    "Tostify": {
+      "errorLimit": "У вас закончился лимит"
+    }
   },
   "Payment": {
     "back": "Назад",
     "title": "Подписаться на Enix Premium Subscription",
     "titlePrice": "15 000 сум",
-    "titleText": "раз в месяц",
+    "titleText": " раз в месяц",
     "title1": "Enix Premium Subscription",
     "title1Text": "Счет выставляется ежемесячно",
     "text1Priice": "15 000 uzs",
@@ -87,6 +109,16 @@
     "PayMethod": "Метод оплаты",
     "ChoosePaymentWay": "Выберите способ оплаты",
     "ButtonText": "Подписаться",
-    "confirm": "Подтвердить"
+    "confirm": "Подтвердить",
+    "EnterSmsCode": "Введите SMS-код",
+    "expire_datePlaceholder": "ММ/ГГ",
+    "Toastify": {
+      "errorCardNumber": "Введите корректный номер карты (16 цифр).",
+      "errorExpire_date": "Введите дату истечения в формате MM/YY.",
+      "errorPaymentMethod": "Пожалуйста, выберите способ оплаты.",
+      "errorAuth": "Ошибка аутентификации. Пожалуйста, войдите в систему.",
+      "successPayment": "Оплата успешно произведена!",
+      "errorSmsCode": "Ошибка при обработке SMS-кода."
+    }
   }
 }
