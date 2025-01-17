@@ -1,7 +1,7 @@
 "use client";
 import { Check, ArrowLeft } from "lucide-react";
 import React, { useEffect, useState, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { toast, ToastContainer } from "react-toastify";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
@@ -11,7 +11,11 @@ export default function Prices() {
   const [activeTab, setActiveTab] = useState("personal");
   const t = useTranslations("Plan");
   const [cookies, setCookie] = useCookies();
-  const isActiveUser = cookies.isActiveUser;
+  const [isActiveUser, setIsActiveUser] = useState(null);
+
+  useEffect(() => {
+    setIsActiveUser(cookies.isActiveUser);
+  }, [cookies]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -39,7 +43,11 @@ export default function Prices() {
           </h1>
 
           {activeTab === "personal" ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-8 lg:gap-0">
+            <div
+              className={`grid grid-cols-1 md:${
+                !isActiveUser ? "grid-cols-2" : "grid-cols-1"
+              } gap-8 sm:gap-8 lg:gap-0`}
+            >
               {/* Plus Tier */}
               <div className="rounded-lg bg-[#222222] p-8 border-2 border-[#00A67E] relative">
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00A67E] text-white px-3 py-1 rounded-full text-sm">

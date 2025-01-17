@@ -2,13 +2,14 @@
 import React from "react";
 import "./index.scss";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Link } from "@/i18n/routing";
+import { useRouter } from "@/i18n/routing";
 import { CookiesProvider, useCookies } from "react-cookie";
 import { useMainContext } from "@/providers/contextProvider";
 import axios from "axios";
-
+import { useLocale } from "next-intl";
 const MobileMenu = () => {
+  const locale = useLocale();
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(
     "secretToken",
@@ -138,7 +139,7 @@ const MobileMenu = () => {
           title="Yangi so'rov yarating"
           onClick={() => {
             removeCookie("secretToken");
-            window.location.href = "/signin";
+            window.location.href = `${locale}/signin`;
           }}
         >
           Выйти из платформы

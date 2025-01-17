@@ -2,8 +2,8 @@
 import React from "react";
 import "./index.scss";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Link } from "@/i18n/routing";
+import { useRouter } from "@/i18n/routing";
 import { CookiesProvider, useCookies } from "react-cookie";
 import { useMainContext } from "@/providers/contextProvider";
 import axios from "axios";
@@ -15,7 +15,8 @@ const HistorySideBar = (props) => {
     "isActiveUser",
     "subscriptionDate"
   );
-  const { openLogoMenu, setOpenLogoMenu, openUserMenu, setOpenUserMenu } = useMainContext();
+  const { openLogoMenu, setOpenLogoMenu, openUserMenu, setOpenUserMenu } =
+    useMainContext();
   const [allChats, setAllChats] = React.useState([]);
   const [openMiniMenus, setOpenMiniMenus] = React.useState({});
 
