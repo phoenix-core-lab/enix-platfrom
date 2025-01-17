@@ -6,10 +6,13 @@ import { Link } from "@/i18n/routing";
 import "./index.scss";
 import { CookiesProvider, useCookies } from "react-cookie";
 import { useLocale } from "next-intl";
+import LanguageSwitcher from "../LanguageSwitcher";
+import { useTranslations } from "next-intl";
 
 const SideBar = () => {
   const [cookies, setCookie, removeCookie] = useCookies("secretToken");
   const locale = useLocale();
+  const t = useTranslations("Dashboard.sideBar");
   return (
     <div className="sideBar">
       <div className="sideBarHeader">
@@ -48,7 +51,7 @@ const SideBar = () => {
             width="25"
             height="25"
           />
-          <h3 className="sideBarLinkLabel">Veb-saytga o&apos;ting</h3>
+          <h3 className="sideBarLinkLabel">{t("title")}</h3>
           <div className="hoverEffectIcon">
             <Image
               src="/images/arrow-forward-circle.svg"
@@ -68,7 +71,7 @@ const SideBar = () => {
             width="25"
             height="25"
           />
-          <h3 className="sideBarLinkLabel">Matn bilan ishlash</h3>
+          <h3 className="sideBarLinkLabel">{t("text")}</h3>
           <div className="hoverEffectIcon">
             <Image
               src="/images/arrow-forward-circle.svg"
@@ -98,7 +101,7 @@ const SideBar = () => {
             height="25"
             style={{ marginLeft: "2px" }}
           />
-          <h3 className="sideBarLinkLabel">Fotosuratlar ishlash</h3>
+          <h3 className="sideBarLinkLabel">{t("text2")}</h3>
           <div className="hoverEffectIcon imageGenerateIcon">
             <Image
               src="/images/arrow-forward-circle.svg"
@@ -110,27 +113,17 @@ const SideBar = () => {
         </Link>
       </div>
       <div className="sideBarFooter">
-        <button className="sideBarLink">
-          <Image
-            src="/images/language.svg"
-            alt="website"
-            width="25"
-            height="25"
-          />
-          <h3 className="sideBarLinkLabel sideBarLinkLabelLanguage">
-            {locale === "uz" ? "Uzbek" : "Русский"}
-          </h3>
-        </button>
+        <LanguageSwitcher />
         <button
           className="sideBarLink"
           href={"https://enix.uz/"}
           onClick={() => {
             removeCookie("secretToken");
-            window.location.href = "/signin";
+            window.location.href = `/${locale}/signin`;
           }}
         >
           <Image src="/images/enter.svg" alt="website" width="25" height="25" />
-          <h3 className="sideBarLinkLabel">Tizimdan chiqish</h3>
+          <h3 className="sideBarLinkLabel">{t("exit")}</h3>
         </button>
       </div>
     </div>

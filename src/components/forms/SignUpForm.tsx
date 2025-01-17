@@ -19,6 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import LanguageSwitcher from "../dashboard/LanguageSwitcher";
 
 interface FormElements extends HTMLFormControlsCollection {
   name: HTMLInputElement;
@@ -159,6 +160,9 @@ const SignUpForm = () => {
           backdropFilter: "blur(12px)",
         }}
       >
+        <Box padding={2}>
+          <LanguageSwitcher />
+        </Box>
         <Box
           sx={{
             display: "flex",

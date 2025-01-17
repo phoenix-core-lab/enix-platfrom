@@ -1,0 +1,40 @@
+.sideBarLink {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+
+  & > img {
+    width: 25px;
+    height: 25px;
+  }
+
+  * {
+    transition: 0.3s all;
+  }
+
+  &:hover {
+    & > img,
+    .sideBarLinkLabel {
+      filter: brightness(0.6);
+    }
+
+    .hoverEffectIcon {
+      opacity: 1;
+      margin-left: 0px;
+
+      img {
+        filter: brightness(1);
+      }
+    }
+  }
+}
+
+.sideBarLinkLabel {
+  font-size: 16px;
+  font-weight: normal;
+  color: #b4b4b4;
+  transition: 0.3s all;
+}

@@ -19,8 +19,9 @@ import { useRouter } from "@/i18n/routing";
 import { ToastContainer, toast } from "react-toastify";
 import { useLocale } from "next-intl";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useTranslations } from "next-intl";
 import axios from "axios";
+import LanguageSwitcher from "../dashboard/LanguageSwitcher";
 
 interface FormElements extends HTMLFormControlsCollection {
   phone: HTMLInputElement;
@@ -53,6 +54,7 @@ const theme = extendTheme({
 });
 
 const SigninForm = () => {
+  const t = useTranslations("SignIn");
   const router = useRouter();
   const [cookies, setCookie] = useCookies([
     "secretToken",
@@ -149,6 +151,9 @@ const SigninForm = () => {
           backdropFilter: "blur(12px)",
         }}
       >
+        <Box padding={2}>
+          <LanguageSwitcher />
+        </Box>
         <Box
           sx={{
             display: "flex",
@@ -187,14 +192,14 @@ const SigninForm = () => {
                   ENIX AI
                 </Typography>
                 <Typography level="body-sm">
-                  Янги фойдаланувчи?{" "}
+                  {t("newUser")}
                   <Link href="/signup">
-                    <Typography color="primary">Рўйхатдан ўтиш</Typography>
+                    <Typography color="primary">{t("register")}</Typography>
                   </Link>
                 </Typography>
               </Stack>
             </Stack>
-            <Divider>или</Divider>
+            <Divider>{t("or")}</Divider>
             <Stack gap={4} sx={{ mt: 2 }}>
               {isOpenChangePassword ? (
                 <>
@@ -276,7 +281,7 @@ const SigninForm = () => {
                   }}
                 >
                   <FormControl required>
-                    <FormLabel>Телефон рақами</FormLabel>
+                    <FormLabel>{t("telphoneNumber")}</FormLabel>
                     <Input
                       type="text"
                       name="phone"
@@ -285,7 +290,7 @@ const SigninForm = () => {
                     />
                   </FormControl>
                   <FormControl required>
-                    <FormLabel>Пароль</FormLabel>
+                    <FormLabel>{t("password")}</FormLabel>
                     <Input type="password" name="password" />
                   </FormControl>
                   <Stack gap={4} sx={{ mt: 2 }}>
@@ -303,12 +308,12 @@ const SigninForm = () => {
                       />
                       <Link href="/signup">
                         <Typography fontWeight={400} color="primary">
-                          Парольни унутдингизми?
+                          {t("forgotPassword")}
                         </Typography>
                       </Link>
                     </Box>
                     <Button type="submit" loading={isLoading} fullWidth>
-                      Кириш
+                      {t("signIn")}
                     </Button>
                   </Stack>
                 </form>

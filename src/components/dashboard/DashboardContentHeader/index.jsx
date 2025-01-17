@@ -2,14 +2,13 @@
 import React from "react";
 import "./index.scss";
 import Image from "next/image";
-import { useRouter } from "@/i18n/routing";
 import { CookiesProvider, useCookies } from "react-cookie";
 import axios from "axios";
 import { Link } from "@/i18n/routing";
-import { useLocale } from "next-intl";
-
+import { useRouter } from "@/i18n/routing";
+import LanguageSwitcher from "../LanguageSwitcher";
+import { useTranslations } from "next-intl";
 const DashboardContentHeader = () => {
-  const locale = useLocale();
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(
     "secretToken",
@@ -23,6 +22,7 @@ const DashboardContentHeader = () => {
   const userMenuRef = React.useRef(null);
   const logoMenuRef = React.useRef(null);
   const [openMiniMenus, setOpenMiniMenus] = React.useState({});
+  const t = useTranslations("Dashboard");
 
   const toggleMiniMenu = (chatId) => {
     setOpenMiniMenus((prevState) => ({
@@ -131,7 +131,7 @@ const DashboardContentHeader = () => {
         )}
         <div className="userDownMenu">
           <div className="userDownMenuHeader">
-            <h3>Suhbat tarixi</h3>
+            <h3>{t("history.title")}</h3>
             <button onClick={() => setOpenUserMenu(!openUserMenu)}>
               <Image
                 src="/images/closeIcon.svg"
@@ -182,20 +182,13 @@ const DashboardContentHeader = () => {
                           />
                           <div className="absolute left-0 mt-2 w-56 bg-[#171717] rounded-xl shadow-xl py-1.5 z-20 border border-gray-700/50 animate-in fade-in slide-in-from-top-2 duration-200">
                             <div className="px-1.5">
-                              <button className="w-full px-3 py-2.5 flex items-center gap-3 text-gray-200 hover:bg-gray-700/50 rounded-lg transition-colors duration-200 group">
-                                <span className="font-medium">Share</span>
-                              </button>
-                              <button className="w-full px-3 py-2.5 flex items-center gap-3 text-gray-200 hover:bg-gray-700/50 rounded-lg transition-colors duration-200 group">
-                                <span className="font-medium">Rename</span>
-                              </button>
-                              <button className="w-full px-3 py-2.5 flex items-center gap-3 text-gray-200 hover:bg-gray-700/50 rounded-lg transition-colors duration-200 group">
-                                <span className="font-medium">Archive</span>
-                              </button>
                               <button
                                 onClick={() => deleteChat(chat.chat_id)}
                                 className="w-full px-3 py-2.5 flex items-center gap-3 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors duration-200 group"
                               >
-                                <span className="font-medium">Delete</span>
+                                <span className="font-medium">
+                                  {t("history.delete")}
+                                </span>
                               </button>
                             </div>
                           </div>
@@ -211,7 +204,7 @@ const DashboardContentHeader = () => {
       <div className="headerTitle">
         {activeUser ? (
           <Link href="/prices" className="getPlusButton activeUser">
-            Плюс активен
+            {t("plus")}
             <Image
               className="rocket"
               src="/images/rocket.svg"
@@ -222,7 +215,7 @@ const DashboardContentHeader = () => {
           </Link>
         ) : (
           <Link href="/prices" className="getPlusButton">
-            Получить Плюс
+            {t("getPlus")}
             <Image
               className="rocket"
               src="/images/rocket.svg"
@@ -292,7 +285,7 @@ const DashboardContentHeader = () => {
                 width="25"
                 height="25"
               />
-              <h3 className="sideBarLinkLabel">Veb-saytga o&apos;ting</h3>
+              <h3 className="sideBarLinkLabel">{t("sideBar.title")}</h3>
               <div className="hoverEffectIcon">
                 <Image
                   src="/images/arrow-forward-circle.svg"
@@ -310,7 +303,7 @@ const DashboardContentHeader = () => {
                 width="25"
                 height="25"
               />
-              <h3 className="sideBarLinkLabel">Matn bilan ishlash</h3>
+              <h3 className="sideBarLinkLabel">{t("sideBar.text")}</h3>
               <div className="hoverEffectIcon">
                 <Image
                   src="/images/arrow-forward-circle.svg"
@@ -328,7 +321,7 @@ const DashboardContentHeader = () => {
                 height="25"
                 style={{ marginLeft: "2px" }}
               />
-              <h3 className="sideBarLinkLabel">Fotosuratlar ishlash</h3>
+              <h3 className="sideBarLinkLabel">{t("sideBar.text2")}</h3>
               <div className="hoverEffectIcon imageGenerateIcon">
                 <Image
                   src="/images/arrow-forward-circle.svg"
@@ -338,17 +331,7 @@ const DashboardContentHeader = () => {
                 />
               </div>
             </Link>
-            <button className="sideBarLink">
-              <Image
-                src="/images/language.svg"
-                alt="website"
-                width="25"
-                height="25"
-              />
-              <h3 className="sideBarLinkLabel sideBarLinkLabelLanguage">
-                {locale === "uz" ? "Uzbek" : "Русский"}
-              </h3>
-            </button>
+            <LanguageSwitcher />
           </div>
           <div className="plan freePlan">
             <div className="planIcon"></div>

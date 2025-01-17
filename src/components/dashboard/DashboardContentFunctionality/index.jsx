@@ -13,19 +13,7 @@ import CircularProgress from "@mui/joy/CircularProgress";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
-
-const messages = [
-  "Qanday yordam bera olaman?",
-  "Qanday qilib foydali bo'lishim mumkin?",
-  "Sizni nima qiziqtiradi?",
-];
-
-const textModelButtons = [
-  "Qanday qilib intervyu olish kerak?",
-  "Tutilish nima?",
-];
-
-const imageModelButtons = ["Peyzajni chizing!", "Dengizni ko'rsating!"];
+import { useTranslations } from "next-intl";
 
 const renderButton = (buttonText, index) => (
   <motion.button
@@ -48,6 +36,11 @@ const renderButton = (buttonText, index) => (
 );
 
 const DashboardContentFunctionality = (props) => {
+  const t = useTranslations("Dashboard");
+  const messages = [t("title"), t("title2"), t("title3")];
+  const imageModelButtons = [t("landscape"), t("Sea")];
+  const textModelButtons = [t("prompt2"), t("prompt3")];
+
   const [cookies, setCookie] = useCookies();
   const router = useRouter();
   const [currentMessage, setCurrentMessage] = useState("");
@@ -495,7 +488,7 @@ const DashboardContentFunctionality = (props) => {
           <motion.textarea
             required
             className="textInput"
-            placeholder="Qanday yordam bera olaman?"
+            placeholder={t("title3")}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
@@ -537,7 +530,7 @@ const DashboardContentFunctionality = (props) => {
               transition={{ duration: 0.5, delay: 0 * 0.2 }}
               onClick={() => router.push("/dashboard/image")}
             >
-              <div className="helperButtonText">Rasm yarating</div>
+              <div className="helperButtonText">{t("prompt1")}</div>
             </motion.button>
           ) : (
             <motion.button
@@ -547,7 +540,7 @@ const DashboardContentFunctionality = (props) => {
               transition={{ duration: 0.5, delay: 0 * 0.2 }}
               onClick={() => router.push("/dashboard/text")}
             >
-              <div className="helperButtonText">Insho yozing</div>
+              <div className="helperButtonText">{t("Essay")}</div>
             </motion.button>
           )}
 
