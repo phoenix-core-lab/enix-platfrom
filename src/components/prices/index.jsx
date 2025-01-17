@@ -5,10 +5,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import { useCookies } from "react-cookie";
 export default function Prices() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("personal");
   const t = useTranslations("Plan");
+  const [cookies, setCookie] = useCookies();
+  const isActiveUser = cookies.isActiveUser;
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       let searchParams = new URLSearchParams(window.location.search);
@@ -33,30 +37,6 @@ export default function Prices() {
           <h1 className="text-4xl font-bold text-center mb-8">
             {t("Maintitle")}
           </h1>
-          {/* <div className="flex justify-center mb-8 lg:mb-20">
-          <div className="bg-[#2C2C2C] rounded-full p-1 inline-flex">
-            <button
-              onClick={() => setActiveTab("personal")}
-              className={`px-6 py-2 rounded-full transition-colors ${
-                activeTab === "personal"
-                  ? "bg-[#1A1A1A] text-white"
-                  : "text-gray-400 hover:text-gray-300"
-              }`}
-            >
-              Личный план
-            </button>
-            <button
-              onClick={() => setActiveTab("business")}
-              className={`px-6 py-2 rounded-full transition-colors ${
-                activeTab === "business"
-                  ? "bg-[#1A1A1A] text-white"
-                  : "text-gray-400 hover:text-gray-300"
-              }`}
-            >
-              Business
-            </button>
-          </div>
-        </div> */}
 
           {activeTab === "personal" ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-8 lg:gap-0">
@@ -75,9 +55,13 @@ export default function Prices() {
                 <p className="mb-8">{t("Premium.subtitle")}</p>
                 <button
                   onClick={() => router.push("./payment")}
-                  className="w-full py-3 px-4 rounded-md bg-[#00A67E] text-white mb-8"
+                  className={`w-full py-3 px-4 rounded-md mb-8 text-white ${
+                    !isActiveUser ? "bg-[#00A67E]" : "bg-gray-600"
+                  }`}
                 >
-                  {t("Premium.buttonText")}
+                  {!isActiveUser
+                    ? t("Premium.buttonText")
+                    : t("Free.buttonText")}
                 </button>
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
@@ -109,55 +93,58 @@ export default function Prices() {
                   {t("Premium.bottomText")}
                 </div>
               </div>
-
               {/* Free Tier */}
-              <div className="rounded-lg bg-[#222222] p-8">
-                <h2 className="text-2xl font-bold mb-4">
-                  {t("Free.Maintitle")}
-                </h2>
-                <div className="flex items-baseline mb-8">
-                  <span className="text-5xl font-extrabold">20</span>
-                  <span className="ml-1 text-gray-400">{t("Free.price")}</span>
-                </div>
-                <p className="mb-8">{t("Free.subtitle")}</p>
-                <button
-                  onClick={() => router.push("/")}
-                  className="w-full py-3 px-4 rounded-md bg-gray-600 text-white mb-8"
-                >
-                  {t("Free.buttonText")}
-                </button>
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-start">
-                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
-                    <span>{t("Free.text")}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
-                    <span>{t("Free.text2")}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
-                    <span>{t("Free.text3")}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
-                    <span>{t("Free.text4")} </span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
-                    <span>{t("Free.text5")}</span>
-                  </li>
-                </ul>
-                <div className="text-sm text-gray-400">
-                  {t("Free.alreadyHavePremium")}
-                  <Link
-                    href="/payment"
-                    className="text-[#00A67E] hover:underline"
+              {!isActiveUser && (
+                <div className="rounded-lg bg-[#222222] p-8">
+                  <h2 className="text-2xl font-bold mb-4">
+                    {t("Free.Maintitle")}
+                  </h2>
+                  <div className="flex items-baseline mb-8">
+                    <span className="text-5xl font-extrabold">20</span>
+                    <span className="ml-1 text-gray-400">
+                      {t("Free.price")}
+                    </span>
+                  </div>
+                  <p className="mb-8">{t("Free.subtitle")}</p>
+                  <button
+                    onClick={() => router.push("/")}
+                    className="w-full py-3 px-4 rounded-md bg-gray-600 text-white mb-8"
                   >
-                    {t("Free.linkText")}
-                  </Link>
+                    {t("Free.buttonText")}
+                  </button>
+                  <ul className="space-y-4 mb-8">
+                    <li className="flex items-start">
+                      <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
+                      <span>{t("Free.text")}</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
+                      <span>{t("Free.text2")}</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
+                      <span>{t("Free.text3")}</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
+                      <span>{t("Free.text4")} </span>
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
+                      <span>{t("Free.text5")}</span>
+                    </li>
+                  </ul>
+                  <div className="text-sm text-gray-400">
+                    {t("Free.alreadyHavePremium")}
+                    <Link
+                      href="/payment"
+                      className="text-[#00A67E] hover:underline"
+                    >
+                      {t("Free.linkText")}
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           ) : (
             <div className="max-w-md mx-auto">
