@@ -57,6 +57,7 @@ const Payment: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
+
     if (!formData.paymentMethod) {
       toast.error(t("Toastify.errorPaymentMethod"));
       return;
@@ -69,6 +70,9 @@ const Payment: React.FC = () => {
 
     if (!validateCardDetails()) return;
 
+    // Удаление символа `/` из expire_date
+    const formattedExpireDate = formData.expire_date.replace("/", "");
+
     const url =
       formData.paymentMethod === "Click"
         ? API_PATHS.clickCard
@@ -79,7 +83,7 @@ const Payment: React.FC = () => {
         url,
         {
           card_number: formData.card_number,
-          expire_date: formData.expire_date,
+          expire_date: formattedExpireDate, // Отправляем без "/"
         },
         {
           headers: {
@@ -233,7 +237,7 @@ const Payment: React.FC = () => {
                         className="w-full h-full rounded-md border p-2 outline-none"
                         value={formData.expire_date}
                         onChange={handleExpire_dateChange}
-                        maxLength={5} // Ограничиваем длину ввода
+                        maxLength={5}
                       />
                     </div>
                   </div>
