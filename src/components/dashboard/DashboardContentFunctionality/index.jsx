@@ -96,15 +96,13 @@ const DashboardContentFunctionality = (props) => {
           return router.push("/");
         }
 
-        setTimeout(() => {
-          if (Array.isArray(data)) {
-            setModelAnswer(data.reverse());
+        if (Array.isArray(data)) {
+          setModelAnswer(data.reverse());
 
-            if (props.type === "text" && data.length > 0) {
-              typeEffect(data[data.length - 1].message);
-            }
+          if (props.type === "text" && data.length > 0) {
+            typeEffect(data[data.length - 1].message);
           }
-        }, 1);
+        }
       } catch (error) {
         if (error.response?.status === 402) {
           return router.push("/prices");
@@ -185,14 +183,12 @@ const DashboardContentFunctionality = (props) => {
     }
 
     const formElements = event.target.elements;
-    setTimeout(() => {
-      setModelAnswer([
-        {
-          from_user: true,
-          message: formElements.message.value,
-        },
-      ]);
-    }, 1);
+    setModelAnswer([
+      {
+        from_user: true,
+        message: formElements.message.value,
+      },
+    ]);
     setShowAnswer(true);
     setLoading(true);
 
@@ -213,12 +209,10 @@ const DashboardContentFunctionality = (props) => {
       )
       .then((res) => {
         if (Array.isArray(res.data?.data)) {
-          setTimeout(() => {
-            setModelAnswer(res.data.data.reverse());
-            props.type === "text" &&
-              res.data.data.length > 0 &&
-              typeEffect(res.data.data[res.data.data.length - 1].message);
-          }, 1);
+          setModelAnswer(res.data.data.reverse());
+          props.type === "text" &&
+            res.data.data.length > 0 &&
+            typeEffect(res.data.data[res.data.data.length - 1].message);
         }
         setLoading(false);
       })
@@ -252,15 +246,13 @@ const DashboardContentFunctionality = (props) => {
     const formElements = event.target.elements;
     setShowAnswer(true);
     setLoading(true);
-    setTimeout(() => {
-      setModelAnswer([
-        ...modelAnswer,
-        {
-          from_user: true,
-          message: event.target.elements.message.value,
-        },
-      ]);
-    }, 1);
+    setModelAnswer([
+      ...modelAnswer,
+      {
+        from_user: true,
+        message: event.target.elements.message.value,
+      },
+    ]);
 
     axios
       .patch(
@@ -279,15 +271,13 @@ const DashboardContentFunctionality = (props) => {
         }
       )
       .then((res) => {
-        setTimeout(() => {
-          if (Array.isArray(res.data?.data)) {
-            setModelAnswer(res.data.data.reverse());
-            props.type === "text" &&
-              res.data.data.length > 0 &&
-              typeEffect(res.data.data[res.data.data.length - 1].message);
-          }
-          setLoading(false);
-        }, 1);
+        if (Array.isArray(res.data?.data)) {
+          setModelAnswer(res.data.data.reverse());
+          props.type === "text" &&
+            res.data.data.length > 0 &&
+            typeEffect(res.data.data[res.data.data.length - 1].message);
+        }
+        setLoading(false);
       })
       .catch((err) => {
         console.error(err);
@@ -361,7 +351,7 @@ const DashboardContentFunctionality = (props) => {
     <div className="dashboardContentFunctionality">
       <ToastContainer theme="dark" />
       <AnimatePresence>
-        {showAnswer && language && (
+        {(showAnswer && language) && (
           <motion.div
             key="chatBox"
             initial={{ opacity: 0, y: 20 }}
@@ -491,7 +481,7 @@ const DashboardContentFunctionality = (props) => {
         )}
       </AnimatePresence>
 
-      {!showAnswer && language && (
+      {(!showAnswer && language) && (
         <motion.h3
           className="contentHeader"
           initial={{ opacity: 0, y: -20 }}
@@ -645,37 +635,19 @@ const DashboardContentFunctionality = (props) => {
             transition={{ duration: 0.5 }}
             className="modelLanguageContainer"
           >
-            <div
-              className="languageButton"
-              onClick={() => {
-                setCookie("modelAnswerLanguage", "ru");
-                setLanguage("ru");
-              }}
-            >
+            <div className="languageButton" onClick={() => {setCookie("modelAnswerLanguage", "ru"); setLanguage("ru")}}>
               <div className="languageButtonText">{t("ru")}</div>
               <div className="flag">
                 <Flag code="RU" />
               </div>
             </div>
-            <div
-              className="languageButton"
-              onClick={() => {
-                setCookie("modelAnswerLanguage", "uz");
-                setLanguage("uz");
-              }}
-            >
+            <div className="languageButton" onClick={() => {setCookie("modelAnswerLanguage", "uz"); setLanguage("uz")}}>
               <div className="languageButtonText">{t("uz")}</div>
               <div className="flag">
                 <Flag code="UZ" />
               </div>
             </div>
-            <div
-              className="languageButton"
-              onClick={() => {
-                setCookie("modelAnswerLanguage", "en");
-                setLanguage("en");
-              }}
-            >
+            <div className="languageButton" onClick={() => {setCookie("modelAnswerLanguage", "en"); setLanguage("en")}}>
               <div className="languageButtonText">{t("en")}</div>
               <div className="flag">
                 <Flag code="GB" />
