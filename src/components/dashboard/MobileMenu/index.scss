@@ -247,8 +247,7 @@
     }
 
     .downMenu,
-    .userDownMenuHeader {
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
+    .downMenu .userDownMenuHeader {
         border-right: none;
     }
 }
@@ -270,7 +269,7 @@
     }
 
     .downMenu,
-    .userDownMenuHeader {
+    .downMenu .userDownMenuHeader {
         border-right: 1px solid rgba(255, 255, 255, 0.1);
         border-left: none;
     }

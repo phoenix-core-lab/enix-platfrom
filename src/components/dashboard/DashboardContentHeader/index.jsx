@@ -22,78 +22,6 @@ const DashboardContentHeader = () => {
     useMainContext();
   const [activeUser, setActiveUser] = React.useState(false);
   const logoMenuRef = React.useRef(null);
-  // const [openMiniMenus, setOpenMiniMenus] = React.useState({});
-
-  // const toggleMiniMenu = (chatId) => {
-  //   setOpenMiniMenus((prevState) => ({
-  //     ...prevState,
-  //     [chatId]: !prevState[chatId],
-  //   }));
-  // };
-
-  // const handleGetChats = () => {
-  //   axios
-  //     .get(process.env.NEXT_PUBLIC_APP_API_URL + "/chat/all-chats", {
-  //       headers: {
-  //         Authorization: `Bearer ${cookies.secretToken}`,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       setAllChats(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //       removeCookie("secretToken");
-  //       router.push("/signin");
-  //     });
-  // };
-
-  // const deleteChat = (chatId) => {
-  //   axios
-  //     .delete(process.env.NEXT_PUBLIC_APP_API_URL + "/chat/" + chatId, {
-  //       headers: {
-  //         Authorization: `Bearer ${cookies.secretToken}`,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       handleGetChats();
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // };
-
-  // const handleClickOutside = (event) => {
-  //   if (
-  //     userMenuRef.current &&
-  //     !userMenuRef.current.contains(event.target) &&
-  //     openUserMenu
-  //   ) {
-  //     console.log("Закрытие пользовательского меню");
-  //     setOpenUserMenu(false);
-  //   }
-
-  //   if (
-  //     logoMenuRef.current &&
-  //     !logoMenuRef.current.contains(event.target) &&
-  //     !Object.values(openMiniMenus).some((isOpen) => isOpen) &&
-  //     openLogoMenu
-  //   ) {
-  //     console.log("Закрытие главного меню");
-  //     setOpenLogoMenu(false);
-  //   }
-  // };
-
-  // React.useEffect(() => {
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, [openUserMenu, openLogoMenu]);
-
-  // React.useEffect(() => {
-  //   handleGetChats();
-  // }, []);
 
   React.useEffect(() => {
     setActiveUser(cookies.isActiveUser);
@@ -122,13 +50,6 @@ const DashboardContentHeader = () => {
           />
         </div>
       </div>
-      {/* {openUserMenu && (
-        <div
-          className="overlay"
-          onClick={() => setOpenUserMenu(!openUserMenu)}
-        ></div>
-      )} */}
-
       <div className="headerTitle">
         {activeUser ? (
           <Link href="/prices" className="getPlusButton activeUser">

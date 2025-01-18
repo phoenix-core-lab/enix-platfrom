@@ -94,12 +94,17 @@ const HistorySideBar = (props) => {
                   className="chatHistoryItem"
                 >
                   <h4>{chat.chat_title}</h4>
-                  <div className="miniMenu" onClick={(e) => e.preventDefault()}>
+                  <div
+                    className="miniMenu"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                  >
                     <button
                       onClick={(event) => {
                         event.preventDefault();
                         event.stopPropagation();
-                        console.log("Toggle menu for chat:", chat.chat_id);
                         toggleMiniMenu(chat.chat_id);
                       }}
                       className="miniMenuOpenButton"
@@ -114,10 +119,14 @@ const HistorySideBar = (props) => {
                   </div>
                   {openMiniMenus[chat.chat_id] && (
                     <>
-                      <div className="absolute right-0 top-8 mt-2 bg-[#171717] rounded-xl shadow-xl py-1.5 z-20 border border-gray-700/50 animate-in fade-in slide-in-from-top-2 duration-200">
+                      <div className="absolute right-0 top-6 mt-2 bg-[#171717] rounded-xl shadow-xl py-1.5 z-20 border border-gray-700/50 animate-in fade-in slide-in-from-top-2 duration-200">
                         <div className="px-1.5">
                           <button
-                            onClick={() => deleteChat(chat.chat_id)}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              deleteChat(chat.chat_id);
+                            }}
                             className="w-full px-3 py-2.5 flex items-center gap-3 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors duration-200 group"
                           >
                             <span className="font-medium">Delete</span>
