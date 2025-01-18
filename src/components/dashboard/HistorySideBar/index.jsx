@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
@@ -19,14 +19,17 @@ const HistorySideBar = (props) => {
   );
   const { openLogoMenu, setOpenLogoMenu, openUserMenu, setOpenUserMenu } =
     useMainContext();
-  const [allChats, setAllChats] = React.useState([]);
-  const [openMiniMenus, setOpenMiniMenus] = React.useState({});
+  const [allChats, setAllChats] = useState([]);
+  const [openMiniMenus, setOpenMiniMenus] = useState({});
+  const deleteButtonRef = useRef(null); // Ссылка на кнопку удаления
 
   const toggleMiniMenu = (chatId) => {
-    setOpenMiniMenus((prevState) => ({
-      ...prevState,
-      [chatId]: !prevState[chatId],
-    }));
+    setOpenMiniMenus((prevState) => {
+      if (prevState[chatId]) {
+        return { ...prevState, [chatId]: false }; // Закрыть текущее меню
+      }
+      return { [chatId]: true }; // Открыть только выбранное меню
+    });
   };
 
   const handleGetChats = () => {
@@ -53,15 +56,31 @@ const HistorySideBar = (props) => {
           Authorization: `Bearer ${cookies.secretToken}`,
         },
       })
-      .then((res) => {
-        handleGetChats();
-      })
+      .then(() => handleGetChats())
       .catch((err) => {
         console.error(err);
       });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
+    // Закрыть меню при клике вне его
+    const handleClickOutside = (event) => {
+      if (
+        deleteButtonRef.current &&
+        !deleteButtonRef.current.contains(event.target)
+      ) {
+        setOpenMiniMenus({});
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
     handleGetChats();
   }, []);
 
@@ -105,6 +124,7 @@ const HistorySideBar = (props) => {
                       onClick={(event) => {
                         event.preventDefault();
                         event.stopPropagation();
+
                         toggleMiniMenu(chat.chat_id);
                       }}
                       className="miniMenuOpenButton"
@@ -118,22 +138,23 @@ const HistorySideBar = (props) => {
                     </button>
                   </div>
                   {openMiniMenus[chat.chat_id] && (
-                    <>
-                      <div className="absolute right-0 top-6 mt-2 bg-[#171717] rounded-xl shadow-xl py-1.5 z-20 border border-gray-700/50 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <div className="px-1.5">
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              deleteChat(chat.chat_id);
-                            }}
-                            className="w-full px-3 py-2.5 flex items-center gap-3 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors duration-200 group"
-                          >
-                            <span className="font-medium">Delete</span>
-                          </button>
-                        </div>
+                    <div className="absolute right-0 top-8 mt-2 bg-[#171717] rounded-xl shadow-xl py-1.5 z-20 border border-gray-700/50 animate-in fade-in slide-in-from-top-2 duration-200">
+                      <div className="px-1.5">
+                        <button
+                          ref={deleteButtonRef} // Добавляем ref для кнопки удаления
+                          onClick={(event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            deleteChat(chat.chat_id);
+                          }}
+                          className="w-full px-3 py-2.5 flex items-center gap-3 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors duration-200 group"
+                        >
+                          <span className="font-medium">
+                            {t("history.delete")}
+                          </span>
+                        </button>
                       </div>
-                    </>
+                    </div>
                   )}
                 </Link>
               )

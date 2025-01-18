@@ -63,6 +63,23 @@ const SideBar = () => {
             />
           </div>
         </Link>
+        <Link className="sideBarLink" href={"questions"}>
+          <Image
+            src="/images/questions.svg"
+            alt="website"
+            width="25"
+            height="25"
+          />
+          <h3 className="sideBarLinkLabel">FAQ</h3>
+          <div className="hoverEffectIcon">
+            <Image
+              src="/images/arrow-forward-circle.svg"
+              alt="website"
+              width="20"
+              height="20"
+            />
+          </div>
+        </Link>
       </div>
       <div className="sidebarDivider"></div>
       <div className="sideBarContent">

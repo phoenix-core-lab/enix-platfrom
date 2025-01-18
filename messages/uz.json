@@ -57,7 +57,8 @@
       "title": "Veb-saytga o'ting",
       "text": "Matn bilan ishlash",
       "text2": "Fotosuratlar ishlash",
-      "exit": "Tizimdan chiqish"
+      "exit": "Tizimdan chiqish",
+      "questions": "Ko'p so'raladigan savollar"
     },
     "history": { "title": "Suhbatlar tarixi", "delete": "O'chirish" },
     "Tostify": {

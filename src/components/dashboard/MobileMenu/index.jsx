@@ -29,7 +29,10 @@ const MobileMenu = () => {
   }, [cookies]);
 
   return (
-    <div className="downMenuShadow" onClick={() => setOpenLogoMenu(!openLogoMenu)}>
+    <div
+      className="downMenuShadow"
+      onClick={() => setOpenLogoMenu(!openLogoMenu)}
+    >
       <div className="downMenu" onClick={(e) => e.stopPropagation()}>
         <div className="userDownMenuHeader">
           <h3>{t("menu")}</h3>
@@ -44,7 +47,11 @@ const MobileMenu = () => {
           </button>
         </div>
         <div className="mobileMenu">
-          <Link className="sideBarLink" href={"/dashboard"} onClick={() => setOpenLogoMenu(!openLogoMenu)}>
+          <Link
+            className="sideBarLink"
+            href={"/dashboard"}
+            onClick={() => setOpenLogoMenu(!openLogoMenu)}
+          >
             <Image
               src="/images/duplicate.svg"
               alt="albums"
@@ -62,7 +69,11 @@ const MobileMenu = () => {
             </div>
           </Link>
           <LanguageSwitcher />
-          <Link className="sideBarLink" href={"https://enix.uz/"} onClick={() => setOpenLogoMenu(!openLogoMenu)}>
+          <Link
+            className="sideBarLink"
+            href={"https://enix.uz/"}
+            onClick={() => setOpenLogoMenu(!openLogoMenu)}
+          >
             <Image
               src="/images/planet.svg"
               alt="website"
@@ -79,8 +90,33 @@ const MobileMenu = () => {
               />
             </div>
           </Link>
+          <Link
+            className="sideBarLink"
+            href={"questions"}
+            onClick={() => setOpenLogoMenu(!openLogoMenu)}
+          >
+            <Image
+              src="/images/questions.svg"
+              alt="website"
+              width="25"
+              height="25"
+            />
+            <h3 className="sideBarLinkLabel">FAQ</h3>
+            <div className="hoverEffectIcon">
+              <Image
+                src="/images/arrow-forward-circle.svg"
+                alt="website"
+                width="20"
+                height="20"
+              />
+            </div>
+          </Link>
           <div className="sidebarDivider"></div>
-          <Link className="sideBarLink" href={"/dashboard/text"} onClick={() => setOpenLogoMenu(!openLogoMenu)}>
+          <Link
+            className="sideBarLink"
+            href={"/dashboard/text"}
+            onClick={() => setOpenLogoMenu(!openLogoMenu)}
+          >
             <Image
               src="/images/document-text.svg"
               alt="website"
@@ -97,7 +133,11 @@ const MobileMenu = () => {
               />
             </div>
           </Link>
-          <Link className="sideBarLink" href={"/dashboard/image"} onClick={() => setOpenLogoMenu(!openLogoMenu)}>
+          <Link
+            className="sideBarLink"
+            href={"/dashboard/image"}
+            onClick={() => setOpenLogoMenu(!openLogoMenu)}
+          >
             <Image
               src="/images/images.svg"
               alt="website"

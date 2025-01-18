@@ -33,7 +33,7 @@
       transition: 0.3s all;
     }
 
-    &:hover {
+    &:focus {
       img {
         filter: brightness(0.4);
       }
@@ -71,9 +71,8 @@
       transition: 0.3s all;
     }
 
-    &:hover {
-
-      &>img,
+    &:focus {
+      & > img,
       .sideBarLinkLabel {
         filter: brightness(0.6);
       }

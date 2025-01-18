@@ -1,5 +1,4 @@
 "use client";
-
 import * as React from "react";
 import SideBar from "./SideBar";
 import HistorySideBar from "./HistorySideBar";

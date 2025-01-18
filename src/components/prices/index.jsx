@@ -39,7 +39,7 @@ export default function Prices() {
             {t("Back")}
           </button>
           <h1 className="text-4xl font-bold text-center mb-8">
-           {isActiveUser ? t("Soldtitle") : t("Maintitle")}
+            {isActiveUser ? t("Soldtitle") : t("Maintitle")}
           </h1>
 
           {activeTab === "personal" ? (
@@ -62,7 +62,11 @@ export default function Prices() {
                 </div>
                 <p className="mb-8">{t("Premium.subtitle")}</p>
                 <button
-                  onClick={() => router.push("./payment")}
+                  onClick={() => {
+                    if (!isActiveUser) {
+                      router.push("./payment");
+                    }
+                  }}
                   className={`w-full py-3 px-4 rounded-md mb-8 text-white ${
                     !isActiveUser ? "bg-[#00A67E]" : "bg-gray-600"
                   }`}
