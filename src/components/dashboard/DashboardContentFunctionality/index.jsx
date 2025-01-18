@@ -118,7 +118,7 @@ const DashboardContentFunctionality = (props) => {
 
   const handleDownload = async (modelMessage) => {
     if (props.type === "image") {
-      const imageUrl = `${process.env.NEXT_PUBLIC_APP_API_URL}/images/${modelMessage}`;
+      const imageUrl = `${process.env.NEXT_PUBLIC_APP_API_URL}/image/${modelMessage}`;
 
       try {
         const response = await fetch(imageUrl);
@@ -399,7 +399,7 @@ const DashboardContentFunctionality = (props) => {
                               </ReactMarkdown>
                             ) : (
                               <Image
-                                src={`${process.env.NEXT_PUBLIC_APP_API_URL}/images/${item.file_url}`}
+                                src={`${process.env.NEXT_PUBLIC_APP_API_URL}/image/${item.file_url}`}
                                 alt="modelImage"
                                 width={300}
                                 height={300}
