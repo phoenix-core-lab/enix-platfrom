@@ -138,6 +138,7 @@ const SigninForm = () => {
           display: "flex",
           justifyContent: "flex-end",
           backdropFilter: "blur(12px)",
+          backgroundColor: "#212121"
         }}
       >
         <Box padding={2} sx={{position: "absolute", top: 0, left: 0}}>

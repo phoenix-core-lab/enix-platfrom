@@ -351,7 +351,7 @@ const DashboardContentFunctionality = (props) => {
     <div className="dashboardContentFunctionality">
       <ToastContainer theme="dark" />
       <AnimatePresence>
-        {(showAnswer && language) && (
+        {showAnswer && language && (
           <motion.div
             key="chatBox"
             initial={{ opacity: 0, y: 20 }}
@@ -392,14 +392,7 @@ const DashboardContentFunctionality = (props) => {
                         {props.type === "image" ? (
                           item.file_url ? (
                             item.file_url === "no.png" ? (
-                              <ReactMarkdown>
-                                Я не могу выполнить этот запрос. Если тебе нужны
-                                иллюстрации в художественном стиле, могу
-                                нарисовать что-то подобное, но в пределах
-                                правил. Например, стильную портретную или
-                                фантазийную картину. Дай знать, если у тебя есть
-                                какие-то предпочтения! 😊
-                              </ReactMarkdown>
+                              <ReactMarkdown>{t("prohibition")}</ReactMarkdown>
                             ) : (
                               <Image
                                 src={`${process.env.NEXT_PUBLIC_APP_API_URL}/image/${item.file_url}`}
@@ -481,7 +474,7 @@ const DashboardContentFunctionality = (props) => {
         )}
       </AnimatePresence>
 
-      {(!showAnswer && language) && (
+      {!showAnswer && language && (
         <motion.h3
           className="contentHeader"
           initial={{ opacity: 0, y: -20 }}
@@ -490,6 +483,51 @@ const DashboardContentFunctionality = (props) => {
         >
           {currentMessage}
         </motion.h3>
+      )}
+
+      {!showAnswer && (
+        <div className="chosenModelWrapper">
+          {/* <div className="chosenModel" onClick={() => router.push("/dashboard/text")}> */}
+          <motion.div
+            className={
+              props.type === "text" ? "chosenModel chosen" : "chosenModel"
+            }
+            onClick={() => router.push("/dashboard/text")}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
+          >
+            <div className="chosenModelIcon">
+              <Image
+                src="/images/document-text.svg"
+                alt="website"
+                width="25"
+                height="25"
+              />
+            </div>
+            <div className="chosenModelText">Работа с текстом</div>
+          </motion.div>
+          <motion.div
+            className={
+              props.type === "image" ? "chosenModel chosen" : "chosenModel"
+            }
+            onClick={() => router.push("/dashboard/image")}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
+          >
+            <div className="chosenModelIcon">
+              <Image
+                src="/images/images.svg"
+                alt="website"
+                width="22"
+                height="25"
+                style={{ marginLeft: "2px" }}
+              />
+            </div>
+            <div className="chosenModelText">Генерация изображений</div>
+          </motion.div>
+        </div>
       )}
 
       {language && (
@@ -517,6 +555,41 @@ const DashboardContentFunctionality = (props) => {
               onKeyDown={handleSendOnEnter}
               disabled={loading}
             />
+
+            <button
+              type="button"
+              className="languageSwitcherButton"
+              title="На каком языке мне к вам обращаться?"
+              onClick={() => {
+                const newLanguage =
+                  language === "ru" ? "uz" : language === "uz" ? "en" : "ru";
+                setCookie("modelAnswerLanguage", newLanguage);
+                setLanguage(newLanguage);
+              }}
+            >
+              {language === "ru" ? (
+                <Image
+                  src="/images/russia.svg"
+                  alt="language"
+                  width={40}
+                  height={40}
+                />
+              ) : language === "uz" ? (
+                <Image
+                  src="/images/greatbritain.svg"
+                  alt="language"
+                  width={40}
+                  height={40}
+                />
+              ) : (
+                <Image
+                  src="/images/uzbekistan.svg"
+                  alt="language"
+                  width={40}
+                  height={40}
+                />
+              )}
+            </button>
 
             {isTyping ? (
               <button
@@ -635,19 +708,37 @@ const DashboardContentFunctionality = (props) => {
             transition={{ duration: 0.5 }}
             className="modelLanguageContainer"
           >
-            <div className="languageButton" onClick={() => {setCookie("modelAnswerLanguage", "ru"); setLanguage("ru")}}>
+            <div
+              className="languageButton"
+              onClick={() => {
+                setCookie("modelAnswerLanguage", "ru");
+                setLanguage("ru");
+              }}
+            >
               <div className="languageButtonText">{t("ru")}</div>
               <div className="flag">
                 <Flag code="RU" />
               </div>
             </div>
-            <div className="languageButton" onClick={() => {setCookie("modelAnswerLanguage", "uz"); setLanguage("uz")}}>
+            <div
+              className="languageButton"
+              onClick={() => {
+                setCookie("modelAnswerLanguage", "uz");
+                setLanguage("uz");
+              }}
+            >
               <div className="languageButtonText">{t("uz")}</div>
               <div className="flag">
                 <Flag code="UZ" />
               </div>
             </div>
-            <div className="languageButton" onClick={() => {setCookie("modelAnswerLanguage", "en"); setLanguage("en")}}>
+            <div
+              className="languageButton"
+              onClick={() => {
+                setCookie("modelAnswerLanguage", "en");
+                setLanguage("en");
+              }}
+            >
               <div className="languageButtonText">{t("en")}</div>
               <div className="flag">
                 <Flag code="GB" />

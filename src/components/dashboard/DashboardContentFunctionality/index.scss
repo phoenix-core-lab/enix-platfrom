@@ -46,6 +46,31 @@
                 }
             }
 
+            .languageSwitcherButton {
+                position: absolute;
+                right: 15px;
+                top: 15px;
+                background: #2f2f2f00;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: 0.3s;
+
+                img {
+                    width: 30px;
+                    height: 20px;
+
+                    &:hover {
+                        box-shadow: 0 0 5px 0 #434343;
+                    }
+                }
+
+
+            }
+
             .sendButton {
                 background: none;
                 border: none;
@@ -242,6 +267,79 @@
 
 .typingEffect {
     animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.chosenModelWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    .chosenModel {
+        width: 50%;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #2f2f2f;
+        border-radius: 20px;
+        padding: 20px;
+        gap: 10px;
+        cursor: pointer;
+        transition: 0.2s;
+        border: 1px solid #43434300;
+
+        .chosenModelIcon {
+            min-width: 50px;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: #2f2f2f;
+            border: 1px solid #434343;
+        }
+
+        .chosenModelText {
+            font-size: 18px;
+            color: #fff;
+        }
+
+        &:hover {
+            box-shadow: 0 0 5px 0 #434343;
+            border: 1px solid #434343;
+        }
+
+        &.chosen {
+            // border: 1px solid #8b00ff;
+            border: 1px solid #1f7251;
+            box-shadow: inset 0 0 5px 0 #1f7251;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        flex-direction: column;
+        gap: 10px;
+
+        .chosenModel {
+            width: 100%;
+            height: 60px;
+
+            .chosenModelText {
+                font-size: 16px;
+            }
+
+            .chosenModelIcon {
+                min-width: 40px;
+                min-height: 40px;
+
+                img {
+                    max-width: 20px;
+                    max-height: 20px;
+                }
+            }
+        }
+    }
 }
 
 .modelLanguageWrapper {
