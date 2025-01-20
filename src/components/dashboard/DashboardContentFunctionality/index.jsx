@@ -561,34 +561,27 @@ const DashboardContentFunctionality = (props) => {
               className="languageSwitcherButton"
               title="На каком языке мне к вам обращаться?"
               onClick={() => {
+                const languages = ["ru", "uz", "en"];
+                const currentIndex = languages.indexOf(language);
                 const newLanguage =
-                  language === "ru" ? "uz" : language === "uz" ? "en" : "ru";
+                  languages[(currentIndex + 1) % languages.length];
+
                 setCookie("modelAnswerLanguage", newLanguage);
                 setLanguage(newLanguage);
               }}
             >
-              {language === "ru" ? (
-                <Image
-                  src="/images/russia.svg"
-                  alt="language"
-                  width={40}
-                  height={40}
-                />
-              ) : language === "uz" ? (
-                <Image
-                  src="/images/greatbritain.svg"
-                  alt="language"
-                  width={40}
-                  height={40}
-                />
-              ) : (
-                <Image
-                  src="/images/uzbekistan.svg"
-                  alt="language"
-                  width={40}
-                  height={40}
-                />
-              )}
+              <Image
+                src={
+                  language === "ru"
+                    ? "/images/russia.svg"
+                    : language === "uz"
+                    ? "/images/uzbekistan.svg"
+                    : "/images/greatbritain.svg"
+                }
+                alt="language"
+                width={40}
+                height={40}
+              />
             </button>
 
             {isTyping ? (
