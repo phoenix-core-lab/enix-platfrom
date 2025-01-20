@@ -92,7 +92,7 @@ const MobileMenu = () => {
           </Link>
           <Link
             className="sideBarLink"
-            href={"questions"}
+            href={"/questions"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
             <Image

@@ -1,4 +1,4 @@
-import QuestionsContent from "@/components/questions/indedx";
+import QuestionsContent from "@/components/questions";
 
 const Questions = () => {
   return (

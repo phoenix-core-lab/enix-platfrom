@@ -63,7 +63,7 @@ const SideBar = () => {
             />
           </div>
         </Link>
-        <Link className="sideBarLink" href={"questions"}>
+        <Link className="sideBarLink" href={"/questions"}>
           <Image
             src="/images/questions.svg"
             alt="website"
