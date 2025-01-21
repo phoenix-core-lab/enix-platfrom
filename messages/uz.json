@@ -33,6 +33,7 @@
     "confirmCode": "Telefon raqamingizga tasdiqlash kodi yuborildi!"
   },
   "Dashboard": {
+    "errorMessage": "Xato yuz berdi. Yana urinib ko'ring.",
     "notice": "ENIX xatolarga yo'l qo'yishi mumkin. Muhim ma'lumotlarni tekshirishni tavsiya etamiz.",
     "plus": "Premium faol",
     "title": "Qanday yordam bera olaman?",

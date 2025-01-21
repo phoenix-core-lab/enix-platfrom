@@ -15,6 +15,9 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { useTranslations } from "next-intl";
 import Flag from "react-world-flags";
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { Link } from "@/i18n/routing";
 
 const renderButton = (buttonText, index) => (
   <motion.button
@@ -37,6 +40,17 @@ const renderButton = (buttonText, index) => (
 );
 
 const DashboardContentFunctionality = (props) => {
+  useEffect(() => {
+    Fancybox.bind("[data-fancybox]", {
+      infinite: true, // Бесконечная навигация
+      transitionEffect: "zoom-in-out", // Эффект перехода
+    });
+
+    return () => {
+      Fancybox.destroy(); // Уничтожить Fancybox при размонтировании
+    };
+  }, []);
+
   const t = useTranslations("Dashboard");
   const messages = [t("title"), t("title2"), t("title3")];
   const imageModelButtons = [t("landscape"), t("Sea")];
@@ -108,7 +122,7 @@ const DashboardContentFunctionality = (props) => {
           return router.push("/prices");
         }
 
-        const errorMessage = "Xato yuz berdi. Yana urinib ko'ring.";
+        const errorMessage = t("errorMessage");
         setModelAnswer([{ from_user: false, message: errorMessage }]);
         typeEffect(errorMessage);
       }
@@ -227,10 +241,10 @@ const DashboardContentFunctionality = (props) => {
             ...prev,
             {
               from_user: false,
-              message: "Xato yuz berdi. Yana urinib ko'ring.",
+              message: t("errorMessage"),
             },
           ]);
-          typeEffect("Xato yuz berdi. Yana urinib ko'ring.");
+          typeEffect(t("errorMessage"));
         }
       });
 
@@ -290,10 +304,10 @@ const DashboardContentFunctionality = (props) => {
             ...prev,
             {
               from_user: false,
-              message: "Xato yuz berdi. Yana urinib ko'ring.",
+              message: t("errorMessage"),
             },
           ]);
-          typeEffect("Xato yuz berdi. Yana urinib ko'ring.");
+          typeEffect(t("errorMessage"));
         }
       });
     formElements.message.value = "";
@@ -394,12 +408,21 @@ const DashboardContentFunctionality = (props) => {
                             item.file_url === "no.png" ? (
                               <ReactMarkdown>{t("prohibition")}</ReactMarkdown>
                             ) : (
-                              <Image
-                                src={`${process.env.NEXT_PUBLIC_APP_API_URL}/image/${item.file_url}`}
-                                alt="modelImage"
-                                width={300}
-                                height={300}
-                              />
+                              <Link
+                                href={`${process.env.NEXT_PUBLIC_APP_API_URL}/image/${item.file_url}`} // Full-size image URL
+                                data-fancybox="gallery"
+                              >
+                                <Image
+                                  src={`${process.env.NEXT_PUBLIC_APP_API_URL}/image/${item.file_url}`} // Thumbnail image URL
+                                  alt={`Image ${index + 1}`}
+                                  width={300}
+                                  height={300}
+                                  style={{
+                                    borderRadius: "8px",
+                                    cursor: "pointer",
+                                  }}
+                                />
+                              </Link>
                             )
                           ) : (
                             <ReactMarkdown>
@@ -409,7 +432,6 @@ const DashboardContentFunctionality = (props) => {
                             </ReactMarkdown>
                           )
                         ) : null}
-
                         {!item.from_user && (
                           <div className="copyContainer">
                             {props.type === "text" ? (
@@ -426,24 +448,24 @@ const DashboardContentFunctionality = (props) => {
                                 <div className="copyItem">
                                   <Image
                                     src="/images/download.svg"
-                                    alt="copy"
+                                    alt="download"
                                     width={20}
                                     height={20}
                                     onClick={() => handleDownload(item.message)}
                                   />
                                 </div>
                               </>
-                            ) : (
+                            ) : item.file_url && item.file_url !== "no.png" ? (
                               <div className="copyItem">
                                 <Image
                                   src="/images/download.svg"
-                                  alt="copy"
+                                  alt="download"
                                   width={20}
                                   height={20}
                                   onClick={() => handleDownload(item.file_url)}
                                 />
                               </div>
-                            )}
+                            ) : null}
                           </div>
                         )}
                       </>
