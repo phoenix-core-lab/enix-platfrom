@@ -9,7 +9,6 @@ import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { AnimatePresence, motion } from "framer-motion";
 import { CookiesProvider, useCookies } from "react-cookie";
-import CircularProgress from "@mui/joy/CircularProgress";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
@@ -483,12 +482,7 @@ const DashboardContentFunctionality = (props) => {
                   }}
                   className="loader"
                 >
-                  <CircularProgress
-                    size="sm"
-                    color="neutral"
-                    value={70}
-                    variant="plain"
-                  />
+                  loading
                 </motion.div>
               )}
             </div>

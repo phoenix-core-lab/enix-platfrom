@@ -2,6 +2,7 @@
   "SignIn": {
     "newUser": "Yangi foydalanuvchi?",
     "register": "Ro‘yxatdan o‘tish",
+    "signSystem": "Tizimga kirish",
     "telphoneNumber": "Telefon raqami",
     "password": "Parol",
     "rememberMe": "Meni eslab qol",
@@ -21,6 +22,7 @@
     }
   },
   "Register": {
+    "createAccount": "O'z akauntingizni yaratish",
     "registration": "Ro‘yxatdan o‘tish",
     "alreadyHaveAccount": "Sizda allaqachon hisob mavjudmi?",
     "login": "Kirish",
@@ -28,8 +30,10 @@
     "telphoneNumber": "Telefon raqamingiz",
     "password": "Parol",
     "code": "O'zingiz uchun maxsus parol yarating",
-    "register": "Keyingisi",
+    "register": "Ro‘yxatdan o‘tish",
     "or": "yoki",
+    "confirm": "Tasdiqlash",
+    "confirmCode2": "Tasdiqlash kodi",
     "confirmCode": "Telefon raqamingizga tasdiqlash kodi yuborildi!"
   },
   "Dashboard": {
