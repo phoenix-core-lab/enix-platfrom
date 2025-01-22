@@ -363,7 +363,7 @@ const DashboardContentFunctionality = (props) => {
 
   return (
     <div className="dashboardContentFunctionality">
-      <ToastContainer theme="dark" />
+      <ToastContainer theme="dark" pauseOnHover={false} />
       <AnimatePresence>
         {showAnswer && language && (
           <motion.div

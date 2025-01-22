@@ -44,7 +44,7 @@ export default async function RootLayout({
     <ContextProvider>
       <html lang={locale}>
         <head>
-          <link rel="icon" href="/favicon.ico" sizes="any" />
+          <link rel="icon" href="/favicon.png" sizes="any" />
           <title>ENIX AI Assistent</title>
         </head>
         <body className={`${gilroy.className}`}>

@@ -28,7 +28,7 @@ export default function Prices() {
 
   return (
     <>
-      <ToastContainer theme="dark" />
+      <ToastContainer theme="dark" pauseOnHover={false}/>
       <div className="min-h-screen bg-[#1A1A1A] text-white pt-6 pb-12 px-4">
         <div className="max-w-7xl mx-auto">
           <button
