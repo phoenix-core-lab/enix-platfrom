@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link, useRouter } from "@/i18n/routing";
 import Image from "next/image";
-import { GalleryVerticalEnd } from "lucide-react";
 import LanguageSwitcher from "../dashboard/LanguageSwitcher";
 import { useTranslations } from "next-intl";
 import React from "react";
@@ -40,9 +39,8 @@ export function RegistrationForm({
   const [cookies, setCookie] = useCookies();
   const [isLoading, setIsLoading] = React.useState(false);
   const [isRegistered, setIsRegistered] = React.useState(false);
-  const [phoneNum, setPhoneNum] = React.useState("+998");
-  const [isMounted, setIsMounted] = React.useState(false);
-  const [open, setOpen] = React.useState<boolean>(true);
+  const phoneNum = "+998";
+  const [open, setOpen] = React.useState<boolean>(false);
   const signUp = (event: React.FormEvent<SignInFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
@@ -103,7 +101,7 @@ export function RegistrationForm({
         open={open}
         checkPhoneSmsCode={checkPhoneSmsCode}
       />
-      <div className="flex min-h-svh flex-col items-center justify-center gap-6  p-6 md:p-10 bg-[url('https://img.profinance.ru/news/571226-1')] bg-cover bg-center bg-no-repeat h-dvh">
+      <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10 bg-black h-dvh">
         <div className="flex w-full max-w-sm flex-col gap-2">
           <div className="flex items-center gap-2 self-center font-medium text-white">
             <div className="flex h-8 w-8 items-center justify-center  ">
@@ -140,7 +138,6 @@ export function RegistrationForm({
                         <LanguageSwitcher />
                       </Button>
                     </div>
-                    <div className=" relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border after:text-[#27272A]"></div>
                     <div className="grid gap-6">
                       <div className="grid gap-2 text-white">
                         <Label htmlFor="email">{t("name")}</Label>
@@ -186,7 +183,7 @@ export function RegistrationForm({
                       {t("alreadyHaveAccount")}
                       <Link
                         href="/signin"
-                        className="underline underline-offset-4"
+                        className="underline underline-offset-4 ml-1"
                       >
                         {t("login")}
                       </Link>

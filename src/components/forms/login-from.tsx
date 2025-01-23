@@ -98,7 +98,7 @@ export function LoginForm({
   return (
     <>
       <ToastContainer />
-      <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10 bg-[url('https://img.profinance.ru/news/571226-1')] bg-cover bg-center bg-no-repeat h-dvh">
+      <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10 bg-black h-dvh">
         <div className="flex w-full max-w-sm flex-col gap-2">
           <div className="flex items-center gap-2 self-center font-medium text-white">
             <div className="flex h-8 w-8 items-center justify-center  ">
@@ -134,7 +134,7 @@ export function LoginForm({
                         <LanguageSwitcher />
                       </Button>
                     </div>
-                    <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border after:text-[#27272A]"></div>
+                    {/* <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border after:text-[#27272A]"></div> */}
                     <div className="grid gap-6">
                       <div className="grid gap-2 text-white">
                         <Label htmlFor="email">{t("telphoneNumber")}</Label>
