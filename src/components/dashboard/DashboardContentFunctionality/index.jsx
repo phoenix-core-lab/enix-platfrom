@@ -41,12 +41,12 @@ const renderButton = (buttonText, index) => (
 const DashboardContentFunctionality = (props) => {
   useEffect(() => {
     Fancybox.bind("[data-fancybox]", {
-      infinite: true, // Бесконечная навигация
-      transitionEffect: "zoom-in-out", // Эффект перехода
+      infinite: true,
+      transitionEffect: "zoom-in-out",
     });
 
     return () => {
-      Fancybox.destroy(); // Уничтожить Fancybox при размонтировании
+      Fancybox.destroy();
     };
   }, []);
 
