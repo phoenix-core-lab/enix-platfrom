@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import "./index.scss";
@@ -9,16 +9,27 @@ import { useLocale } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import LanguageSwitcher from "../LanguageSwitcher";
 import { useTranslations } from "next-intl";
+import ThemeToggle from "@/components/theme-toggle/theme-toggle";
 
 const SideBar = () => {
   const router = useRouter();
+  const t = useTranslations("Dashboard.sideBar"); 
   const [cookies, setCookie, removeCookie] = useCookies("secretToken");
-  const locale = useLocale();
-  const t = useTranslations("Dashboard.sideBar");
+  const [cookiesTheme] = useCookies(["theme"]);
+  const [theme, setTheme] = useState("dark"); // Значение по умолчанию
+
+  useEffect(() => {
+    setTheme(cookiesTheme.theme || "dark");
+  }, [cookiesTheme])
+
+  useEffect(() => {
+    document.body.classList.toggle("light", theme === "light");
+  }, [theme]);
+
   return (
-    <div className="sideBar">
+    <div className={`sideBar ${theme === "light" ? "light" : ""}`}>
       <div className="sideBarHeader">
-        <div className="helpButtons">
+        <div className={`helpButtons ${theme === "light" ? "light" : ""}`}>
           <button
             title="Yangi so'rov yarating"
             onClick={() => {
@@ -46,7 +57,10 @@ const SideBar = () => {
             />
           </button>
         </div>
-        <Link className="sideBarLink" href={"https://enix.uz/"}>
+        <Link
+          className={`sideBarLink ${theme === "light" ? "light" : ""} `}
+          href={"https://enix.uz/"}
+        >
           <Image
             src="/images/planet.svg"
             alt="website"
@@ -63,8 +77,12 @@ const SideBar = () => {
             />
           </div>
         </Link>
-        <Link className="sideBarLink" href={"/questions"}>
+        <Link
+          className={`sideBarLink ${theme === "light" ? "light" : ""} `}
+          href={"/questions"}
+        >
           <Image
+            color="red"
             src="/images/questions.svg"
             alt="website"
             width="25"
@@ -83,7 +101,10 @@ const SideBar = () => {
       </div>
       <div className="sidebarDivider"></div>
       <div className="sideBarContent">
-        <Link className="sideBarLink" href={"/dashboard/text"}>
+        <Link
+          className={`sideBarLink ${theme === "light" ? "light" : ""} `}
+          href={"/dashboard/text"}
+        >
           <Image
             src="/images/document-text.svg"
             alt="website"
@@ -112,7 +133,10 @@ const SideBar = () => {
             />
           </div>
         </Link> */}
-        <Link className="sideBarLink" href={"/dashboard/image"}>
+        <Link
+          className={`sideBarLink ${theme === "light" ? "light" : ""} `}
+          href={"/dashboard/image"}
+        >
           <Image
             src="/images/images.svg"
             alt="website"
@@ -132,6 +156,9 @@ const SideBar = () => {
         </Link>
       </div>
       <div className="sideBarFooter">
+        <div className="sideBarLink">
+          <ThemeToggle />
+        </div>
         <LanguageSwitcher />
         <button
           className="sideBarLink"

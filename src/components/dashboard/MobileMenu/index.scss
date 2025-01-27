@@ -9,268 +9,276 @@
 // }
 
 .dashboardWrapper.openLogoMenu {
-    .downMenu {
-        margin-right: 0px !important;
-    }
+  .downMenu {
+    margin-right: 0px !important;
+  }
 
-    .logoEnixArrow {
-        transform: rotate(-90deg);
-    }
+  .logoEnixArrow {
+    transform: rotate(-90deg);
+  }
 }
 
 .downMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 300px;
+  max-width: 300px;
+  margin-right: -300px;
+  transition: all 0.3s;
+  height: 100dvh;
+  background: hsl(var(--textInput));
+  gap: 10px;
+  position: relative;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+  .userDownMenuHeader {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
-    min-width: 300px;
-    max-width: 300px;
-    margin-right: -300px;
-    transition: all 0.3s;
-    height: 100dvh;
-    background: #2f2f2f;
-    gap: 10px;
-    position: relative;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    padding-right: 20px;
+    position: fixed;
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 18px 15px 18px;
+    z-index: 10;
+    background: hsl(var(--textInput));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-    .userDownMenuHeader {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-right: 20px;
-        position: fixed;
-        width: 300px;
-        display: flex;
-        justify-content: space-between;
-        padding: 15px 18px 15px 18px;
-        z-index: 10;
-        background: #2f2f2f;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-
-        h3 {
-            font-size: 16px;
-            color: white;
-        }
-
-        button {
-            transition: all 0.3s;
-        }
-
-        button:hover {
-            opacity: 0.5;
-        }
+    h3 {
+      font-size: 16px;
+      color: hsl(var(--text-color));
     }
 
-    .mobileMenu {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding: 65px 10px 10px 10px;
+    button {
+      transition: all 0.3s;
+    }
 
+    button:hover {
+      opacity: 0.5;
+    }
+  }
 
-        .sideBarLink {
-            width: 100%;
-            padding: 5px;
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 5px;
+  .userDownMenuHeader.light {
+    button > img {
+      filter: brightness(1) invert(0.6);
+    }
+  }
 
-            * {
-                transition: 0.3s all;
-            }
+  .mobileMenu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 65px 10px 10px 10px;
 
-            &:hover {
+    .sideBarLink {
+      width: 100%;
+      padding: 5px;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 5px;
 
-                &>img,
-                .sideBarLinkLabel {
-                    filter: brightness(0.6);
-                }
+      * {
+        transition: 0.3s all;
+      }
 
-                .hoverEffectIcon {
-                    opacity: 1;
-                    margin-left: 0px;
-
-                    img {
-                        filter: brightness(1);
-                    }
-                }
-            }
-        }
-
+      &:hover {
+        & > img,
         .sideBarLinkLabel {
-            font-size: 16px;
-            font-weight: normal;
-            color: #b4b4b4;
-            transition: 0.3s all;
+          filter: brightness(0.6);
         }
 
         .hoverEffectIcon {
-            width: 20px;
-            height: 20px;
-            margin-left: 20px;
-            opacity: 0;
-            transition: 0.3s;
+          opacity: 1;
+          margin-left: 0px;
 
-            img {
-                width: 100%;
-                height: 100%;
-            }
+          img {
+            filter: brightness(1);
+          }
         }
-
-        .sidebarDivider {
-            width: 100%;
-            height: 1px;
-            border-radius: 50%;
-            background: #444444;
-        }
+      }
+    }
+    .sideBarLink.light {
+      & > img,
+      .sideBarLinkLabel {
+        filter: brightness(0.7) invert(1);
+      }
     }
 
-    .mobileMenuFunctions {
+    .sideBarLinkLabel {
+      font-size: 16px;
+      font-weight: normal;
+      color: #b4b4b4;
+      transition: 0.3s all;
+    }
+
+    .hoverEffectIcon {
+      width: 20px;
+      height: 20px;
+      margin-left: 20px;
+      opacity: 0;
+      transition: 0.3s;
+
+      img {
         width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 10px;
+        height: 100%;
+      }
     }
 
-    .mobileExitButton {
-        margin-top: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        padding: 8px 15px;
-        border-radius: 8px;
-        gap: 10px;
-        transition: all 0.3s;
-        font-size: 16px;
-        color: #ce3737;
-        border: 1px solid #ce3737;
+    .sidebarDivider {
+      width: 100%;
+      height: 1px;
+      border-radius: 50%;
+      background: #444444;
+    }
+  }
 
-        img {
-            transition: all 0.3s;
-        }
+  .mobileMenuFunctions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px;
+  }
 
+  .mobileExitButton {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 8px 15px;
+    border-radius: 8px;
+    gap: 10px;
+    transition: all 0.3s;
+    font-size: 16px;
+    color: #ce3737;
+    border: 1px solid #ce3737;
 
-        &:hover {
-            background-color: #ce3737;
-            color: white;
-            padding-left: 45px;
-
-            img {
-                opacity: 0;
-            }
-        }
+    img {
+      transition: all 0.3s;
     }
 
-    .plan {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        padding: 8px 15px;
-        border-radius: 8px;
-        gap: 10px;
-        transition: all 0.3s;
-        font-size: 16px;
-        color: #ececec;
+    &:hover {
+      background-color: #ce3737;
+      color: hsl(var(--text-color));
+      padding-left: 45px;
 
-        img {
-            width: 15px;
-            height: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      img {
+        opacity: 0;
+      }
+    }
+  }
 
-        &.freePlan {
-            background-color: #1f7251;
-        }
+  .plan {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 8px 15px;
+    border-radius: 8px;
+    gap: 10px;
+    transition: all 0.3s;
+    font-size: 16px;
+    color: #ececec;
 
-        &:hover {
-            background-color: #3e63dd;
-            box-shadow: 0px 0px 5px 0px #3e63dd;
-        }
-
-        &.plusPlan {
-            background: radial-gradient(ellipse farthest-corner at right bottom,
-                    #fedb37 0%,
-                    #fdb931 8%,
-                    #9f7928 30%,
-                    #8a6e2f 40%,
-                    transparent 80%),
-                radial-gradient(ellipse farthest-corner at left top,
-                    #ffffff 0%,
-                    #ffffac 8%,
-                    #d1b464 25%,
-                    #5d4a1f 62.5%,
-                    #5d4a1f 100%);
-
-            &:hover {
-                box-shadow: 0px 0px 5px 0px #3e63dd00;
-            }
-        }
+    img {
+      width: 15px;
+      height: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
+    &.freePlan {
+      background-color: #1f7251;
+    }
 
+    &:hover {
+      background-color: #3e63dd;
+      box-shadow: 0px 0px 5px 0px #3e63dd;
+    }
+
+    &.plusPlan {
+      background: radial-gradient(
+          ellipse farthest-corner at right bottom,
+          #fedb37 0%,
+          #fdb931 8%,
+          #9f7928 30%,
+          #8a6e2f 40%,
+          transparent 80%
+        ),
+        radial-gradient(
+          ellipse farthest-corner at left top,
+          #ffffff 0%,
+          #ffffac 8%,
+          #d1b464 25%,
+          #5d4a1f 62.5%,
+          #5d4a1f 100%
+        );
+
+      &:hover {
+        box-shadow: 0px 0px 5px 0px #3e63dd00;
+      }
+    }
+  }
 }
 
 .downMenuShadow {
-    transition: 0.3s;
+  transition: 0.3s;
 }
 
 @media screen and (max-width: 1400px) {
-    .downMenu {
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 999;
-    }
+  .downMenu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 999;
+  }
 
-    .downMenuShadow {
-        position: absolute;
-        z-index: 999;
-        width: 100%;
-        right: -100%;
-        height: 100dvh;
-        background: #00000097;
-    }
+  .downMenuShadow {
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    right: -100%;
+    height: 100dvh;
+    background: #00000097;
+  }
 
+  .dashboardWrapper.openLogoMenu .downMenu,
+  .dashboardWrapper.openLogoMenu .downMenuShadow {
+    margin-right: 0px !important;
+    right: 0;
+  }
 
-    .dashboardWrapper.openLogoMenu .downMenu,
-    .dashboardWrapper.openLogoMenu .downMenuShadow {
-        margin-right: 0px !important;
-        right: 0;
-    }
-
-    .downMenu,
-    .downMenu .userDownMenuHeader {
-        border-right: none;
-    }
+  .downMenu,
+  .downMenu .userDownMenuHeader {
+    border-right: none;
+  }
 }
 
 @media screen and (max-width: 900px) {
+  .downMenu {
+    left: 0;
+  }
 
-    .downMenu {
-        left: 0;
-    }
+  .dashboardWrapper.openLogoMenu .downMenu,
+  .dashboardWrapper.openLogoMenu .downMenuShadow {
+    left: 0;
+  }
 
+  .downMenuShadow {
+    left: -100%;
+  }
 
-    .dashboardWrapper.openLogoMenu .downMenu,
-    .dashboardWrapper.openLogoMenu .downMenuShadow {
-        left: 0;
-    }
-
-    .downMenuShadow {
-        left: -100%;
-    }
-
-    .downMenu,
-    .downMenu .userDownMenuHeader {
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
-        border-left: none;
-    }
+  .downMenu,
+  .downMenu .userDownMenuHeader {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: none;
+  }
 }

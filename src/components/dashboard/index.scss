@@ -1,27 +1,27 @@
-.dashboardWrapper{
-    width: 100%;
-    height: 100dvh;
-    min-height: 500px;
-    display: flex;
-    justify-content: flex-start;
-    background: #212121;
-    position: relative;
+.dashboardWrapper {
+  width: 100%;
+  height: 100dvh;
+  min-height: 500px;
+  display: flex;
+  justify-content: flex-start;
+  background: var(--dashboard);
+  position: relative;
 }
 
 .dashboardContainer {
-    width: 100%;
-    height: 100dvh;
-    min-height: 500px;
-    overflow-y: auto;
-    display: flex;
-    justify-content: flex-start;
-    gap: 20px;
-    padding: 20px;
-    background: #212121;
+  width: 100%;
+  height: 100dvh;
+  min-height: 500px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 20px;
+  background: var(--dashboard);
 }
 
 @media screen and (max-width: 900px) {
-    .dashboardContainer {
-        padding-top: 10px;
-    }
+  .dashboardContainer {
+    padding-top: 10px;
+  }
 }

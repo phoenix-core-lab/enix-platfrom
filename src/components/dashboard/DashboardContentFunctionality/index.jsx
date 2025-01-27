@@ -8,7 +8,7 @@ import { useRouter } from "@/i18n/routing";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { AnimatePresence, motion } from "framer-motion";
-import { CookiesProvider, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
@@ -69,7 +69,16 @@ const DashboardContentFunctionality = (props) => {
   const typingIntervalRef = useRef(null);
   const chatFieldRef = useRef(null);
   const [language, setLanguage] = useState("");
+  const [cookiesTheme] = useCookies(["theme"]);
+  const [theme, setTheme] = useState("dark"); // Значение по умолчанию
 
+  useEffect(() => {
+    setTheme(cookiesTheme.theme || "dark");
+  }, [cookiesTheme]);
+
+  useEffect(() => {
+    document.body.classList.toggle("light", theme === "light");
+  }, [theme]);
   const typeEffect = (text) => {
     setIsTyping(true);
     clearInterval(typingIntervalRef.current);
@@ -505,41 +514,54 @@ const DashboardContentFunctionality = (props) => {
         <div className="chosenModelWrapper">
           {/* <div className="chosenModel" onClick={() => router.push("/dashboard/text")}> */}
           <motion.div
-            className={
+            className={`${
               props.type === "text" ? "chosenModel chosen" : "chosenModel"
-            }
+            } ${theme === "light" ? "light" : ""}`}
             onClick={() => router.push("/dashboard/text")}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
           >
-            <div className="chosenModelIcon">
-              <Image
-                src="/images/document-text.svg"
-                alt="website"
-                width="25"
-                height="25"
-              />
+            <div
+              className={`chosenModelIcon ${theme === "light" ? "light" : ""}`}
+            >
+              <svg
+                className={`w-6 h-6 ${
+                  theme === "light" ? "text-blue-600" : "text-white"
+                }`}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+              </svg>
             </div>
             <div className="chosenModelText">Работа с текстом</div>
           </motion.div>
           <motion.div
-            className={
+            className={`${
               props.type === "image" ? "chosenModel chosen" : "chosenModel"
-            }
+            } ${theme === "light" ? "light" : ""}`}
             onClick={() => router.push("/dashboard/image")}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
           >
-            <div className="chosenModelIcon">
-              <Image
-                src="/images/images.svg"
-                alt="website"
-                width="22"
-                height="25"
-                style={{ marginLeft: "2px" }}
-              />
+            <div
+              className={`chosenModelIcon ${theme === "light" ? "light" : ""}`}
+            >
+              <svg
+                className={`w-6 h-6 ${
+                  theme === "light" ? "text-blue-600" : "text-white"
+                }`}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+              </svg>
             </div>
             <div className="chosenModelText">Генерация изображений</div>
           </motion.div>
@@ -562,7 +584,7 @@ const DashboardContentFunctionality = (props) => {
           >
             <motion.textarea
               required
-              className="textInput"
+              className={`textInput ${theme === "light" ? "light" : ""}`}
               placeholder={t("title3")}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -571,7 +593,6 @@ const DashboardContentFunctionality = (props) => {
               onKeyDown={handleSendOnEnter}
               disabled={loading}
             />
-
             <button
               type="button"
               className="languageSwitcherButton"
@@ -602,7 +623,7 @@ const DashboardContentFunctionality = (props) => {
 
             {isTyping ? (
               <button
-                className="sendButton"
+                className={`sendButton ${theme === "light" ? "light" : ""}`}
                 type="button"
                 onClick={() => stopTyping()}
               >
@@ -615,7 +636,7 @@ const DashboardContentFunctionality = (props) => {
               </button>
             ) : (
               <motion.button
-                className="sendButton"
+                className={`sendButton ${theme === "light" ? "light" : ""}`}
                 type="submit"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -630,6 +651,17 @@ const DashboardContentFunctionality = (props) => {
                 />
               </motion.button>
             )}
+            <p
+              style={{
+                position: "absolute",
+                right: "60px",
+                bottom: "20px",
+                fontSize: "12px",
+                color: "#b4b4b4",
+              }}
+            >
+              20 / 20
+            </p>
           </form>
         </motion.div>
       )}

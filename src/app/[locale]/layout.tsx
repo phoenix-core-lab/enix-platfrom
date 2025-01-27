@@ -21,7 +21,8 @@ import ContextProvider from "@/providers/contextProvider";
 
 export const metadata: Metadata = {
   title: "ENIX AI Assistent",
-  description: "ENIX AI Assistant — aqlli va tez yordamchi, salqin vibe bilan. Savollarga javob beradi, vazifalarga yordam beradi va hayotni osonlashtiradi. 🚀"
+  description:
+    "ENIX AI Assistant — aqlli va tez yordamchi, salqin vibe bilan. Savollarga javob beradi, vazifalarga yordam beradi va hayotni osonlashtiradi. 🚀",
 };
 
 export default async function RootLayout({
@@ -56,4 +57,3 @@ export default async function RootLayout({
     </ContextProvider>
   );
 }
-

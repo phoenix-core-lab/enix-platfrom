@@ -12,6 +12,13 @@ export default function Prices() {
   const t = useTranslations("Plan");
   const [cookies, setCookie] = useCookies();
   const [isActiveUser, setIsActiveUser] = useState(null);
+  const [cookiesTheme] = useCookies(["theme"]);
+  const theme = cookiesTheme.theme || "dark"; // Значение по умолчанию
+
+  useEffect(() => {
+    console.log("Текущая тема:", theme);
+    document.body.classList.toggle("light", theme === "light");
+  }, [theme]);
 
   useEffect(() => {
     setIsActiveUser(cookies.isActiveUser);
@@ -28,8 +35,10 @@ export default function Prices() {
 
   return (
     <>
-      <ToastContainer theme="dark" pauseOnHover={false}/>
-      <div className="min-h-screen bg-[#1A1A1A] text-white pt-6 pb-12 px-4">
+      <ToastContainer theme="dark" pauseOnHover={false} />
+      <div
+        className={`min-h-screen bg-background-prices text-text pt-6 pb-12 px-4`}
+      >
         <div className="max-w-7xl mx-auto">
           <button
             onClick={() => router.push("/")}
@@ -46,85 +55,32 @@ export default function Prices() {
             <div
               className={`grid grid-cols-1 md:${
                 !isActiveUser ? "grid-cols-2" : "grid-cols-1"
-              } gap-8 sm:gap-8 lg:gap-0`}
+              } gap-8 sm:gap-8 lg:gap-10`} // Увеличение gap
             >
-              {/* Plus Tier */}
-              <div className="rounded-lg bg-[#222222] p-8 border-2 border-[#00A67E] relative">
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00A67E] text-white px-3 py-1 rounded-full text-sm">
-                  {t("Premium.topText")}
-                </span>
-                <h2 className="text-2xl font-bold mb-4">Premium</h2>
-                <div className="flex items-baseline mb-8">
-                  <span className="text-5xl font-extrabold">15 000</span>
-                  <span className="ml-1 text-gray-400">
-                    {t("Premium.price")}
-                  </span>
-                </div>
-                <p className="mb-8">{t("Premium.subtitle")}</p>
-                <button
-                  onClick={() => {
-                    if (!isActiveUser) {
-                      router.push("./payment");
-                    }
-                  }}
-                  className={`w-full py-3 px-4 rounded-md mb-8 text-white ${
-                    !isActiveUser ? "bg-[#00A67E]" : "bg-gray-600"
-                  }`}
-                >
-                  {!isActiveUser
-                    ? t("Premium.buttonText")
-                    : t("Free.buttonText")}
-                </button>
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-start">
-                    <Check className="h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
-                    <span>{t("Premium.text")}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
-                    <span>{t("Premium.text2")}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
-                    <span>{t("Premium.text3")}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
-                    <span>{t("Premium.text4")}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
-                    <span>{t("Premium.text5")}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
-                    <span>{t("Premium.text6")}</span>
-                  </li>
-                </ul>
-                <div className="text-sm text-gray-400">
-                  {t("Premium.bottomText")}
-                </div>
-              </div>
               {/* Free Tier */}
               {!isActiveUser && (
-                <div className="rounded-lg bg-[#222222] p-8">
-                  <h2 className="text-2xl font-bold mb-4">
+                <div className="rounded-lg bg-background-prices p-6 border-2 border-borderColor-pricesSecond">
+                  <h2 className="text-xl font-bold mb-4">
                     {t("Free.Maintitle")}
                   </h2>
-                  <div className="flex items-baseline mb-8">
-                    <span className="text-5xl font-extrabold">20</span>
+                  <div className="flex items-baseline mb-5">
+                    <span className="text-4xl font-extrabold">20</span>
                     <span className="ml-1 text-gray-400">
                       {t("Free.price")}
                     </span>
                   </div>
+                  <div className="flex items-center gap-2 bg-red-50 text-red-600 font-medium px-4 py-3 rounded-[10px] mb-5">
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                    Ваш лимит исчерпан
+                  </div>
                   <p className="mb-8">{t("Free.subtitle")}</p>
                   <button
                     onClick={() => router.push("/")}
-                    className="w-full py-3 px-4 rounded-md bg-gray-600 text-white mb-8"
+                    className="w-full py-2 px-3 rounded-md bg-gray-600 text-white mb-8"
                   >
                     {t("Free.buttonText")}
                   </button>
-                  <ul className="space-y-4 mb-8">
+                  <ul className="space-y-3 mb-8">
                     <li className="flex items-start">
                       <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
                       <span>{t("Free.text")}</span>
@@ -157,6 +113,65 @@ export default function Prices() {
                   </div>
                 </div>
               )}
+              {/* Plus Tier */}
+              <div
+                className={`rounded-lg bg-background-prices p-6 border-2 border-borderColor-prices relative`}
+              >
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00A67E] text-white px-3 py-1 rounded-full text-sm">
+                  {t("Premium.topText")}
+                </span>
+                <h2 className="text-xl font-bold mb-4">Premium</h2>
+                <div className="flex items-baseline mb-8">
+                  <span className="text-4xl font-extrabold">15 000</span>{" "}
+                  <span className="ml-1 text-gray-400">
+                    {t("Premium.price")}
+                  </span>
+                </div>
+                <p className="mb-8">{t("Premium.subtitle")}</p>
+                <button
+                  onClick={() => {
+                    if (!isActiveUser) {
+                      router.push("./payment");
+                    }
+                  }}
+                  className={`w-full py-2 px-3 rounded-md mb-8 text-white ${
+                    !isActiveUser ? "bg-[#00A67E]" : "bg-gray-600"
+                  }`}
+                >
+                  {!isActiveUser
+                    ? t("Premium.buttonText")
+                    : t("Free.buttonText")}
+                </button>
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-start">
+                    <Check className="h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
+                    <span>{t("Premium.text")}</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
+                    <span>{t("Premium.text2")}</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
+                    <span>{t("Premium.text3")}</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
+                    <span>{t("Premium.text4")}</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
+                    <span>{t("Premium.text5")}</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="min-w-[20px] h-5 w-5 text-[#00A67E] mr-2 mt-0.5" />
+                    <span>{t("Premium.text6")}</span>
+                  </li>
+                </ul>
+                <div className="text-sm text-gray-400">
+                  {t("Premium.bottomText")}
+                </div>
+              </div>
             </div>
           ) : (
             <div className="max-w-md mx-auto">

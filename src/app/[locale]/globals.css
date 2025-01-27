@@ -2,27 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.cdnfonts.com/css/gilroy-bold');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.cdnfonts.com/css/gilroy-bold");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  font-family: 'gilroy', 'gilroy Fallback' !important;
+  font-family: "gilroy", "gilroy Fallback" !important;
 }
 
-.authLink{
+.authLink {
   margin-left: 5px;
 }
 
-button, input, textarea, div, span, p, h1, h2, h3, h4, h5, h6 {
-  font-family: 'gilroy', 'gilroy Fallback' !important;
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+button,
+input,
+textarea,
+div,
+span,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "gilroy", "gilroy Fallback" !important;
 }
 
 * {
@@ -38,13 +44,30 @@ a {
 
 @layer base {
   :root {
+    --border-color-second: 0 0% 10.2%;
+    --border-color: 220 13% 91%;
+    --scrollbar-color-first: #434343;
+    --scrollbar-color-second: #2f2f2f;
+    --user-message: 0 0% 18.82%;
+    --text-color: 0 0% 100%;
+    --dashboard: #212121;
+    --header-background: 0 0% 9%;
+    --hover-text-input: 0 0% 25%;
+    --chat-filed: 0 0% 14%;
+    --textInput: 0 0% 18%;
+    --grey-main: 0 0% 18% 0;
+    --text: 0 0% 100%;
+    --text-secondary: 0 0% 0%;
+    --main-background: 0 0% 0%;
+    --prices-background: 0 0% 10.2%;
+
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --primary: 0 0% 0%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
@@ -61,10 +84,26 @@ a {
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --chart-5: 340 75% 55%;
   }
-  .dark {
+  .light {
+    --border-color-second: 220 14% 93%;
+    --border-color: 220 14% 93%;
+    --scrollbar-color-first: #d3d3d3; /* Светло-серый для основного цвета */
+    --scrollbar-color-second: #f5f5f5;
+    --user-message: 0 0% 94.9%;
+    --text-color: 263 19% 27%;
+    --header-background: 0 0% 100%;
+    --hover-text-input: 0 0% 43.5%;
+    --chat-filed: 0 0% 100%;
+    --textInput: 0 0% 100%;
+    --grey-main: 0 0% 95% 0;
+    --text-secondary: 0 0% 100%;
+    --text: 0 0% 0%;
+    --dashboard: linear-gradient(to bottom right, #f9fafb, #f3f4f6);
+    --main-background: 0 0% 100%;
+    --prices-background: 0 0% 100%;
+
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
@@ -92,6 +131,11 @@ a {
   }
 }
 
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -100,4 +144,3 @@ a {
     @apply bg-background text-foreground;
   }
 }
-

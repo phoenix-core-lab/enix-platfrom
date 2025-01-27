@@ -162,7 +162,7 @@ const Payment: React.FC = () => {
   return (
     <>
       <ToastContainer theme="dark" pauseOnHover={false} />
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div className="min-h-screen bg-gray-50 py-8 text-black">
         <div className="mx-auto max-w-2xl px-4">
           <nav className="mb-8">
             <button
@@ -256,7 +256,7 @@ const Payment: React.FC = () => {
                           onChange={handleInputChange}
                         />
                         <span
-                          className={`inline-block h-5 w-5 rounded-full border-2 flex items-center justify-center ${
+                          className={`h-5 w-5 rounded-full border-2 flex items-center justify-center ${
                             formData.paymentMethod === "Click"
                               ? "border-green-500"
                               : "border-gray-300"
@@ -278,7 +278,7 @@ const Payment: React.FC = () => {
                           onChange={handleInputChange}
                         />
                         <span
-                          className={`inline-block h-5 w-5 rounded-full border-2 flex items-center justify-center ${
+                          className={`h-5 w-5 rounded-full border-2 flex items-center justify-center ${
                             formData.paymentMethod === "Payme"
                               ? "border-green-500"
                               : "border-gray-300"

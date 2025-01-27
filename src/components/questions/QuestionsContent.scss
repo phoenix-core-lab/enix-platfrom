@@ -1,6 +1,6 @@
 .QuestionsContentMain {
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: hsl(var(--primary));
   padding: 2rem;
 
   @media screen and (max-width: 768px) {

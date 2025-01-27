@@ -1,435 +1,451 @@
 .dashboardContentFunctionality {
+  width: 100%;
+  max-width: 769px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  .contentHeader {
     width: 100%;
-    max-width: 769px;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    color: hsl(var(--text-color));
+    text-align: center;
+    min-height: 54px;
+  }
 
-    .contentHeader {
+  .textForm {
+    width: 100%;
+
+    form {
+      width: 100%;
+      position: relative;
+      display: flex;
+
+      .textInput {
+        border: none;
+        outline: none;
+        padding: 20px;
+        padding-right: 50px;
         width: 100%;
-        font-size: 36px;
-        font-weight: bold;
-        color: #fff;
-        text-align: center;
-        min-height: 54px;
-    }
-
-    .textForm {
-        width: 100%;
-
-        form {
-            width: 100%;
-            position: relative;
-            display: flex;
-
-            .textInput {
-                border: none;
-                outline: none;
-                padding: 20px;
-                padding-right: 50px;
-                width: 100%;
-                height: 97px;
-                background: #2F2F2F;
-                border-radius: 20px;
-                resize: none;
-                font-size: 16px;
-                color: #fff;
-                scroll-behavior: smooth;
-                scrollbar-width: thin;
-                scrollbar-color: #434343 #2f2f2f;
-
-                &::placeholder {
-                    color: #B4B4B4;
-                }
-            }
-
-            .languageSwitcherButton {
-                position: absolute;
-                right: 15px;
-                top: 15px;
-                background: #2f2f2f00;
-                border: none;
-                outline: none;
-                cursor: pointer;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transition: 0.3s;
-
-                img {
-                    width: 30px;
-                    height: 20px;
-
-                    &:hover {
-                        box-shadow: 0 0 5px 0 #434343;
-                    }
-                }
-
-
-            }
-
-            .sendButton {
-                background: none;
-                border: none;
-                outline: none;
-                cursor: pointer;
-                position: absolute;
-                right: 10px;
-                bottom: 10px;
-            }
-        }
-    }
-
-    .helperButtons {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-
-        .helperButton {
-            padding: 8px 12px;
-            background: #2f2f2f00;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50px;
-            border: 1px solid #434343;
-            gap: 8px;
-            cursor: pointer;
-
-            .helperButtonText {
-                font-size: 14px;
-                color: rgb(155, 155, 155);
-            }
-
-            &:hover {
-                background: #2f2f2f;
-            }
-        }
-    }
-
-    .chatContainer {
-        width: 100%;
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-    }
-
-    .chatField {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        flex: 1;
-        padding: 20px 30px;
-        background: #2f2f2f13;
+        height: 97px;
+        background: hsl(var(--textInput));
         border-radius: 20px;
-        max-height: calc(100dvh - 263px);
-        min-height: 209px;
-        overflow-y: auto;
-        overflow-x: hidden;
+        resize: none;
+        font-size: 16px;
+        color: hsl(var(--text-color));
         scroll-behavior: smooth;
-        position: relative;
-        // make small scroll bar
         scrollbar-width: thin;
         scrollbar-color: #434343 #2f2f2f;
 
-        * {
-            color: #fff;
+        &::placeholder {
+          color: #b4b4b4;
         }
-    }
+      }
 
-    .userMessage {
-        text-align: left;
-        margin-left: auto;
-        padding: 15px 20px;
-        background: #303030;
-        font-size: 16px;
-        border-radius: 20px 20px 0 20px;
-        letter-spacing: 0.6px;
-    }
+      .textInput.light {
+        border: 1px solid #e5e7eb;
+      }
 
-    .copyContainer {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .copyItem {
-        margin-top: 5px;
-        background: #2f2f2f;
-        border-radius: 8px;
+      .languageSwitcherButton {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        background: hsl(var(--grey-main));
+        border: none;
+        outline: none;
+        cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 30px;
-        height: 30px;
-        visibility: hidden;
-        cursor: pointer;
-        transition: 0.3s all;
-        opacity: 0;
+        transition: 0.3s;
 
         img {
-            width: 18px;
-            height: 18px;
-        }
+          width: 30px;
+          height: 20px;
 
-        &:hover {
-            background: #3f3f3f;
+          &:hover {
+            box-shadow: 0 0 5px 0 #434343;
+          }
         }
+      }
+
+      .sendButton {
+        background: none;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+      }
+
+      .sendButton.light {
+        & > img {
+          filter: brightness(0.7) invert(1);
+        }
+      }
     }
+  }
 
-    .modelMessage {
-        text-align: left;
-        margin-right: auto;
-        font-size: 16px;
-        border-radius: 20px 20px 20px 0;
-        line-height: 30px;
-
-        & * {
-            letter-spacing: 0.6px;
-        }
-
-        ul,
-        ol {
-            li {
-                margin-left: 17px;
-            }
-        }
-
-        pre {
-            margin: 15px 0;
-            padding: 15px;
-            background: #0D0D0D;
-            border: 1px solid #141414;
-            border-radius: 10px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            overflow: auto;
-            font-size: 14px;
-            line-height: 22px;
-            letter-spacing: 0.7px;
-
-            code {
-                font-size: 14px;
-                line-height: 22px;
-                letter-spacing: 0.7px;
-            }
-
-            .hljs {
-                display: block;
-                overflow-x: auto;
-                padding: 0.5em;
-                color: #abb2bf;
-                background: #282c34;
-            }
-
-            .hljs-comment,
-            .hljs-quote {
-                color: #5c6370;
-                font-style: italic;
-            }
-
-            .hljs-doctag,
-            .hljs-keyword,
-            .hljs-formula {
-                color: #c678dd;
-            }
-
-            .hljs-section,
-            .hljs-name,
-            .hljs-selector-tag,
-            .hljs-deletion,
-            .hljs-subst {
-                color: #e06c75;
-            }
-        }
-
-
-        h3:not(:first-child) {
-            margin-top: 20px;
-        }
-
-        &:hover {
-            .copyItem {
-                visibility: visible;
-                opacity: 1;
-            }
-        }
-    }
-
-
-}
-
-.typingEffect {
-    animation: fadeIn 0.3s ease-in-out forwards;
-}
-
-.chosenModelWrapper {
+  .helperButtons {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
 
-    .chosenModel {
-        width: 50%;
-        height: 80px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #2f2f2f;
-        border-radius: 20px;
-        padding: 20px;
-        gap: 10px;
-        cursor: pointer;
-        transition: 0.2s;
-        border: 1px solid #43434300;
+    .helperButton {
+      padding: 8px 12px;
+      background: hsl(var(--grey-main));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50px;
+      border: 1px solid #434343;
+      gap: 8px;
+      cursor: pointer;
 
-        .chosenModelIcon {
-            min-width: 50px;
-            min-height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            background: #2f2f2f;
-            border: 1px solid #434343;
-        }
+      .helperButtonText {
+        font-size: 14px;
+        color: hsl(var(--text-color));
+      }
 
-        .chosenModelText {
-            font-size: 18px;
-            color: #fff;
-        }
-
-        &:hover {
-            box-shadow: 0 0 5px 0 #434343;
-            border: 1px solid #434343;
-        }
-
-        &.chosen {
-            // border: 1px solid #8b00ff;
-            border: 1px solid #1f7251;
-            box-shadow: inset 0 0 5px 0 #1f7251;
-        }
+      &:hover {
+        background: hsl(var(--textInput));
+      }
     }
+  }
 
-    @media screen and (max-width: 900px) {
-        flex-direction: column;
-        gap: 10px;
+  .chatContainer {
+    width: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
 
-        .chosenModel {
-            width: 100%;
-            height: 60px;
-
-            .chosenModelText {
-                font-size: 16px;
-            }
-
-            .chosenModelIcon {
-                min-width: 40px;
-                min-height: 40px;
-
-                img {
-                    max-width: 20px;
-                    max-height: 20px;
-                }
-            }
-        }
-    }
-}
-
-.modelLanguageWrapper {
+  .chatField {
     width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    padding: 20px 30px;
+    background: hsl(var(--chat-filed));
+    border-radius: 20px;
+    max-height: calc(100dvh - 263px);
+    min-height: 209px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    position: relative;
+    // make small scroll bar
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-color-first) var(--scrollbar-color-second);
+
+    * {
+      color: hsl(var(--text-color));
+    }
+  }
+
+  .userMessage {
+    text-align: left;
+    margin-left: auto;
+    padding: 15px 20px;
+    background: hsl(var(--user-message));
+    font-size: 16px;
+    border-radius: 20px 20px 0 20px;
+    letter-spacing: 0.6px;
+  }
+
+  .copyContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .copyItem {
+    margin-top: 5px;
+    background: #2f2f2f;
+    border-radius: 8px;
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    width: 30px;
+    height: 30px;
+    visibility: hidden;
+    cursor: pointer;
+    transition: 0.3s all;
+    opacity: 0;
 
-    .modelLanguageContainer {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-
-        .languageButton {
-            padding: 8px 24px;
-            background: #2f2f2f00;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50px;
-            border: 1px solid #434343;
-            gap: 8px;
-            cursor: pointer;
-
-            .languageButtonText {
-                font-size: 18px;
-                color: rgb(255, 255, 255);
-            }
-
-            .flag {
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                img {
-                    min-height: 20px;
-                }
-            }
-
-            &:hover {
-                background: #2f2f2f;
-            }
-        }
+    img {
+      width: 18px;
+      height: 18px;
     }
 
+    &:hover {
+      background: hsl(var(--hover-text-input));
+    }
+  }
+
+  .modelMessage {
+    text-align: left;
+    margin-right: auto;
+    font-size: 16px;
+    border-radius: 20px 20px 20px 0;
+    line-height: 30px;
+
+    & * {
+      letter-spacing: 0.6px;
+    }
+
+    ul,
+    ol {
+      li {
+        margin-left: 17px;
+      }
+    }
+
+    pre {
+      margin: 15px 0;
+      padding: 15px;
+      background: #0d0d0d;
+      border: 1px solid #141414;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow: auto;
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: 0.7px;
+
+      code {
+        font-size: 14px;
+        line-height: 22px;
+        letter-spacing: 0.7px;
+      }
+
+      .hljs {
+        display: block;
+        overflow-x: auto;
+        padding: 0.5em;
+        color: #abb2bf;
+        background: #282c34;
+      }
+
+      .hljs-comment,
+      .hljs-quote {
+        color: #5c6370;
+        font-style: italic;
+      }
+
+      .hljs-doctag,
+      .hljs-keyword,
+      .hljs-formula {
+        color: #c678dd;
+      }
+
+      .hljs-section,
+      .hljs-name,
+      .hljs-selector-tag,
+      .hljs-deletion,
+      .hljs-subst {
+        color: #e06c75;
+      }
+    }
+
+    h3:not(:first-child) {
+      margin-top: 20px;
+    }
+
+    &:hover {
+      .copyItem {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.typingEffect {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.chosenModelWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  .chosenModel {
+    width: 50%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: hsl(var(--textInput));
+    border-radius: 20px;
+    padding: 20px;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid #43434300;
+
+    .chosenModelIcon {
+      min-width: 50px;
+      min-height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background: #2f2f2f;
+      border: 1px solid #434343;
+    }
+
+    .chosenModelIcon.light {
+      border: none;
+      background: #eff6ff;
+    }
+
+    .chosenModelText {
+      font-size: 18px;
+      color: hsl(var(--text-color));
+    }
+
+    &:hover {
+      box-shadow: 0 0 5px 0 #434343;
+      border: 1px solid #434343;
+    }
+
+    &.chosen {
+      // border: 1px solid #8b00ff;
+      border: 1px solid #1f7251;
+      box-shadow: inset 0 0 5px 0 #1f7251;
+    }
+  }
+
+  .chosenModel.light {
+    border: 1px solid #e5e7eb;
+    &.chosen {
+      border: 1px solid #2563eb;
+      box-shadow: inset 0 0 5px 0 #2563eb;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 10px;
+
+    .chosenModel {
+      width: 100%;
+      height: 60px;
+
+      .chosenModelText {
+        font-size: 16px;
+      }
+
+      .chosenModelIcon {
+        min-width: 40px;
+        min-height: 40px;
+
+        img {
+          max-width: 20px;
+          max-height: 20px;
+        }
+      }
+    }
+  }
+}
+
+.modelLanguageWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  .modelLanguageContainer {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .languageButton {
+      padding: 8px 24px;
+      background: hsl(var(--grey-main));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50px;
+      border: 1px solid #434343;
+      gap: 8px;
+      cursor: pointer;
+
+      .languageButtonText {
+        font-size: 18px;
+        color: rgb(155, 155, 155);
+      }
+
+      .flag {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          min-height: 20px;
+        }
+      }
+
+      &:hover {
+        background: hsl(var(--textInput));
+      }
+    }
+  }
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 @media screen and (max-width: 900px) {
-    .dashboardContentFunctionality {
-        gap: 10px;
-    }
+  .dashboardContentFunctionality {
+    gap: 10px;
+  }
 
-    .dashboardContentFunctionality .chatField {
-        max-height: calc(100dvh - 183px);
-        padding: 20px;
-    }
+  .dashboardContentFunctionality .chatField {
+    max-height: calc(100dvh - 183px);
+    padding: 20px;
+  }
 
-    .dashboardContentFunctionality .copyItem {
-        opacity: 1;
-        visibility: visible;
-    }
+  .dashboardContentFunctionality .copyItem {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 @media screen and (max-width: 500px) {
-    .dashboardContentFunctionality .chatField {
-        padding: 20px 10px 10px 10px;
-        background: #00000000;
-    }
+  .dashboardContentFunctionality .chatField {
+    padding: 20px 10px 10px 10px;
+    background: hsl(var(--main-background));
+  }
 
-    .dashboardContentFunctionality .helperButtons {
-        gap: 10px;
-    }
+  .dashboardContentFunctionality .helperButtons {
+    gap: 10px;
+  }
 
-    .dashboardContentFunctionality .contentHeader {
-        font-size: 22px;
-        min-height: 33px;
-    }
+  .dashboardContentFunctionality .contentHeader {
+    font-size: 22px;
+    min-height: 33px;
+  }
 }

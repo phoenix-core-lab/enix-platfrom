@@ -27,6 +27,16 @@ const MobileMenu = () => {
   React.useEffect(() => {
     setActiveUser(cookies.isActiveUser);
   }, [cookies]);
+  const [cookiesTheme] = useCookies(["theme"]);
+  const [theme, setTheme] = React.useState("dark"); // Значение по умолчанию
+
+  React.useEffect(() => {
+    setTheme(cookiesTheme.theme || "dark");
+  }, [cookiesTheme])
+
+  React.useEffect(() => {
+    document.body.classList.toggle("light", theme === "light");
+  }, [theme]);
 
   return (
     <div
@@ -34,7 +44,9 @@ const MobileMenu = () => {
       onClick={() => setOpenLogoMenu(!openLogoMenu)}
     >
       <div className="downMenu" onClick={(e) => e.stopPropagation()}>
-        <div className="userDownMenuHeader">
+        <div
+          className={`userDownMenuHeader ${theme === "light" ? "light" : ""}`}
+        >
           <h3>{t("menu")}</h3>
 
           <button onClick={() => setOpenLogoMenu(!openLogoMenu)}>
@@ -48,7 +60,7 @@ const MobileMenu = () => {
         </div>
         <div className="mobileMenu">
           <Link
-            className="sideBarLink"
+            className={`sideBarLink ${theme === "light" ? "light" : ""}`}
             href={"/dashboard"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
@@ -70,7 +82,7 @@ const MobileMenu = () => {
           </Link>
           <LanguageSwitcher />
           <Link
-            className="sideBarLink"
+            className={`sideBarLink ${theme === "light" ? "light" : ""}`}
             href={"https://enix.uz/"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
@@ -91,7 +103,7 @@ const MobileMenu = () => {
             </div>
           </Link>
           <Link
-            className="sideBarLink"
+            className={`sideBarLink ${theme === "light" ? "light" : ""}`}
             href={"/questions"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
@@ -113,7 +125,7 @@ const MobileMenu = () => {
           </Link>
           <div className="sidebarDivider"></div>
           <Link
-            className="sideBarLink"
+            className={`sideBarLink ${theme === "light" ? "light" : ""}`}
             href={"/dashboard/text"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
@@ -134,7 +146,7 @@ const MobileMenu = () => {
             </div>
           </Link>
           <Link
-            className="sideBarLink"
+            className={`sideBarLink ${theme === "light" ? "light" : ""}`}
             href={"/dashboard/image"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >

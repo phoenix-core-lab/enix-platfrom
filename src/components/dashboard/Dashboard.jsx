@@ -6,6 +6,7 @@ import MobileMenu from "./MobileMenu";
 import DashboardContent from "./DashboardContent";
 import { useMainContext } from "@/providers/contextProvider";
 import "./index.scss";
+import ThemeToggle from "../theme-toggle/theme-toggle";
 
 const Dashboard = (props) => {
   const { openLogoMenu, setOpenLogoMenu, openUserMenu, setOpenUserMenu } =

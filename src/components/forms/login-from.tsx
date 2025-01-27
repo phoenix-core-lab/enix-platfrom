@@ -19,6 +19,7 @@ import { useCookies } from "react-cookie";
 import React from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import ThemeToggle from "../theme-toggle/theme-toggle";
 
 interface FormElements extends HTMLFormControlsCollection {
   phone: HTMLInputElement;
@@ -98,9 +99,9 @@ export function LoginForm({
   return (
     <>
       <ToastContainer />
-      <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10 bg-black h-dvh">
+      <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10 bg-primary h-dvh">
         <div className="flex w-full max-w-sm flex-col gap-2">
-          <div className="flex items-center gap-2 self-center font-medium text-white">
+          <div className="flex items-center gap-2 self-center font-medium text-text">
             <div className="flex h-8 w-8 items-center justify-center  ">
               <Image
                 src="/images/favicon.png"
@@ -112,9 +113,10 @@ export function LoginForm({
             Enix AI
           </div>
           <div className={cn("flex  flex-col gap-6", className)} {...props}>
-            <Card className="bg-black border-[#27272A]">
+            <ThemeToggle />
+            <Card className="bg-primary border-[#27272A]">
               <CardHeader className="text-center">
-                <CardTitle className="text-xl text-white">
+                <CardTitle className="text-xl text-text">
                   {t("signSystem")}
                 </CardTitle>
               </CardHeader>
@@ -129,17 +131,17 @@ export function LoginForm({
                       <Button
                         type="button"
                         variant="outline"
-                        className="w-full bg-black border-[#27272A] text-white hover:bg-[#27272A] hover:text-white"
+                        className="w-full bg-primary border-[#27272A] text-white hover:bg-[#27272A] hover:text-white"
                       >
                         <LanguageSwitcher />
                       </Button>
                     </div>
                     {/* <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border after:text-[#27272A]"></div> */}
                     <div className="grid gap-6">
-                      <div className="grid gap-2 text-white">
+                      <div className="grid gap-2 text-text">
                         <Label htmlFor="email">{t("telphoneNumber")}</Label>
                         <Input
-                          className="bg-black text-white border-[#27272A]"
+                          className="bg-primary text-text border-[#27272A]"
                           id="phone"
                           type="tel"
                           name="phone"
@@ -148,7 +150,7 @@ export function LoginForm({
                         />
                       </div>
                       <div className="grid gap-2">
-                        <div className="flex items-center text-white">
+                        <div className="flex items-center text-text">
                           <Label htmlFor="password">{t("password")}</Label>
                           <Link
                             href="#"
@@ -158,7 +160,7 @@ export function LoginForm({
                           </Link>
                         </div>
                         <Input
-                          className="bg-black text-white border-[#27272A]"
+                          className="bg-primary text-text border-[#27272A]"
                           id="password"
                           type="password"
                           name="password"
@@ -167,12 +169,12 @@ export function LoginForm({
                       </div>
                       <Button
                         type="submit"
-                        className="w-full text-black bg-white hover:bg-white/80"
+                        className="w-full text-text-secondary bg-background hover:bg-background/80"
                       >
                         {t("signIn")}
                       </Button>
                     </div>
-                    <div className="text-center text-sm text-white ">
+                    <div className="text-center text-sm text-text ">
                       {t("newUser")}
                       <Link
                         href="/signup"
@@ -185,7 +187,7 @@ export function LoginForm({
                 </form>
               </CardContent>
             </Card>
-            <div className="text-balance text-center text-xs text-white [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary">
+            <div className="text-balance text-center text-xs text-text [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary">
               © ENIX & Phoenix Core Lab 2025
             </div>
           </div>

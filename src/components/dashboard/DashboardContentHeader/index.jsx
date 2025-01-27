@@ -7,7 +7,6 @@ import axios from "axios";
 import { useMainContext } from "@/providers/contextProvider";
 import { Link } from "@/i18n/routing";
 import { useRouter } from "@/i18n/routing";
-import LanguageSwitcher from "../LanguageSwitcher";
 import { useTranslations } from "next-intl";
 
 const DashboardContentHeader = () => {
@@ -22,18 +21,28 @@ const DashboardContentHeader = () => {
     useMainContext();
   const [activeUser, setActiveUser] = React.useState(false);
   const logoMenuRef = React.useRef(null);
+  const [cookiesTheme] = useCookies(["theme"]);
+  const [theme, setTheme] = React.useState("dark"); // Значение по умолчанию
 
   React.useEffect(() => {
-    setActiveUser(cookies.isActiveUser);
-  }, [cookies]);
+    setTheme(cookiesTheme.theme || "dark");
+  }, [cookiesTheme])
 
+  React.useEffect(() => {
+    document.body.classList.toggle("light", theme === "light");
+  }, [theme]);
   return (
-    <div className="DashboardContentHeader">
+    <div
+      className={`DashboardContentHeader ${theme === "light" ? "light" : ""}`}
+    >
       <div
         className="enixUserMenu"
-        onClick={() => {setOpenUserMenu(!openUserMenu); setOpenLogoMenu(false)}}
+        onClick={() => {
+          setOpenUserMenu(!openUserMenu);
+          setOpenLogoMenu(false);
+        }}
       >
-        <div className="logo">
+        <div className={`logo ${theme === "light" ? "light" : ""}`}>
           <Image
             className="logoEnix"
             src="/images/history.svg"
@@ -78,9 +87,12 @@ const DashboardContentHeader = () => {
       <div
         ref={logoMenuRef}
         className="enixLogoMenu"
-        onClick={() => {setOpenLogoMenu(!openLogoMenu); setOpenUserMenu(false)}}
+        onClick={() => {
+          setOpenLogoMenu(!openLogoMenu);
+          setOpenUserMenu(false);
+        }}
       >
-        <div className="logo">
+        <div className={`logo ${theme === "light" ? "light" : ""}`}>
           <Image
             className="logoEnixArrow"
             src="/images/chevron-down.svg"

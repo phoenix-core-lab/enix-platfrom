@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter, usePathname } from "@/i18n/routing";
 import "./index.scss";
 import { useLocale } from "next-intl";
 import Image from "next/image";
+import { useCookies } from "react-cookie";
 
 const LanguageSwitcher = () => {
   const router = useRouter();
   const pathname = usePathname() || "/";
   const locale = useLocale();
+  const [cookiesTheme] = useCookies(["theme"]);
+  const [theme, setTheme] = React.useState("dark"); // Значение по умолчанию
+
+  useEffect(() => {
+    setTheme(cookiesTheme.theme || "dark");
+  }, [cookiesTheme])
+
+  useEffect(() => {
+    document.body.classList.toggle("light", theme === "light");
+  }, [theme]);
 
   const handleLanguageChange = () => {
     try {
@@ -21,7 +32,7 @@ const LanguageSwitcher = () => {
   return (
     <div className="language-switcher">
       <div
-        className="sideBarLink"
+        className={`sideBarLink ${theme === "light" ? "light" : ""} `}
         onClick={handleLanguageChange}
         role="button"
         aria-label={`Switch to ${locale === "uz" ? "Russian" : "Uzbek"}`}

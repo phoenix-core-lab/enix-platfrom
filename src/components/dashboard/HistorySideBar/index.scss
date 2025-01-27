@@ -1,233 +1,229 @@
 .userDownMenu {
-    min-width: 300px;
-    max-width: 300px;
-    height: 100dvh;
-    background: #2f2f2f;
-    overflow: hidden auto;
-    scrollbar-width: thin;
-    scrollbar-color: #434343 #2f2f2f;
-    position: relative;
-    margin-left: -300px;
-    transition: 0.3s;
+  min-width: 300px;
+  max-width: 300px;
+  height: 100dvh;
+  background: hsl(var(--textInput));
+  overflow: hidden auto;
+  scrollbar-width: thin;
+  scrollbar-color: #434343 #2f2f2f;
+  position: relative;
+  margin-left: -300px;
+  transition: 0.3s;
 
-    .userDownMenuHeader {
-        display: flex;
+  .userDownMenuHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px;
+    position: fixed;
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px 15px 20px;
+    z-index: 10;
+    background: hsl(var(--textInput));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    button {
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.5;
+    }
+  }
+
+  * {
+    color: hsl(var(--text-color));
+  }
+
+  // .sidebarDivider {
+  //     width: 100%;
+  //     height: 1px;
+  //     padding: 0 10px;
+  //     border-radius: 50%;
+  //     background: #444444;
+  //     margin: 10px 0 5px 0;
+  // }
+
+  .chatHistory {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 64px 10px 20px 10px;
+
+    .chatHistoryItem {
+      width: 100%;
+      position: relative;
+      padding: 5px 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
+      color: #ececec;
+      gap: 20px;
+
+      .miniMenu {
+        visibility: hidden;
+
+        .miniMenuOpenButton {
+          margin-bottom: 1px;
+          padding: 0.5rem;
+          border-radius: 9999px; // эквивалент rounded-full
+          transition: background-color 200ms; // эквивалент transition-colors и duration-200
+
+          &:hover {
+            background-color: rgba(55, 65, 81, 0.5);
+          }
+        }
+      }
+
+      h4 {
+        text-overflow: ellipsis;
+        font-weight: 400;
+        text-wrap: nowrap;
+        letter-spacing: 0.6px;
+        font-size: 14px;
+        line-height: 20px;
+        overflow: hidden;
+      }
+
+      .editHistoryIcon {
+        display: none;
+        justify-content: center;
         align-items: center;
-        justify-content: space-between;
-        padding-right: 20px;
-        position: fixed;
-        width: 300px;
-        display: flex;
-        justify-content: space-between;
-        padding: 15px 20px 15px 20px;
-        z-index: 10;
-        background: #2f2f2f;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-        button {
-            transition: all 0.3s;
+        img {
+          filter: brightness(0.4);
+          width: 20px;
+          height: 20px;
         }
 
-        button:hover {
-            opacity: 0.5;
+        &:hover {
+          img {
+            filter: brightness(1.2);
+          }
+        }
+      }
+
+      &:hover {
+        background: #1c1c1cb6;
+
+        h4 {
+          max-width: 200px;
         }
 
-
-    }
-
-    * {
-        color: #fff;
-    }
-
-
-
-    // .sidebarDivider {
-    //     width: 100%;
-    //     height: 1px;
-    //     padding: 0 10px;
-    //     border-radius: 50%;
-    //     background: #444444;
-    //     margin: 10px 0 5px 0;
-    // }
-
-    .chatHistory {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding: 64px 10px 20px 10px;
-
-        .chatHistoryItem {
-            width: 100%;
-            position: relative;
-            padding: 5px 10px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-decoration: none;
-            color: #ececec;
-            gap: 20px;
-
-            .miniMenu {
-                visibility: hidden;
-
-                .miniMenuOpenButton {
-                    margin-bottom: 1px;
-                    padding: 0.5rem;
-                    border-radius: 9999px; // эквивалент rounded-full
-                    transition: background-color 200ms; // эквивалент transition-colors и duration-200
-
-                    &:hover {
-                        background-color: rgba(55, 65, 81, 0.5);
-                    }
-                }
-            }
-
-            h4 {
-                text-overflow: ellipsis;
-                font-weight: 400;
-                text-wrap: nowrap;
-                letter-spacing: 0.6px;
-                font-size: 14px;
-                line-height: 20px;
-                overflow: hidden;
-            }
-
-            .editHistoryIcon {
-                display: none;
-                justify-content: center;
-                align-items: center;
-
-                img {
-                    filter: brightness(0.4);
-                    width: 20px;
-                    height: 20px;
-                }
-
-                &:hover {
-                    img {
-                        filter: brightness(1.2);
-                    }
-                }
-            }
-
-            &:hover {
-                background: #1c1c1cb6;
-
-                h4 {
-                    max-width: 200px;
-                }
-
-                .miniMenu {
-                    visibility: visible;
-                }
-
-                .editHistoryIcon {
-                    display: flex;
-                    position: relative;
-                }
-            }
+        .miniMenu {
+          visibility: visible;
         }
+
+        .editHistoryIcon {
+          display: flex;
+          position: relative;
+        }
+      }
     }
+  }
 }
 
 .dashboardWrapper {
-    &.openUserMenu {
-        .userDownMenu {
-            top: 0;
-            left: 0;
-            opacity: 1;
-            visibility: visible;
-            margin-left: 0;
-        }
-
-        .logoChatEnixArrow {
-            transform: rotate(90deg);
-        }
-
-        @media screen and (max-width: 900px) {
-            .userDownMenu {
-                transform: translateX(0%);
-                top: 0;
-                right: 0;
-            }
-        }
+  &.openUserMenu {
+    .userDownMenu {
+      top: 0;
+      left: 0;
+      opacity: 1;
+      visibility: visible;
+      margin-left: 0;
     }
+
+    .logoChatEnixArrow {
+      transform: rotate(90deg);
+    }
+
+    @media screen and (max-width: 900px) {
+      .userDownMenu {
+        transform: translateX(0%);
+        top: 0;
+        right: 0;
+      }
+    }
+  }
 }
 
 .DashboardContentHeader.openUserMenu .userDownMenu {
-    transform: translateX(0%);
-    top: 0;
-    right: 0;
+  transform: translateX(0%);
+  top: 0;
+  right: 0;
 }
 
 .DashboardContentHeader .userDownMenu {
-    height: 100dvh;
-    position: fixed;
-    top: 0;
-    border-radius: 4px 0 0 4px;
-    transform: translateX(100%);
+  height: 100dvh;
+  position: fixed;
+  top: 0;
+  border-radius: 4px 0 0 4px;
+  transform: translateX(100%);
 }
 
 .menuShadow {
-    transition: 0.3s;
-    right: -100%;
+  transition: 0.3s;
+  right: -100%;
 }
 
 @media screen and (max-width: 1400px) {
-    .userDownMenu {
-        position: absolute;
-        top: 0;
-        left: 0;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
-        z-index: 999;
+  .userDownMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 999;
 
-        .userDownMenuHeader{
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            border-left: none;
-        }
+    .userDownMenuHeader {
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      border-left: none;
     }
+  }
 
-    .dashboardWrapper {
-        &.openUserMenu {
-            .menuShadow,
-            .userDownMenu {
-                left: 0 !important;
-                right: auto !important;
-            }
-        }
+  .dashboardWrapper {
+    &.openUserMenu {
+      .menuShadow,
+      .userDownMenu {
+        left: 0 !important;
+        right: auto !important;
+      }
     }
+  }
 
-    .menuShadow {
-        position: absolute;
-        z-index: 999;
-        width: 100%;
-        left: -100%;
-        height: 100dvh;
-        background: #00000097;
-    }
+  .menuShadow {
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    left: -100%;
+    height: 100dvh;
+    background: #00000097;
+  }
 }
 
 @media screen and (max-width: 900px) {
-    .userDownMenu {
-        right: 0;
-        left: auto;
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
-    }
+  .userDownMenu {
+    right: 0;
+    left: auto;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-    .dashboardWrapper {
-        &.openUserMenu {
-            .menuShadow,
-            .userDownMenu {
-                right: 0 !important;
-                left: auto !important;
-            }
-        }
+  .dashboardWrapper {
+    &.openUserMenu {
+      .menuShadow,
+      .userDownMenu {
+        right: 0 !important;
+        left: auto !important;
+      }
     }
+  }
 
-    .menuShadow {
-        right: -100%;
-        left: auto;
-    }
+  .menuShadow {
+    right: -100%;
+    left: auto;
+  }
 }

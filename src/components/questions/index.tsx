@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./QuestionsContent.scss";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
+import ThemeToggle from "../theme-toggle/theme-toggle";
 const QuestionsContent = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const router = useRouter();
@@ -14,7 +15,6 @@ const QuestionsContent = () => {
     {
       title: "Our Privacy Policy explains:",
       content: `What information we collect and why we collect it. How we use that information. The choices we offer, including how to access and update information. We've tried to keep it as simple as possible, but if you're not familiar with terms like cookies, IP addresses, pixel tags and browsers, then read about these key terms first. Your privacy matters to us.
-      
       We collect information to provide better services to all of our users – from figuring out basic stuff like which language you speak, to more complex things like which ads you'll find most useful, the people who matter most to you online, or which YouTube videos you might like.`,
     },
     {
@@ -45,6 +45,7 @@ const QuestionsContent = () => {
         <ArrowLeft className="mr-2 h-4 w-4" />
         {"Back"}
       </button>
+      <ThemeToggle />
       <div className="container">
         <div className="header">
           <h1 className="title">PRIVACY POLICY</h1>

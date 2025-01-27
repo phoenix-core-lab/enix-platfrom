@@ -1,4 +1,4 @@
-.language-switcher{
+.language-switcher {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -38,7 +38,12 @@
     }
   }
 }
-
+.sideBarLink.light {
+  & > img,
+  .sideBarLinkLabel {
+    filter: brightness(0.7) invert(1);
+  }
+}
 .sideBarLinkLabel {
   font-size: 16px;
   font-weight: normal;
