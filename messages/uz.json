@@ -1,5 +1,8 @@
 {
   "SignIn": {
+    "passwordTooShort": "Parol juda qisqa",
+    "errorGetToken": "Tokenni olish mumkin bo'lmadi.",
+    "authError": "Notog'ri telefon yoki parol! Yoki hali akkauntni faollashtirmagansiz.",
     "newUser": "Yangi foydalanuvchi?",
     "register": "Ro‘yxatdan o‘tish",
     "signSystem": "Tizimga kirish",
@@ -29,6 +32,8 @@
     "name": "Ismingiz",
     "telphoneNumber": "Telefon raqamingiz",
     "password": "Parol",
+    "passwordRepeat": "Parolni qayta kiriting",
+    "dontMatch": "Parollar mos kelmadi",
     "code": "O'zingiz uchun maxsus parol yarating",
     "register": "Ro‘yxatdan o‘tish",
     "or": "yoki",

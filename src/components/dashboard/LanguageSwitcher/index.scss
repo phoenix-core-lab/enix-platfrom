@@ -13,9 +13,9 @@
   align-items: center;
   gap: 5px;
 
-  & > img {
-    width: 20px;
-    height: 20px;
+  &>img {
+    width: 25px;
+    height: 25px;
   }
 
   * {
@@ -23,7 +23,8 @@
   }
 
   &:hover {
-    & > img,
+
+    &>img,
     .sideBarLinkLabel {
       filter: brightness(0.6);
     }
@@ -49,4 +50,11 @@
   font-weight: normal;
   color: #b4b4b4;
   transition: 0.3s all;
+}
+
+.language-switcher {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

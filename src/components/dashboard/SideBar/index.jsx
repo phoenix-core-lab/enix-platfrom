@@ -142,7 +142,6 @@ const SideBar = () => {
             alt="website"
             width="22"
             height="25"
-            style={{ marginLeft: "2px" }}
           />
           <h3 className="sideBarLinkLabel">{t("text2")}</h3>
           <div className="hoverEffectIcon imageGenerateIcon">

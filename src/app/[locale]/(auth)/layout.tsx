@@ -1,5 +1,5 @@
 import React from "react";
-import "./layout.sass";
+import "./layout.scss";
 
 export default function AuthLayout({
   children,

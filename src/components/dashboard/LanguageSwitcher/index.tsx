@@ -45,7 +45,7 @@ const LanguageSwitcher = () => {
           height="25"
         />
         <h3 className="sideBarLinkLabel sideBarLinkLabelLanguage">
-          {locale === "uz" ? "Uzbek" : "Русский"}
+          {locale === "uz" ? "O`zbek" : "Русский"}
         </h3>
       </div>
     </div>
