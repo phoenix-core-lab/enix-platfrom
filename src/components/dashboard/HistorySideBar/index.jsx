@@ -22,6 +22,16 @@ const HistorySideBar = (props) => {
   const [allChats, setAllChats] = useState([]);
   const [openMiniMenus, setOpenMiniMenus] = useState({});
   const deleteButtonRef = useRef(null); // Ссылка на кнопку удаления
+  const [cookiesTheme] = useCookies(["theme"]);
+  const [theme, setTheme] = useState("dark"); // Значение по умолчанию
+
+  useEffect(() => {
+    setTheme(cookiesTheme.theme || "dark");
+  }, [cookiesTheme]);
+
+  useEffect(() => {
+    document.body.classList.toggle("light", theme === "light");
+  }, [theme]);
 
   const toggleMiniMenu = (chatId) => {
     setOpenMiniMenus((prevState) => {
@@ -87,7 +97,9 @@ const HistorySideBar = (props) => {
   return (
     <div className="menuShadow" onClick={() => setOpenUserMenu(!openUserMenu)}>
       <div className="userDownMenu" onClick={(e) => e.stopPropagation()}>
-        <div className="userDownMenuHeader">
+        <div
+          className={`userDownMenuHeader ${theme === "light" ? "light" : ""}`}
+        >
           <h3>Suhbat tarixi</h3>
           <button onClick={() => setOpenUserMenu(!openUserMenu)}>
             <Image

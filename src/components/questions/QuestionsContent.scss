@@ -54,7 +54,7 @@
   border-radius: 0.375rem;
   overflow: hidden;
   transition: all 0.3s ease;
-  background-color: transparent;
+  background-color: hsl(var(--primary));
   border: none;
 
   @media screen and (max-width: 768px) {
@@ -73,7 +73,7 @@
 
 .sectionHeader {
   width: 100%;
-  background: transparent;
+  background: hsl(var(--primary));
   border: none;
   padding: 1rem;
   text-align: left;
@@ -90,7 +90,7 @@
     background-color: transparent;
 
     @media screen and (max-width: 768px) {
-      background-color: #f8fafc;
+      background-color: hsl(var(--primary));
     }
   }
 
@@ -115,6 +115,7 @@
   padding: 1rem;
   font-size: 1rem;
   color: #64748b;
+  background: hsl(var(--primary));
 
   @media screen and (max-width: 768px) {
     display: none;

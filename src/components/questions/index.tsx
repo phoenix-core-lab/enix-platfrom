@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./QuestionsContent.scss";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
-import ThemeToggle from "../theme-toggle/theme-toggle";
 const QuestionsContent = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const router = useRouter();
@@ -45,7 +44,6 @@ const QuestionsContent = () => {
         <ArrowLeft className="mr-2 h-4 w-4" />
         {"Back"}
       </button>
-      <ThemeToggle />
       <div className="container">
         <div className="header">
           <h1 className="title">PRIVACY POLICY</h1>

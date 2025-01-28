@@ -33,6 +33,12 @@
     }
   }
 
+  .userDownMenuHeader.light {
+    & > button > img {
+      filter: brightness(0.7) invert(1);
+    }
+  }
+
   * {
     color: hsl(var(--text-color));
   }

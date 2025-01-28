@@ -44,8 +44,8 @@ a {
 
 @layer base {
   :root {
-    --border-color-second: 0 0% 10.2%;
-    --border-color: 220 13% 91%;
+    --border-color-second: 220 13% 91;
+    --border-color: 166 100% 33%;
     --scrollbar-color-first: #434343;
     --scrollbar-color-second: #2f2f2f;
     --user-message: 0 0% 18.82%;

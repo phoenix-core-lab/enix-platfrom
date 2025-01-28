@@ -40,6 +40,7 @@ export function LoginForm({
     "isActiveUser",
     "subscriptionDate",
   ]);
+  console.log(cookies);
 
   // const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   const inputValue = e.target.value;
@@ -64,7 +65,7 @@ export function LoginForm({
       : value;
   };
 
-  const handlePhoneChange = (e: { target: { value: string; }; }) => {
+  const handlePhoneChange = (e: { target: { value: string } }) => {
     let inputValue = e.target.value.replace(/\D/g, "");
     if (!inputValue.startsWith("998")) {
       inputValue = "998";
@@ -104,7 +105,7 @@ export function LoginForm({
       })
       .catch(() => {
         toast.error(t("authError"));
-      })
+      });
   };
 
   return (
