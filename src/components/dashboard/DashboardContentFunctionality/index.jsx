@@ -17,6 +17,7 @@ import Flag from "react-world-flags";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { Link } from "@/i18n/routing";
+import LoadingSpinner from "@/components/ui/loadding-spinner";
 
 const renderButton = (buttonText, index) => (
   <motion.button
@@ -402,81 +403,99 @@ const DashboardContentFunctionality = (props) => {
                     {item.from_user ? (
                       <div>{item.message}</div>
                     ) : (
-                      <>
-                        {props.type === "text" && (
-                          <ReactMarkdown>
-                            {index === modelAnswer.length - 1
-                              ? typedModelAnswer
-                              : item.message}
-                          </ReactMarkdown>
-                        )}
-
-                        {props.type === "image" ? (
-                          item.file_url ? (
-                            item.file_url === "no.png" ? (
-                              <ReactMarkdown>{t("prohibition")}</ReactMarkdown>
-                            ) : (
-                              <Link
-                                href={`${process.env.NEXT_PUBLIC_APP_API_URL}/image/${item.file_url}`} // Full-size image URL
-                                data-fancybox="gallery"
-                              >
-                                <Image
-                                  src={`${process.env.NEXT_PUBLIC_APP_API_URL}/image/${item.file_url}`} // Thumbnail image URL
-                                  alt={`Image ${index + 1}`}
-                                  width={300}
-                                  height={300}
-                                  style={{
-                                    borderRadius: "8px",
-                                    cursor: "pointer",
-                                  }}
-                                />
-                              </Link>
-                            )
-                          ) : (
+                      <div className="relative flex gap-4">
+                        <div className="flex items-center justify-center bg-[#2f2f2f] rounded-full w-[30px] h-[30px] p-1 ">
+                          <Image
+                            src="/images/logo.png"
+                            alt="logo"
+                            width={15}
+                            height={15}
+                          />
+                        </div>
+                        <div>
+                          {props.type === "text" && (
                             <ReactMarkdown>
                               {index === modelAnswer.length - 1
                                 ? typedModelAnswer
                                 : item.message}
                             </ReactMarkdown>
-                          )
-                        ) : null}
-                        {!item.from_user && (
-                          <div className="copyContainer">
-                            {props.type === "text" ? (
-                              <>
-                                <div className="copyItem">
+                          )}
+
+                          {props.type === "image" ? (
+                            item.file_url ? (
+                              item.file_url === "no.png" ? (
+                                <ReactMarkdown>
+                                  {t("prohibition")}
+                                </ReactMarkdown>
+                              ) : (
+                                <Link
+                                  href={`${process.env.NEXT_PUBLIC_APP_API_URL}/image/${item.file_url}`} // Full-size image URL
+                                  data-fancybox="gallery"
+                                >
                                   <Image
-                                    src="/images/copy.svg"
-                                    alt="copy"
-                                    width={20}
-                                    height={20}
-                                    onClick={() => handleCopy(item.message)}
+                                    src={`${process.env.NEXT_PUBLIC_APP_API_URL}/image/${item.file_url}`} // Thumbnail image URL
+                                    alt={`Image ${index + 1}`}
+                                    width={300}
+                                    height={300}
+                                    style={{
+                                      borderRadius: "8px",
+                                      cursor: "pointer",
+                                    }}
                                   />
-                                </div>
+                                </Link>
+                              )
+                            ) : (
+                              <ReactMarkdown>
+                                {index === modelAnswer.length - 1
+                                  ? typedModelAnswer
+                                  : item.message}
+                              </ReactMarkdown>
+                            )
+                          ) : null}
+
+                          {!item.from_user && (
+                            <div className="copyContainer">
+                              {props.type === "text" ? (
+                                <>
+                                  <div className="copyItem">
+                                    <Image
+                                      src="/images/copy.svg"
+                                      alt="copy"
+                                      width={20}
+                                      height={20}
+                                      onClick={() => handleCopy(item.message)}
+                                    />
+                                  </div>
+                                  <div className="copyItem">
+                                    <Image
+                                      src="/images/download.svg"
+                                      alt="download"
+                                      width={20}
+                                      height={20}
+                                      onClick={() =>
+                                        handleDownload(item.message)
+                                      }
+                                    />
+                                  </div>
+                                </>
+                              ) : item.file_url &&
+                                item.file_url !== "no.png" ? (
                                 <div className="copyItem">
                                   <Image
                                     src="/images/download.svg"
                                     alt="download"
                                     width={20}
                                     height={20}
-                                    onClick={() => handleDownload(item.message)}
+                                    onClick={() =>
+                                      handleDownload(item.file_url)
+                                    }
                                   />
                                 </div>
-                              </>
-                            ) : item.file_url && item.file_url !== "no.png" ? (
-                              <div className="copyItem">
-                                <Image
-                                  src="/images/download.svg"
-                                  alt="download"
-                                  width={20}
-                                  height={20}
-                                  onClick={() => handleDownload(item.file_url)}
-                                />
-                              </div>
-                            ) : null}
-                          </div>
-                        )}
-                      </>
+                              ) : null}
+                            </div>
+                          )}
+                        </div>
+                      </div>
                     )}
                   </motion.div>
                 ))}
@@ -491,7 +510,7 @@ const DashboardContentFunctionality = (props) => {
                   }}
                   className="loader"
                 >
-                  loading
+                  <LoadingSpinner />
                 </motion.div>
               )}
             </div>
@@ -500,14 +519,16 @@ const DashboardContentFunctionality = (props) => {
       </AnimatePresence>
 
       {!showAnswer && language && (
-        <motion.h3
-          className="contentHeader"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
-        >
-          {currentMessage}
-        </motion.h3>
+        <>
+          <motion.h3
+            className="contentHeader"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
+          >
+            {currentMessage}
+          </motion.h3>
+        </>
       )}
 
       {!showAnswer && (

@@ -54,8 +54,8 @@ const HistorySideBar = (props) => {
       })
       .catch((err) => {
         console.error(err);
-        // removeCookie("secretToken");
-        // router.push("/signin");
+        removeCookie("secretToken");
+        router.push("/signin");
       });
   };
 
