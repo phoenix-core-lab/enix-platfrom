@@ -4,6 +4,7 @@ import "./index.scss";
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import { useCookies } from "react-cookie";
+import { Languages } from "lucide-react";
 
 const LanguageSwitcher = () => {
   const router = useRouter();
@@ -14,7 +15,7 @@ const LanguageSwitcher = () => {
 
   useEffect(() => {
     setTheme(cookiesTheme.theme || "dark");
-  }, [cookiesTheme])
+  }, [cookiesTheme]);
 
   useEffect(() => {
     document.body.classList.toggle("light", theme === "light");
@@ -38,13 +39,14 @@ const LanguageSwitcher = () => {
         aria-label={`Switch to ${locale === "uz" ? "Russian" : "Uzbek"}`}
         tabIndex={0}
       >
-        <Image
+        {/* <Image
           src="/images/language.svg"
           alt="website"
           width="25"
           height="25"
-        />
-        <h3 className="sideBarLinkLabel sideBarLinkLabelLanguage">
+        /> */}
+        <Languages color="white" size={25} />
+        <h3 className="sideBarLinkLabel">
           {locale === "uz" ? "O`zbek" : "Русский"}
         </h3>
       </div>

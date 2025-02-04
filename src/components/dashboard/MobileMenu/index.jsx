@@ -10,7 +10,18 @@ import axios from "axios";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 import LanguageSwitcher from "../LanguageSwitcher";
-
+import {
+  GalleryHorizontalEnd,
+  CopyPlus,
+  Icon,
+  Lightbulb,
+  ScanText,
+  Images,
+  LogIn,
+  Languages
+} from "lucide-react";
+import { planet } from "@lucide/lab";
+ 
 const MobileMenu = () => {
   const t = useTranslations("Dashboard");
   const locale = useLocale();
@@ -64,12 +75,7 @@ const MobileMenu = () => {
             href={"/dashboard"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
-            <Image
-              src="/images/duplicate.svg"
-              alt="albums"
-              width="25"
-              height="25"
-            />
+            <CopyPlus color="white" size={25} />
             <h3 className="sideBarLinkLabel">{t("newChat")}</h3>
             <div className="hoverEffectIcon">
               <Image
@@ -86,12 +92,7 @@ const MobileMenu = () => {
             href={"https://enix.uz/"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
-            <Image
-              src="/images/planet.svg"
-              alt="website"
-              width="25"
-              height="25"
-            />
+            <Icon iconNode={planet} color="white" size={25} />
             <h3 className="sideBarLinkLabel">{t("sideBar.title")}</h3>
             <div className="hoverEffectIcon">
               <Image
@@ -107,12 +108,13 @@ const MobileMenu = () => {
             href={"/questions"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
-            <Image
+            {/* <Image
               src="/images/questions.svg"
               alt="website"
               width="25"
               height="25"
-            />
+            /> */}
+            <Lightbulb color="white" size={25} />
             <h3 className="sideBarLinkLabel">FAQ</h3>
             <div className="hoverEffectIcon">
               <Image
@@ -129,12 +131,7 @@ const MobileMenu = () => {
             href={"/dashboard/text"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
-            <Image
-              src="/images/document-text.svg"
-              alt="website"
-              width="25"
-              height="25"
-            />
+            <ScanText color="white" size={25} />
             <h3 className="sideBarLinkLabel">{t("sideBar.text")}</h3>
             <div className="hoverEffectIcon">
               <Image
@@ -150,13 +147,7 @@ const MobileMenu = () => {
             href={"/dashboard/image"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
-            <Image
-              src="/images/images.svg"
-              alt="website"
-              width="22"
-              height="25"
-              style={{ marginLeft: "2px" }}
-            />
+            <Images color="white" size={25} />
             <h3 className="sideBarLinkLabel">{t("sideBar.text2")}</h3>
             <div className="hoverEffectIcon imageGenerateIcon">
               <Image
@@ -202,12 +193,7 @@ const MobileMenu = () => {
             }}
           >
             {t("sideBar.exit")}
-            <Image
-              src="/images/enter.svg"
-              alt="albums"
-              width="25"
-              height="25"
-            />
+            <LogIn color="#ce3737" size={25} />
           </button>
         </div>
       </div>

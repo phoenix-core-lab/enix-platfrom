@@ -54,8 +54,8 @@ const HistorySideBar = (props) => {
       })
       .catch((err) => {
         console.error(err);
-        removeCookie("secretToken");
-        router.push("/signin");
+        // removeCookie("secretToken");
+        // router.push("/signin");
       });
   };
 
@@ -73,7 +73,6 @@ const HistorySideBar = (props) => {
   };
 
   useEffect(() => {
-    // Закрыть меню при клике вне его
     const handleClickOutside = (event) => {
       if (
         deleteButtonRef.current &&

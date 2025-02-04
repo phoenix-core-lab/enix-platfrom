@@ -150,7 +150,7 @@
         gap: 20px;
         flex: 1;
         padding: 20px 30px;
-        background: #2f2f2f13;
+        background: transparent;
         border-radius: 20px;
         resize: none;
         font-size: 16px;
@@ -203,7 +203,7 @@
 
       .sendButton.light {
         & > img {
-          filter: brightness(0.7) invert(1);
+          filter: brightness(1) invert(1);
         }
       }
     }
@@ -271,7 +271,7 @@
     gap: 20px;
     flex: 1;
     padding: 20px 30px;
-    background: hsl(var(--chat-filed));
+    background: transparent;
     border-radius: 20px;
     max-height: calc(100dvh - 263px);
     min-height: 209px;
@@ -289,6 +289,8 @@
   }
 
   .userMessage {
+    white-space: pre-wrap;
+    word-break: break-word;
     text-align: left;
     margin-left: auto;
     padding: 15px 20px;
@@ -569,21 +571,5 @@
   .dashboardContentFunctionality .copyItem {
     opacity: 1;
     visibility: visible;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .dashboardContentFunctionality .chatField {
-    padding: 20px 10px 10px 10px;
-    background: hsl(var(--main-background));
-  }
-
-  .dashboardContentFunctionality .helperButtons {
-    gap: 10px;
-  }
-
-  .dashboardContentFunctionality .contentHeader {
-    font-size: 22px;
-    min-height: 33px;
   }
 }

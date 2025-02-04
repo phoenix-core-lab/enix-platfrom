@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
+import { Sun, Moon } from 'lucide-react';
+
 
 const ThemeToggle: React.FC = () => {
   const [cookies, setCookie] = useCookies(["theme"]);
@@ -29,11 +31,21 @@ const ThemeToggle: React.FC = () => {
   };
 
   return (
-    <button className="w-[25px] h-[25px]" onClick={toggleTheme}>
+    <button className={`sideBarLink ${theme === "light" ? "light" : ""} `}  onClick={toggleTheme}>
       {theme === "light" ? (
-        <Image src="/images/sunIcon.svg" alt="sun" width="25" height="25" />
+        <>
+        <Sun size={25} color="white" />
+        <h3 className="sideBarLinkLabel">
+          Светлая тема
+        </h3>
+        </>
       ) : (
-        <Image src="/images/moonIcon.svg" alt="moon" width="25" height="25" />
+        <>
+        <Moon size={25} color="white" />
+        <h3 className="sideBarLinkLabel">
+          Темная тема
+        </h3>
+        </>
       )}
     </button>
   );
