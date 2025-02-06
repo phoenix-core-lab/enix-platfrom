@@ -19,11 +19,103 @@
 
   .textForm {
     width: 100%;
+    position: relative;
+    background: #1f7251;
+    border-radius: 20px;
+
+    .newchat {
+      white-space: nowrap;
+      right: 0;
+      top: 0;
+      transform: translate(0, -99%);
+      z-index: 5;
+      position: absolute;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      background: #1f7251;
+      border-radius: 8px 8px 0 0;
+      font-weight: 400;
+      font-size: 15px;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease-out;
+      border: none;
+      outline: none;
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to right,
+          rgba(31, 114, 81, 0),
+          rgba(255, 255, 255, 0.07),
+          rgba(31, 114, 81, 0)
+        );
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      &:hover::after {
+        opacity: 1;
+      }
+
+      &:hover .box {
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to right,
+            rgba(31, 114, 81, 0),
+            rgba(255, 255, 255, 0.07),
+            rgba(31, 114, 81, 0)
+          );
+          opacity: 0;
+          transition: opacity 0.5s;
+        }
+
+        &:hover::after {
+          opacity: 1;
+        }
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        stroke-width: 2.5;
+        transition: all 0.5s;
+        position: relative;
+      }
+
+      &:hover .icon {
+        transform: rotate(360deg) scale(1.1);
+      }
+
+      .text {
+        position: relative;
+        display: inline-block;
+        transition: transform 0.2s;
+      }
+
+      // .box {
+      //   right: 0;
+      //   width: 100%;
+      //   height: 100%;
+      //   top: 98%;
+      //   z-index: -1;
+      //   position: absolute;
+      //   background: #1f7251;
+      //   border: none;
+      // }
+    }
 
     form {
       width: 100%;
       position: relative;
       display: flex;
+      z-index: 5;
 
       .textInput {
         border: none;
@@ -37,10 +129,10 @@
         color: hsl(var(--text-color));
         text-align: left;
         min-height: 54px;
-        border-radius: 20px;
+        border-radius: 19px;
+        border: 1px solid #434343;
         resize: none;
       }
-
       .textForm {
         width: 100%;
 
@@ -48,6 +140,7 @@
           width: 100%;
           position: relative;
           display: flex;
+          z-index: 5;
 
           .textInput {
             border: none;
@@ -208,6 +301,9 @@
       }
     }
   }
+  .textForm.answer {
+    border-radius: 20px 0 20px 20px;
+  }
 
   .helperButtons {
     width: 100%;
@@ -221,7 +317,7 @@
       background: hsl(var(--grey-main));
       display: flex;
       justify-content: center;
-      align-items: center;
+      // align-items: center;
       border-radius: 50px;
       border: 1px solid #434343;
       gap: 8px;
@@ -229,6 +325,11 @@
 
       .helperButtonText {
         font-size: 14px;
+        color: hsl(var(--text-color));
+      }
+
+      .helperButtonIcon {
+        font-size: 1rem;
         color: hsl(var(--text-color));
       }
 

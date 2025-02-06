@@ -21,6 +21,7 @@ import {
   Languages
 } from "lucide-react";
 import { planet } from "@lucide/lab";
+import ThemeToggle from "@/components/theme-toggle/theme-toggle";
  
 const MobileMenu = () => {
   const t = useTranslations("Dashboard");
@@ -87,6 +88,7 @@ const MobileMenu = () => {
             </div>
           </Link>
           <LanguageSwitcher />
+          <ThemeToggle />
           <Link
             className={`sideBarLink ${theme === "light" ? "light" : ""}`}
             href={"https://enix.uz/"}

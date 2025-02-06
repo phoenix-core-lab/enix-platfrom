@@ -34,6 +34,7 @@
   }
 
   .userDownMenuHeader.light {
+    border-bottom: 1px solid #E5E7EB ;
     & > button > img {
       filter: brightness(1) invert(1);
     }

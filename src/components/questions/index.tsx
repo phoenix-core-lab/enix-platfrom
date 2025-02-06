@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import "./QuestionsContent.scss";
-import { ArrowLeft, ChevronDown } from "lucide-react";
+import { ArrowLeft, ChevronDown, Minus, Plus } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
 const QuestionsContent = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -59,12 +59,14 @@ const QuestionsContent = () => {
                 className="sectionHeader"
                 onClick={() => toggleSection(index)}
               >
-                {section.title}
-                <span className={`icon ${openIndex === index ? "open" : ""}`}>
-                  <ChevronDown />
+                <span className="icon">
+                  {openIndex === index ? <Minus /> : <Plus />}
                 </span>
+                {section.title}
               </button>
-              <div className="sectionContent">{section.content}</div>
+              <div className="sectionContent">
+                <div>{section.content}</div>
+              </div>
             </div>
           ))}
         </div>

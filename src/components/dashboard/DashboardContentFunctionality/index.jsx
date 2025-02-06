@@ -21,6 +21,12 @@ import LoadingSpinner from "@/components/ui/loadding-spinner";
 import {
   ScanText,
   Images,
+  Scale,
+  Stethoscope,
+  GraduationCap,
+  Code2,
+  Building2,
+  RefreshCw,
 } from "lucide-react";
 
 const renderButton = (buttonText, index) => (
@@ -57,8 +63,25 @@ const DashboardContentFunctionality = (props) => {
 
   const t = useTranslations("Dashboard");
   const messages = [t("title"), t("title2"), t("title3")];
-  const imageModelButtons = [t("landscape"), t("Sea")];
-  const textModelButtons = [t("prompt2"), t("prompt3")];
+  const imageModelButtons = [];
+  const textModelButtons = [
+    {
+      text: t("legal"),
+      icon: <Scale size={20} />,
+    },
+    {
+      text: t("medical"),
+      icon: <Stethoscope size={20} />,
+    },
+    {
+      text: t("texnic"),
+      icon: <Code2 size={20} />,
+    },
+    {
+      text: t("business"),
+      icon: <Building2 size={20} />,
+    },
+  ];
 
   const [cookies, setCookie, removeCookie] = useCookies("modelAnswerLanguage");
   const router = useRouter();
@@ -550,7 +573,10 @@ const DashboardContentFunctionality = (props) => {
             <div
               className={`chosenModelIcon ${theme === "light" ? "light" : ""}`}
             >
-              <ScanText color={theme === "light" ? "black" : "white"} size={25} />
+              <ScanText
+                color={theme === "light" ? "black" : "white"}
+                size={25}
+              />
             </div>
             <div className="chosenModelText">{t("sideBar.text")}</div>
           </motion.div>
@@ -579,8 +605,14 @@ const DashboardContentFunctionality = (props) => {
           initial={{ y: !showAnswer ? 0 : 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
-          className="textForm"
+          className={`textForm ${showAnswer ? "answer" : ""} `}
         >
+          {showAnswer && (
+            <button className="newchat">
+              <RefreshCw className="icon" />
+              <span className="text">New chat</span>
+            </button>
+          )}
           <form
             id="textFormModel"
             onSubmit={(e) =>
@@ -589,7 +621,7 @@ const DashboardContentFunctionality = (props) => {
           >
             <motion.textarea
               required
-              className={`textInput ${theme === "light" ? "light" : ""}`}
+              className={`textInput  ${theme === "light" ? "light" : ""} `}
               placeholder={t("title3")}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -673,30 +705,8 @@ const DashboardContentFunctionality = (props) => {
 
       {!showAnswer && language && (
         <div className="helperButtons">
-          {props.type === "text" ? (
-            <motion.button
-              className="helperButton"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0 * 0.2 }}
-              onClick={() => router.push("/dashboard/image")}
-            >
-              <div className="helperButtonText">{t("prompt1")}</div>
-            </motion.button>
-          ) : (
-            <motion.button
-              className="helperButton"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0 * 0.2 }}
-              onClick={() => router.push("/dashboard/text")}
-            >
-              <div className="helperButtonText">{t("Essay")}</div>
-            </motion.button>
-          )}
-
           {props.type === "text"
-            ? textModelButtons.map((buttonText, index) => (
+            ? textModelButtons.map(({ text, icon }, index) => (
                 <motion.button
                   key={index}
                   className="helperButton"
@@ -705,35 +715,18 @@ const DashboardContentFunctionality = (props) => {
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                   onClick={(e) => {
                     const form = document.getElementById("textFormModel");
-                    form.elements.message.value = buttonText;
+                    form.elements.message.value = text;
                     e.preventDefault();
                     form.dispatchEvent(
                       new Event("submit", { cancelable: true, bubbles: true })
                     );
                   }}
                 >
-                  <div className="helperButtonText">{buttonText}</div>
+                  <div className="helperButtonIcon">{icon}</div>
+                  <div className="helperButtonText">{text}</div>
                 </motion.button>
               ))
-            : imageModelButtons.map((buttonText, index) => (
-                <motion.button
-                  key={index}
-                  className="helperButton"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                  onClick={(e) => {
-                    const form = document.getElementById("textFormModel");
-                    form.elements.message.value = buttonText;
-                    e.preventDefault();
-                    form.dispatchEvent(
-                      new Event("submit", { cancelable: true, bubbles: true })
-                    );
-                  }}
-                >
-                  <div className="helperButtonText">{buttonText}</div>
-                </motion.button>
-              ))}
+            : ""}
         </div>
       )}
 

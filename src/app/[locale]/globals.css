@@ -60,6 +60,7 @@ a {
     --text-secondary: 0 0% 0%;
     --main-background: 0 0% 0%;
     --prices-background: 0 0% 10.2%;
+    --border-color-third: 0, 0%, 27%;
 
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -103,6 +104,7 @@ a {
     --dashboard: linear-gradient(to bottom right, #f9fafb, #f3f4f6);
     --main-background: 0 0% 100%;
     --prices-background: 0 0% 100%;
+    --border-color-third: 220 14% 91%;
 
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
