@@ -20,7 +20,6 @@
   .textForm {
     width: 100%;
     position: relative;
-    background: #1f7251;
     border-radius: 20px;
 
     .newchat {
@@ -122,9 +121,11 @@
         outline: none;
         padding: 20px;
         padding-right: 50px;
+        padding-top: 18px;
         width: 100%;
         height: 97px;
         background: hsl(var(--textInput));
+        scrollbar-width: none;
         font-size: 16px;
         color: hsl(var(--text-color));
         text-align: left;
@@ -303,6 +304,7 @@
   }
   .textForm.answer {
     border-radius: 20px 0 20px 20px;
+    background: #1f7251;
   }
 
   .helperButtons {

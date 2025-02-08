@@ -397,6 +397,13 @@ const DashboardContentFunctionality = (props) => {
     getChatByChatId(props.chatId);
   }, [getChatByChatId, props.chatId]);
 
+  const changeLanguage = () => {
+    const languages = ["ru", "uz", "en"];
+    const currentIndex = languages.indexOf(language);
+    const newLanguage = languages[(currentIndex + 1) % languages.length];
+    setCookie("modelAnswerLanguage", newLanguage);
+    setLanguage(newLanguage);
+  };
   return (
     <div className="dashboardContentFunctionality">
       <ToastContainer theme="dark" pauseOnHover={false} />
@@ -610,7 +617,7 @@ const DashboardContentFunctionality = (props) => {
           {showAnswer && (
             <button className="newchat">
               <RefreshCw className="icon" />
-              <span className="text">New chat</span>
+              <span className="text">{t("newChat")}</span>
             </button>
           )}
           <form
@@ -635,13 +642,7 @@ const DashboardContentFunctionality = (props) => {
               className="languageSwitcherButton"
               title="На каком языке мне к вам обращаться?"
               onClick={() => {
-                const languages = ["ru", "uz", "en"];
-                const currentIndex = languages.indexOf(language);
-                const newLanguage =
-                  languages[(currentIndex + 1) % languages.length];
-
-                setCookie("modelAnswerLanguage", newLanguage);
-                setLanguage(newLanguage);
+                changeLanguage();
               }}
             >
               <Image
