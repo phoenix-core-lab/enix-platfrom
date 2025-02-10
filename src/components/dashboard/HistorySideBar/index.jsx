@@ -12,13 +12,8 @@ import axios from "axios";
 const HistorySideBar = (props) => {
   const t = useTranslations("Dashboard");
   const router = useRouter();
-  const [cookies, setCookie, removeCookie] = useCookies(
-    "secretToken",
-    "isActiveUser",
-    "subscriptionDate"
-  );
-  const { openLogoMenu, setOpenLogoMenu, openUserMenu, setOpenUserMenu } =
-    useMainContext();
+  const [cookies, setCookie, removeCookie] = useCookies("secretToken", "isActiveUser", "subscriptionDate");
+  const { openLogoMenu, setOpenLogoMenu, openUserMenu, setOpenUserMenu } = useMainContext();
   const [allChats, setAllChats] = useState([]);
   const [openMiniMenus, setOpenMiniMenus] = useState({});
   const deleteButtonRef = useRef(null); // Ссылка на кнопку удаления
@@ -54,8 +49,8 @@ const HistorySideBar = (props) => {
       })
       .catch((err) => {
         console.error(err);
-        // removeCookie("secretToken");
-        // router.push("/signin");
+        removeCookie("secretToken");
+        router.push("/signin");
       });
   };
 
@@ -74,10 +69,7 @@ const HistorySideBar = (props) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        deleteButtonRef.current &&
-        !deleteButtonRef.current.contains(event.target)
-      ) {
+      if (deleteButtonRef.current && !deleteButtonRef.current.contains(event.target)) {
         setOpenMiniMenus({});
       }
     };
@@ -94,22 +86,26 @@ const HistorySideBar = (props) => {
   }, []);
 
   return (
-    <div className="menuShadow" onClick={() => setOpenUserMenu(!openUserMenu)}>
-      <div className="userDownMenu" onClick={(e) => e.stopPropagation()}>
-        <div
-          className={`userDownMenuHeader ${theme === "light" ? "light" : ""}`}
-        >
+    <div
+      className='menuShadow'
+      onClick={() => setOpenUserMenu(!openUserMenu)}
+    >
+      <div
+        className='userDownMenu'
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className={`userDownMenuHeader ${theme === "light" ? "light" : ""}`}>
           <h3>Suhbat tarixi</h3>
           <button onClick={() => setOpenUserMenu(!openUserMenu)}>
             <Image
-              src="/images/closeIcon.svg"
-              alt="close"
-              width="15"
-              height="15"
+              src='/images/closeIcon.svg'
+              alt='close'
+              width='15'
+              height='15'
             />
           </button>
         </div>
-        <div className="chatHistory">
+        <div className='chatHistory'>
           {allChats.map(
             (chat, index) =>
               chat.chat_title && (
@@ -121,11 +117,11 @@ const HistorySideBar = (props) => {
                   }
                   key={index}
                   onClick={() => setOpenUserMenu(!openUserMenu)}
-                  className="chatHistoryItem"
+                  className='chatHistoryItem'
                 >
                   <h4>{chat.chat_title}</h4>
                   <div
-                    className="miniMenu"
+                    className='miniMenu'
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -138,19 +134,19 @@ const HistorySideBar = (props) => {
 
                         toggleMiniMenu(chat.chat_id);
                       }}
-                      className="miniMenuOpenButton"
+                      className='miniMenuOpenButton'
                     >
                       <Image
-                        src="/images/dots.svg"
-                        alt="dots"
-                        width="20"
-                        height="20"
+                        src='/images/dots.svg'
+                        alt='dots'
+                        width='20'
+                        height='20'
                       />
                     </button>
                   </div>
                   {openMiniMenus[chat.chat_id] && (
-                    <div className="absolute right-0 top-8 mt-2 bg-[#171717] rounded-xl shadow-xl py-1.5 z-20 border border-gray-700/50 animate-in fade-in slide-in-from-top-2 duration-200">
-                      <div className="px-1.5">
+                    <div className='absolute right-0 top-8 mt-2 bg-[#171717] rounded-xl shadow-xl py-1.5 z-20 border border-gray-700/50 animate-in fade-in slide-in-from-top-2 duration-200'>
+                      <div className='px-1.5'>
                         <button
                           ref={deleteButtonRef} // Добавляем ref для кнопки удаления
                           onClick={(event) => {
@@ -158,17 +154,15 @@ const HistorySideBar = (props) => {
                             event.stopPropagation();
                             deleteChat(chat.chat_id);
                           }}
-                          className="w-full px-3 py-2.5 flex items-center gap-3 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors duration-200 group"
+                          className='w-full px-3 py-2.5 flex items-center gap-3 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors duration-200 group'
                         >
-                          <span className="font-medium">
-                            {t("history.delete")}
-                          </span>
+                          <span className='font-medium'>{t("history.delete")}</span>
                         </button>
                       </div>
                     </div>
                   )}
                 </Link>
-              )
+              ),
           )}
         </div>
       </div>

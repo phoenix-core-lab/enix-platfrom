@@ -676,3 +676,12 @@
     visibility: visible;
   }
 }
+
+@media screen and (max-width: 600px){
+  .dashboardContentFunctionality{
+    .contentHeader{
+      font-size: 26px;
+      min-height: 40px;
+    }
+  }
+}

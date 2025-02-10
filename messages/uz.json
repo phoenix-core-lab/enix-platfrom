@@ -71,7 +71,8 @@
       "text": "Matn bilan ishlash",
       "text2": "Fotosuratlar ishlash",
       "exit": "Tizimdan chiqish",
-      "questions": "Ko'p so'raladigan savollar"
+      "questions": "Ko'p so'raladigan savollar",
+      "newChat": "Yangi suhbat"
     },
     "history": { "title": "Suhbatlar tarixi", "delete": "O'chirish" },
     "Tostify": {
@@ -108,7 +109,7 @@
       "text3": "Cheklangan modelga kirish",
       "text4": "Kengaytirilgan tahlil, veb-sahifalarni ko‘rish va rasm yaratishga cheklangan kirish",
       "text5": "Natijalarni yuklab olish imkoniyati",
-      "alreadyHavePremium": "Sizda allaqachon Premium reja bormi?",
+      "alreadyHavePremium": "Sizda allaqachon Premium reja bormi? ",
       "linkText": "Hisob-kitob bo‘yicha yordam"
     },
     "bottomText": "Biznesingiz uchun qo‘shimcha imkoniyatlar kerakmi?",
