@@ -229,12 +229,12 @@ const Payment: React.FC = () => {
                         />
                       </div>
                     </div>
-                    <div className="w-full">
+                    <div className="w-full flex items-center border rounded-md p-3">
                       <input
                         type="text"
                         name="expire_date"
                         placeholder={t("expire_datePlaceholder")}
-                        className="w-full h-full rounded-md border p-2 outline-none"
+                        className="border-none focus:ring-0 focus:border-none  outline-none"
                         value={formData.expire_date}
                         onChange={handleExpire_dateChange}
                         maxLength={5}

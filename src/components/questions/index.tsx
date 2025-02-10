@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import "./QuestionsContent.scss";
 import { ArrowLeft, ChevronDown, Minus, Plus } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 const QuestionsContent = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const router = useRouter();
+  const t = useTranslations("Plan");
   const toggleSection = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -42,9 +44,11 @@ const QuestionsContent = () => {
     <main className="QuestionsContentMain">
       <button className="backButton" onClick={() => router.back()}>
         <ArrowLeft className="mr-2 h-4 w-4" />
-        {"Back"}
+        {t("Back")}
       </button>
       <div className="container">
+        <div className="QuestionsContentMainContainer">
+
         <div className="header">
           <h1 className="title">PRIVACY POLICY</h1>
           <div className="divider"></div>
@@ -69,6 +73,7 @@ const QuestionsContent = () => {
               </div>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </main>

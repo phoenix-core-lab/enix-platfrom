@@ -22,7 +22,9 @@ export default {
         },
         foreground: "hsl(var(--foreground))",
         textInput: "hsl(var(--textInput))",
-
+        gap: {
+          '12': '3rem',
+        },
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
@@ -70,6 +72,9 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      screens: {
+        xs: '320px', 
       },
     },
   },
