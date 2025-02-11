@@ -171,7 +171,7 @@ export function LoginForm({
                         <div className="flex items-center text-white">
                           <Label htmlFor="password">{t("password")}</Label>
                           <Link
-                            href="#"
+                            href="/resetpassword"
                             className="ml-auto text-sm underline-offset-4 hover:underline"
                           >
                             {t("forgotPassword")}

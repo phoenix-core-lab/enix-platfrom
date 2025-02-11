@@ -675,6 +675,10 @@
     opacity: 1;
     visibility: visible;
   }
+  .dashboardContentFunctionality .contentHeader {
+    font-size: 26px;
+    min-height: 40;
+  }
 }
 
 @media screen and (max-width: 600px){

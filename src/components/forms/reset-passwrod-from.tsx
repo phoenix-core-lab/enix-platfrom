@@ -21,7 +21,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import SmsCodeModal from "./smscode-modal";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Phone } from "lucide-react";
 interface FormElements extends HTMLFormControlsCollection {
   passwordRepeat: HTMLInputElement;
   name: HTMLInputElement;
@@ -33,15 +33,16 @@ interface SignInFormElement extends HTMLFormElement {
   readonly elements: FormElements;
 }
 
-export function RegistrationForm({
+export function ResetPasswordForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
   const t = useTranslations("Register");
   const router = useRouter();
   const [cookies, setCookie] = useCookies();
-  const [phone, setPhone] = React.useState("+998");
+  const [phone, setPhone] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
+  const [havePhoone, setHavePhone] = React.useState(false);
   const [open, setOpen] = React.useState<boolean>(false);
 
   const formatPhoneNumber = (value: string) => {
@@ -66,6 +67,10 @@ export function RegistrationForm({
   const signUp = (event: React.FormEvent<SignInFormElement>) => {
     event.preventDefault();
     const formElements = event.currentTarget.elements as FormElements;
+    if (phone && !havePhoone) {
+      setHavePhone(true);
+      return;
+    }
     const rawPhone = phone.replace(/\D/g, "");
 
     if (formElements.password.value !== formElements.passwordRepeat.value) {
@@ -115,6 +120,7 @@ export function RegistrationForm({
         toast.error("Noto'g'ri tasdiqlash kodi!");
       });
   };
+  console.log("phone", phone);
 
   return (
     <>
@@ -168,105 +174,103 @@ export function RegistrationForm({
                       </Button>
                     </div>
                     <div className="grid gap-4">
-                      <div className="grid gap-2 text-white">
-                        <Label htmlFor="email">{t("name")}</Label>
-                        <Input
-                          className="bg-black text-white border-[#27272A]"
-                          id="name"
-                          type="text"
-                          name="name"
-                          placeholder="Utkirov Utkir"
-                          required
-                        />
-                      </div>
-                      <div className="grid gap-2 text-white">
-                        <Label htmlFor="email">{t("telphoneNumber")}</Label>
-                        <Input
-                          className="bg-black text-white border-[#27272A]"
-                          id="tel"
-                          name="phone"
-                          type="tel"
-                          placeholder="+998 (90) 123 45 67"
-                          value={phone}
-                          onChange={handlePhoneChange}
-                          required
-                        />
-                      </div>
-                      <div className="grid gap-2">
-                        <div className="flex items-center text-white">
-                          <Label htmlFor="password">{t("password")}</Label>
-                        </div>
-                        <div className="relative">
+                      {!havePhoone ? (
+                        <div className="grid gap-2 text-white">
+                          <Label htmlFor="tel">{t("telphoneNumber")}</Label>
                           <Input
                             className="bg-black text-white border-[#27272A]"
-                            id="password"
-                            type={showPassword ? "text" : "password"}
-                            name="password"
-                            placeholder="********"
+                            id="tel"
+                            name="phone"
+                            type="tel"
+                            placeholder="+998 (90) 123 45 67"
+                            onChange={handlePhoneChange}
+                            value={phone}
                             required
                           />
-                          <button
-                            type="button"
-                            onClick={() => setShowPassword(!showPassword)}
-                            className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-white"
-                          >
-                            {showPassword ? (
-                              <EyeOff size={20} />
-                            ) : (
-                              <Eye size={20} />
-                            )}
-                          </button>
                         </div>
-                      </div>
-                      <div className="grid gap-2">
-                        <div className="flex items-center text-white">
-                          <Label htmlFor="password">{t("passwordRepeat")}</Label>
+                      ) : (
+                        ""
+                      )}
+                      {havePhoone ? (
+                        <div>
+                          <div className="grid gap-2">
+                            <div className="flex items-center text-white">
+                              <Label htmlFor="password">{t("password")}</Label>
+                            </div>
+                            <div className="relative">
+                              <Input
+                                className="bg-black text-white border-[#27272A]"
+                                id="password"
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                placeholder="********"
+                                required
+                              />
+                              <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-white"
+                              >
+                                {showPassword ? (
+                                  <EyeOff size={20} />
+                                ) : (
+                                  <Eye size={20} />
+                                )}
+                              </button>
+                            </div>
+                          </div>
+                          <div className="grid gap-2">
+                            <div className="flex items-center text-white">
+                              <Label htmlFor="password">
+                                {t("passwordRepeat")}
+                              </Label>
+                            </div>
+                            <div className="relative">
+                              <Input
+                                className="bg-black text-white border-[#27272A]"
+                                id="passwordRepeat"
+                                type={showPassword ? "text" : "password"}
+                                name="passwordRepeat"
+                                placeholder="********"
+                                required
+                              />
+                              <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-white"
+                              >
+                                {showPassword ? (
+                                  <EyeOff size={20} />
+                                ) : (
+                                  <Eye size={20} />
+                                )}
+                              </button>
+                            </div>
+                          </div>
                         </div>
-                        <div className="relative">
-                          <Input
-                            className="bg-black text-white border-[#27272A]"
-                            id="passwordRepeat"
-                            type={showPassword ? "text" : "password"}
-                            name="passwordRepeat"
-                            placeholder="********"
-                            required
-                          />
-                          <button
-                            type="button"
-                            onClick={() => setShowPassword(!showPassword)}
-                            className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-white"
-                          >
-                            {showPassword ? (
-                              <EyeOff size={20} />
-                            ) : (
-                              <Eye size={20} />
-                            )}
-                          </button>
-                        </div>
-                      </div>
-                      <Button
-                        type="submit"
-                        className="w-full text-black bg-white hover:bg-white/80"
-                      >
-                        {t("register")}
-                      </Button>
-                    </div>
-                    <div className="text-center text-sm text-white">
-                      {t("alreadyHaveAccount")}
-                      <Link
-                        href="/signin"
-                        className="underline underline-offset-4 ml-1"
-                      >
-                        {t("login")}
-                      </Link>
+                      ) : (
+                        ""
+                      )}
+                      {havePhoone ? (
+                        <Button
+                          type="submit"
+                          className="w-full text-black bg-white hover:bg-white/80"
+                        >
+                          {t("register")}
+                        </Button>
+                      ) : (
+                        <Button
+                          type="submit"
+                          className="w-full text-black bg-white hover:bg-white/80"
+                        >
+                          {t("send")}
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </form>
               </CardContent>
             </Card>
-            {/* <div className="text-balance text-center text-xs text-white [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
-              © ENIX & Phoenix Core Lab 2025
-            </div> */}
           </div>
         </div>
       </div>

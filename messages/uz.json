@@ -39,7 +39,9 @@
     "or": "yoki",
     "confirm": "Tasdiqlash",
     "confirmCode2": "Tasdiqlash kodi",
-    "confirmCode": "Telefon raqamingizga tasdiqlash kodi yuborildi!"
+    "confirmCode": "Telefon raqamingizga tasdiqlash kodi yuborildi!",
+    "authError": "Bunday foydalanuvchi allaqachon ro‘yxatdan o‘tgan!",
+    "send": "Yuborish"
   },
   "Dashboard": {
     "errorMessage": "Xato yuz berdi. Yana urinib ko'ring.",

@@ -18,11 +18,12 @@ import {
   ScanText,
   Images,
   LogIn,
-  Languages
+  Languages,
+  User,
 } from "lucide-react";
 import { planet } from "@lucide/lab";
 import ThemeToggle from "@/components/theme-toggle/theme-toggle";
- 
+
 const MobileMenu = () => {
   const t = useTranslations("Dashboard");
   const locale = useLocale();
@@ -44,7 +45,7 @@ const MobileMenu = () => {
 
   React.useEffect(() => {
     setTheme(cookiesTheme.theme || "dark");
-  }, [cookiesTheme])
+  }, [cookiesTheme]);
 
   React.useEffect(() => {
     document.body.classList.toggle("light", theme === "light");
@@ -162,41 +163,37 @@ const MobileMenu = () => {
           </Link>
         </div>
         <div className="mobileMenuFunctions">
-          {/* {activeUser ? (
-          <Link href="/prices" className="plan plusPlan">
-            Плюс активен
-            <Image
-              className="rocket"
-              src="/images/rocket.svg"
-              alt="rocket"
-              width={15}
-              height={15}
-            />
-          </Link>
-        ) : (
-          <Link href="/prices" className="plan freePlan">
-            Получить Плюс
-            <Image
-              className="rocket"
-              src="/images/rocket.svg"
-              alt="rocket"
-              width={15}
-              height={15}
-            />
-          </Link>
-        )} */}
+          <div className="userInfo">
+            <div className="userIcon">
+              <User className="icon" />
+            </div>
+            <div>
+              <h3 className="userInfoTitle">Siriwat K.</h3>
+              <p className="userInfoText">+998-88-167-11-14</p>
+            </div>
+          </div>
 
-          <button
-            className="mobileExitButton"
-            title="Yangi so'rov yarating"
-            onClick={() => {
-              removeCookie("secretToken");
-              window.location.href = `${locale}/signin`;
-            }}
-          >
-            {t("sideBar.exit")}
-            <LogIn color="#ce3737" size={25} />
-          </button>
+          <div className="bottomWrapper">
+            <div className="planInfo">
+              <h3 className="planInfoTitle">Used space</h3>
+              <p className="planInfoText">
+                Your team has used 80% of your available space. Need more?
+              </p>
+              <button className="planUpgradeButton">Upgrade plan</button>
+            </div>
+
+            <button
+              className="mobileExitButton"
+              title="Yangi so'rov yarating"
+              onClick={() => {
+                removeCookie("secretToken");
+                window.location.href = `${locale}/signin`;
+              }}
+            >
+              {t("sideBar.exit")}
+              <LogIn color="#ce3737" size={25} />
+            </button>
+          </div>
         </div>
       </div>
     </div>

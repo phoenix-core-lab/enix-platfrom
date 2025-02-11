@@ -44,6 +44,11 @@ a {
 
 @layer base {
   :root {
+    --user-plan-text: 32 91% 87%;
+    --user-plan-title: 32 88% 94%;
+    --user-info-text: 32 91% 87%;
+    --user-info-title: 32 88% 94%;
+    --user-info: 32 80% 10%;
     --border-color-second: 220 13% 91;
     --border-color: 166 100% 33%;
     --scrollbar-color-first: #434343;
@@ -88,6 +93,11 @@ a {
     --chart-5: 340 75% 55%;
   }
   .light {
+    --user-plan-text: 32 80% 16%;
+    --user-plan-title: 35 100% 14%;
+    --user-info-text: 212 10% 37%;
+    --user-info-title: 204 10% 10%;
+    --user-info: 32, 88%, 94%;
     --border-color-second: 220 14% 93%;
     --border-color: 220 14% 93%;
     --scrollbar-color-first: #d3d3d3; /* Светло-серый для основного цвета */
