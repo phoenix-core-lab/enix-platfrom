@@ -15,6 +15,7 @@ export default {
           DEFAULT: "hsl(var(--background))",
           main: "hsl(var(--main-background))",
           prices: "hsl(var(--prices-background))",
+          header: "hsl(var(--header-background))",
         },
         borderColor: {
           prices: "hsl(var(--border-color))",
@@ -23,7 +24,7 @@ export default {
         foreground: "hsl(var(--foreground))",
         textInput: "hsl(var(--textInput))",
         gap: {
-          '12': '3rem',
+          "12": "3rem",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
@@ -74,7 +75,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       screens: {
-        xs: '320px', 
+        xs: "320px",
       },
     },
   },

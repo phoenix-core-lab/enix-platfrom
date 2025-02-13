@@ -411,7 +411,7 @@
 
   .copyItem {
     margin-top: 5px;
-    background: #2f2f2f;
+    background: hsl(var(--textInput));
     border-radius: 8px;
     display: flex;
     justify-content: center;
@@ -430,6 +430,13 @@
 
     &:hover {
       background: hsl(var(--hover-text-input));
+    }
+  }
+  .copyItem.light {
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+    &:hover {
+      background: #f1f1f1;
     }
   }
 
@@ -681,9 +688,9 @@
   }
 }
 
-@media screen and (max-width: 600px){
-  .dashboardContentFunctionality{
-    .contentHeader{
+@media screen and (max-width: 600px) {
+  .dashboardContentFunctionality {
+    .contentHeader {
       font-size: 26px;
       min-height: 40px;
     }

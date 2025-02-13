@@ -27,7 +27,12 @@ import {
   Code2,
   Building2,
   RefreshCw,
+  ThumbsUp,
+  ThumbsDown,
+  Copy,
+  Download,
 } from "lucide-react";
+import { Modal } from "@/components/ui/modal";
 
 const renderButton = (buttonText, index) => (
   <motion.button
@@ -98,7 +103,9 @@ const DashboardContentFunctionality = (props) => {
   const chatFieldRef = useRef(null);
   const [language, setLanguage] = useState("");
   const [cookiesTheme] = useCookies(["theme"]);
-  const [theme, setTheme] = useState("dark"); // Значение по умолчанию
+  const [theme, setTheme] = useState("dark");
+  const [status, setStatus] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     setTheme(cookiesTheme.theme || "dark");
@@ -404,8 +411,17 @@ const DashboardContentFunctionality = (props) => {
     setCookie("modelAnswerLanguage", newLanguage);
     setLanguage(newLanguage);
   };
+  const handleLike = () => {
+    setStatus(status === "like" ? null : "like"); // Если уже лайкнут, убираем лайк
+  };
+
+  const handleDislike = () => {
+    setStatus(status === "dislike" ? null : "dislike");
+    setIsModalOpen(true);
+  };
   return (
     <div className="dashboardContentFunctionality">
+      <Modal modalOpen={isModalOpen} setModalOpen={setIsModalOpen} />
       <ToastContainer theme="dark" pauseOnHover={false} />
       <AnimatePresence>
         {showAnswer && language && (
@@ -491,26 +507,63 @@ const DashboardContentFunctionality = (props) => {
                             <div className="copyContainer">
                               {props.type === "text" ? (
                                 <>
-                                  <div className="copyItem">
-                                    <Image
-                                      src="/images/copy.svg"
-                                      alt="copy"
-                                      width={20}
-                                      height={20}
+                                  <div
+                                    className={`copyItem ${
+                                      theme == "light" ? "light" : ""
+                                    }`}
+                                  >
+                                    <Copy
                                       onClick={() => handleCopy(item.message)}
+                                      height={15}
+                                      width={15}
                                     />
                                   </div>
-                                  <div className="copyItem">
-                                    <Image
-                                      src="/images/download.svg"
-                                      alt="download"
-                                      width={20}
-                                      height={20}
+                                  <div
+                                    className={`copyItem ${
+                                      theme == "light" ? "light" : ""
+                                    }`}
+                                  >
+                                    <Download
                                       onClick={() =>
                                         handleDownload(item.message)
                                       }
+                                      height={15}
+                                      width={15}
                                     />
                                   </div>
+                                  <div
+                                    onClick={() => handleLike()}
+                                    className={`copyItem ${
+                                      theme == "light" ? "light" : ""
+                                    }`}
+                                  >
+                                    <ThumbsUp
+                                      height={15}
+                                      width={15}
+                                      fill={
+                                        status === "like"
+                                          ? "white"
+                                          : "transparent"
+                                      }
+                                    />
+                                  </div>
+                                  <button
+                                    disabled={status === "dislike"}
+                                    onClick={() => handleDislike()}
+                                    className={`copyItem ${
+                                      theme == "light" ? "light" : ""
+                                    }`}
+                                  >
+                                    <ThumbsDown
+                                      height={15}
+                                      width={15}
+                                      fill={
+                                        status === "dislike"
+                                          ? "white"
+                                          : "transparent"
+                                      }
+                                    />
+                                  </button>
                                 </>
                               ) : item.file_url &&
                                 item.file_url !== "no.png" ? (
@@ -615,7 +668,12 @@ const DashboardContentFunctionality = (props) => {
           className={`textForm ${showAnswer ? "answer" : ""} `}
         >
           {showAnswer && (
-            <button className="newchat">
+            <button
+              className="newchat"
+              onClick={() => {
+                router.push("/");
+              }}
+            >
               <RefreshCw className="icon" />
               <span className="text">{t("newChat")}</span>
             </button>
