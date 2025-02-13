@@ -28,6 +28,7 @@ import {
   Building2,
   RefreshCw,
 } from "lucide-react";
+import { DownloadButton } from "../downloadFile/selectModal";
 
 const renderButton = (buttonText, index) => (
   <motion.button
@@ -99,6 +100,7 @@ const DashboardContentFunctionality = (props) => {
   const [language, setLanguage] = useState("");
   const [cookiesTheme] = useCookies(["theme"]);
   const [theme, setTheme] = useState("dark"); // Значение по умолчанию
+  const [openFormatModal, setOpenFormatModal] = useState(false);
 
   useEffect(() => {
     setTheme(cookiesTheme.theme || "dark");
@@ -192,14 +194,7 @@ const DashboardContentFunctionality = (props) => {
         toast.error(t("Tostify.errorDownload"));
       }
     } else {
-      const blob = new Blob([modelMessage], { type: "text/plain" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "result.txt";
-      a.click();
-      URL.revokeObjectURL(url);
-      toast.success(t("Tostify.successDownload"));
+      setOpenFormatModal(true);
     }
   };
 
@@ -509,6 +504,11 @@ const DashboardContentFunctionality = (props) => {
                                       onClick={() =>
                                         handleDownload(item.message)
                                       }
+                                    />
+                                    <DownloadButton
+                                      isOpen={openFormatModal}
+                                      setIsOpen={setOpenFormatModal}
+                                      text={item.message}
                                     />
                                   </div>
                                 </>
