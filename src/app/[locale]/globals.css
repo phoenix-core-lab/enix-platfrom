@@ -44,11 +44,11 @@ a {
 
 @layer base {
   :root {
-    --user-plan-text: 32 91% 87%;
-    --user-plan-title: 32 88% 94%;
-    --user-info-text: 32 91% 87%;
-    --user-info-title: 32 88% 94%;
-    --user-info: 32 80% 10%;
+    --hover-background: 0 0% 14.51%;
+    --user-info-icon-text: 0 0% 100%;
+    --user-info-button: 240 1.69% 23.14%;
+    --user-info-icon: 240 1.69% 23.14%;
+    --user-info: 0 0% 13.33%;
     --border-color-second: 220 13% 91;
     --border-color: 166 100% 33%;
     --scrollbar-color-first: #434343;
@@ -66,6 +66,7 @@ a {
     --main-background: 0 0% 0%;
     --prices-background: 0 0% 10.2%;
     --border-color-third: 0, 0%, 27%;
+    --form-border-color: 0 0% 26%;
 
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -93,11 +94,11 @@ a {
     --chart-5: 340 75% 55%;
   }
   .light {
-    --user-plan-text: 32 80% 16%;
-    --user-plan-title: 35 100% 14%;
-    --user-info-text: 212 10% 37%;
-    --user-info-title: 204 10% 10%;
-    --user-info: 32, 88%, 94%;
+    --hover-background: 0 0% 86.67%;
+    --user-info-icon-text: 221.21 83.19% 53.33%;
+    --user-info-button: 220.54 100% 92.75%;
+    --user-info-icon: 214.29 94.59% 92.75%;
+    --user-info: 210 20% 98.04%;
     --border-color-second: 220 14% 93%;
     --border-color: 220 14% 93%;
     --scrollbar-color-first: #d3d3d3; /* Светло-серый для основного цвета */
@@ -115,6 +116,7 @@ a {
     --main-background: 0 0% 100%;
     --prices-background: 0 0% 100%;
     --border-color-third: 220 14% 91%;
+    --form-border-color: 220 13% 91%;
 
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -143,6 +145,11 @@ a {
   }
 }
 
+html,
+body {
+  background: hsl(var(--dashboard));
+  height: 100dvh;
+}
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -45,6 +45,7 @@
   },
   "Dashboard": {
     "errorMessage": "Xato yuz berdi. Yana urinib ko'ring.",
+    "menu": "Menyu",
     "notice": "ENIX xatolarga yo'l qo'yishi mumkin. Muhim ma'lumotlarni tekshirishni tavsiya etamiz.",
     "plus": "Premium faol",
     "title": "Qanday yordam bera olaman?",
@@ -54,27 +55,32 @@
     "prompt2": "Qanday qilib intervyu olish kerak?",
     "prompt3": "Oy tutilish nima?",
     "Essay": "Insho yozing",
-    "legal": "Huquqiy",
-    "medical": "Tibbiyot",
-    "texnic": "Texnik",
-    "business": "Biznes",
+
+    "IT": "IT-mutaxassislari",
+    "creative": "Ijodiy mutaxassis",
+    "analitic": "Analitik",
+    "copiriter": "Kopirayter",
+    "astrolog": "Astrolog",
+
     "newChat": "Yangi suhbat",
     "chatHistory": "Suhbat tarixi",
-    "prohibition": "Men bu so'rovni bajara olmayman. Agar sizga badiiy uslubdagi rasmlar kerak bo'lsa, men shunga o'xshash narsani chizishim mumkin, ammo qoidalar doirasida. Masalan, zamonaviy portret yoki xayoliy rasm. Agar sizda biron bir afzallik bo'lsa, sizga xabar bering! 😊",
+    "prohibition": "Men bu so'rovni bajara olmayman. Agar sizga badiy uslubdagi rasmlar kerak bo'lsa, men shunga o'xshash narsani chizishim mumkin, ammo qoidalar doirasida. Masalan, zamonaviy portret yoki xayoliy rasm. Agar sizda biron bir afzallik bo'lsa, sizga xabar bering! 😊",
     "chooseLang": "Sizga javob beradigan tilni tanlang!",
     "ru": "Rus tili",
     "uz": "O'zbek tili",
     "en": "Ingliz tili",
-    "menu": "Menyu",
+    "profile": "Profil",
     "exitPlatform": "Platformadan chiqing",
     "getPlus": "Premium olish",
+    "helperButtonsTitle": "Muammongizni hal qilishga yordam beradigan yordamchini tanlang!",
     "sideBar": {
       "title": "Veb-saytga o'ting",
       "text": "Matn bilan ishlash",
       "text2": "Fotosuratlar ishlash",
       "exit": "Tizimdan chiqish",
       "questions": "Ko'p so'raladigan savollar",
-      "newChat": "Yangi suhbat"
+      "newChat": "Yangi suhbat",
+      "articles": "Yangliklar"
     },
     "history": { "title": "Suhbatlar tarixi", "delete": "O'chirish" },
     "Tostify": {
@@ -145,5 +151,10 @@
       "successPayment": "To'lov muvaffaqiyatli amalga oshirildi!",
       "errorSmsCode": "SMS-kodni qayta ishlashda xato yuz berdi."
     }
+  },
+  "Articles": {
+    "back": "Orqaga",
+    "title": "Yangliklar",
+    "noSelected": "Tafsilotlarni koʻrish uchun yanglikni tanlang"
   }
 }

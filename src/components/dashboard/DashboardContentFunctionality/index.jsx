@@ -27,6 +27,12 @@ import {
   Code2,
   Building2,
   RefreshCw,
+  Edit,
+  Laptop,
+  Palette,
+  ChartNoAxesCombined,
+  Type,
+  MoonStar,
 } from "lucide-react";
 import { DownloadButton } from "../downloadFile/selectModal";
 
@@ -67,20 +73,29 @@ const DashboardContentFunctionality = (props) => {
   const imageModelButtons = [];
   const textModelButtons = [
     {
-      text: t("legal"),
-      icon: <Scale size={20} />,
+      text: t("IT"),
+      icon: <Laptop size={20} />,
+      role: "IT",
     },
     {
-      text: t("medical"),
-      icon: <Stethoscope size={20} />,
+      text: t("creative"),
+      icon: <Palette size={20} />,
+      role: "creative",
     },
     {
-      text: t("texnic"),
-      icon: <Code2 size={20} />,
+      text: t("analitic"),
+      icon: <ChartNoAxesCombined size={20} />,
+      role: "analitic",
     },
     {
-      text: t("business"),
-      icon: <Building2 size={20} />,
+      text: t("copiriter"),
+      icon: <Type size={20} />,
+      role: "copiriter",
+    },
+    {
+      text: t("astrolog"),
+      icon: <MoonStar size={20} />,
+      role: "astrolog",
     },
   ];
 
@@ -99,8 +114,18 @@ const DashboardContentFunctionality = (props) => {
   const chatFieldRef = useRef(null);
   const [language, setLanguage] = useState("");
   const [cookiesTheme] = useCookies(["theme"]);
-  const [theme, setTheme] = useState("dark"); // Значение по умолчанию
-  const [openFormatModal, setOpenFormatModal] = useState(false);
+  const [theme, setTheme] = useState("dark");
+  const [openModalId, setOpenModalId] = useState(null);
+  const [message, setMessage] = useState("");
+  const textareaRef = useRef(null);
+
+  // Автоувеличение высоты при изменении текста
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto"; // Сбрасываем высоту
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // Задаем высоту по содержимому
+    }
+  }, [message]);
 
   useEffect(() => {
     setTheme(cookiesTheme.theme || "dark");
@@ -168,7 +193,7 @@ const DashboardContentFunctionality = (props) => {
     [cookies.secretToken]
   );
 
-  const handleDownload = async (modelMessage) => {
+  const handleDownload = async (modelMessage, id) => {
     if (props.type === "image") {
       const imageUrl = `${process.env.NEXT_PUBLIC_APP_API_URL}/image/${modelMessage}`;
 
@@ -194,7 +219,7 @@ const DashboardContentFunctionality = (props) => {
         toast.error(t("Tostify.errorDownload"));
       }
     } else {
-      setOpenFormatModal(true);
+      setOpenModalId(id);
     }
   };
 
@@ -280,6 +305,7 @@ const DashboardContentFunctionality = (props) => {
       });
 
     formElements.message.value = "";
+    setMessage("");
   };
 
   const handleGetUpdatedResult = (event) => {
@@ -342,6 +368,7 @@ const DashboardContentFunctionality = (props) => {
         }
       });
     formElements.message.value = "";
+    setMessage("");
   };
 
   const scrollDownWhenAnswer = () => {
@@ -399,6 +426,9 @@ const DashboardContentFunctionality = (props) => {
     setCookie("modelAnswerLanguage", newLanguage);
     setLanguage(newLanguage);
   };
+  const assistentSubmit = (role) => {
+    role;
+  };
   return (
     <div className="dashboardContentFunctionality">
       <ToastContainer theme="dark" pauseOnHover={false} />
@@ -430,10 +460,15 @@ const DashboardContentFunctionality = (props) => {
                     className={item.from_user ? "userMessage" : "modelMessage"}
                   >
                     {item.from_user ? (
+                      <button className="userMessageEdit">
+                        <Edit width={20} height={20} />
+                      </button>
+                    ) : null}
+                    {item.from_user ? (
                       item.message
                     ) : (
                       <div className="relative flex gap-4">
-                        <div className="flex items-center justify-center bg-[#2f2f2f] rounded-full w-[30px] h-[30px] p-1 ">
+                        <div className="flex items-center justify-center bg-[#2f2f2f] rounded-full w-[30px] h-[30px] p-1 min-w-[30px] min-h-[30px]">
                           <Image
                             src="/images/logo.png"
                             alt="logo"
@@ -502,12 +537,18 @@ const DashboardContentFunctionality = (props) => {
                                       width={20}
                                       height={20}
                                       onClick={() =>
-                                        handleDownload(item.message)
+                                        handleDownload(item.message, item.id)
                                       }
                                     />
                                     <DownloadButton
-                                      isOpen={openFormatModal}
-                                      setIsOpen={setOpenFormatModal}
+                                      isOpen={openModalId === item.id}
+                                      setIsOpen={() =>
+                                        setOpenModalId(
+                                          openModalId === item.id
+                                            ? null
+                                            : item.id
+                                        )
+                                      }
                                       text={item.message}
                                     />
                                   </div>
@@ -612,7 +653,9 @@ const DashboardContentFunctionality = (props) => {
           initial={{ y: !showAnswer ? 0 : 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
-          className={`textForm ${showAnswer ? "answer" : ""}`}
+          className={`textForm ${theme === "light" ? "light" : ""} ${
+            showAnswer ? "answer" : ""
+          }`}
         >
           {showAnswer && (
             <button className="newchat" onClick={() => router.push("/dasboard/text")}>
@@ -627,8 +670,12 @@ const DashboardContentFunctionality = (props) => {
             }
           >
             <motion.textarea
+              ref={textareaRef}
+              value={message}
+              rows={2}
+              onChange={(e) => setMessage(e.target.value)}
               required
-              className={`textInput  ${theme === "light" ? "light" : ""} `}
+              className={`textInput`}
               placeholder={t("title3")}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -637,27 +684,36 @@ const DashboardContentFunctionality = (props) => {
               onKeyDown={handleSendOnEnter}
               disabled={loading}
             />
-            <button
-              type="button"
-              className="languageSwitcherButton"
-              title="На каком языке мне к вам обращаться?"
-              onClick={() => {
-                changeLanguage();
-              }}
-            >
-              <Image
-                src={
-                  language === "ru"
-                    ? "/images/russia.svg"
-                    : language === "uz"
-                    ? "/images/uzbekistan.svg"
-                    : "/images/greatbritain.svg"
-                }
-                alt="language"
-                width={40}
-                height={40}
-              />
-            </button>
+            <div className="languageSwitcher">
+              <button
+                type="button"
+                className="languageSwitcherButton"
+                title="На каком языке мне к вам обращаться?"
+                onClick={() => {
+                  changeLanguage();
+                }}
+              >
+                <Image
+                  src={
+                    language === "ru"
+                      ? "/images/russia.svg"
+                      : language === "uz"
+                      ? "/images/uzbekistan.svg"
+                      : "/images/greatbritain.svg"
+                  }
+                  alt="language"
+                  width={40}
+                  height={40}
+                />
+              </button>
+              <p className="languageSwitcherText">
+                {language === "ru"
+                  ? "Ответи на Русском"
+                  : language === "uz"
+                  ? "Javoblar O'zbek tilida"
+                  : "Answers in English"}
+              </p>
+            </div>
 
             {isTyping ? (
               <button
@@ -689,15 +745,7 @@ const DashboardContentFunctionality = (props) => {
                 />
               </motion.button>
             )}
-            <p
-              style={{
-                position: "absolute",
-                right: "60px",
-                bottom: "20px",
-                fontSize: "12px",
-                color: "#b4b4b4",
-              }}
-            >
+            <p className="absolute bottom-[17px] right-[50px] text-[14px] text-[#b4b4b4] md:right-[60px]">
               20 / 20
             </p>
           </form>
@@ -705,30 +753,38 @@ const DashboardContentFunctionality = (props) => {
       )}
 
       {!showAnswer && language && (
-        <div className="helperButtons">
-          {props.type === "text"
-            ? textModelButtons.map(({ text, icon }, index) => (
-                <motion.button
-                  key={index}
-                  className="helperButton"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                  onClick={(e) => {
-                    const form = document.getElementById("textFormModel");
-                    form.elements.message.value = text;
-                    e.preventDefault();
-                    form.dispatchEvent(
-                      new Event("submit", { cancelable: true, bubbles: true })
-                    );
-                  }}
-                >
-                  <div className="helperButtonIcon">{icon}</div>
-                  <div className="helperButtonText">{text}</div>
-                </motion.button>
-              ))
-            : ""}
-        </div>
+        <>
+          {props.type === "text" && (
+            <motion.h3 className="helperButtonsTitle">
+              {t("helperButtonsTitle")}
+            </motion.h3>
+          )}
+          <div className="helperButtons">
+            {props.type === "text"
+              ? textModelButtons.map(({ text, icon, role }, index) => (
+                  <motion.button
+                    key={index}
+                    className="helperButton"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                    onClick={(e) => {
+                      const form = document.getElementById("textFormModel");
+                      form.elements.message.value = text;
+                      e.preventDefault();
+                      form.dispatchEvent(
+                        new Event("submit", { cancelable: true, bubbles: true })
+                      );
+                      assistentSubmit(role);
+                    }}
+                  >
+                    <div className="helperButtonIcon">{icon}</div>
+                    <div className="helperButtonText">{text}</div>
+                  </motion.button>
+                ))
+              : ""}
+          </div>
+        </>
       )}
 
       {!language && (

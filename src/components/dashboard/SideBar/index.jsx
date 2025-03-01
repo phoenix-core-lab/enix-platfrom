@@ -10,15 +10,23 @@ import { useRouter } from "@/i18n/routing";
 import LanguageSwitcher from "../LanguageSwitcher";
 import { useTranslations } from "next-intl";
 import ThemeToggle from "@/components/theme-toggle/theme-toggle";
-import { GalleryHorizontalEnd, CopyPlus, Icon, Lightbulb, ScanText, Images, LogIn } from "lucide-react";
-import { planet } from "@lucide/lab";
+import {
+  GalleryHorizontalEnd,
+  CopyPlus,
+  Icon,
+  Lightbulb,
+  ScanText,
+  Images,
+  LogIn,
+} from "lucide-react";
+import { planet, featherText } from "@lucide/lab";
 
 const SideBar = () => {
   const router = useRouter();
   const t = useTranslations("Dashboard.sideBar");
   const [cookies, setCookie, removeCookie] = useCookies("secretToken");
   const [cookiesTheme] = useCookies(["theme"]);
-  const [theme, setTheme] = useState("dark"); // Значение по умолчанию
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
     setTheme(cookiesTheme.theme || "dark");
@@ -30,24 +38,16 @@ const SideBar = () => {
 
   return (
     <div className={`sideBar ${theme === "light" ? "light" : ""}`}>
-      <div className='sideBarHeader'>
+      <div className="sideBarHeader">
         <div className={`helpButtons ${theme === "light" ? "light" : ""}`}>
           <button
-            title="Yangi so'rov yarating"
+            className="sideBarLink"
+            title="Enix AI"
             onClick={() => {
               router.push("/");
             }}
           >
-            {/* <Image
-              src="/images/albums.svg"
-              alt="albums"
-              width="25"
-              height="25"
-            /> */}
-            <GalleryHorizontalEnd
-              color='white'
-              size={25}
-            />
+            <Image src="/images/logo.png" alt="albums" width="25" height="25" />
           </button>
           <button
             title="Yangi so'rov yarating"
@@ -61,10 +61,7 @@ const SideBar = () => {
               width="25"
               height="25"
             /> */}
-            <CopyPlus
-              color='white'
-              size={25}
-            />
+            <CopyPlus color="white" size={25} />
           </button>
         </div>
         <Link
@@ -77,41 +74,39 @@ const SideBar = () => {
             width="25"
             height="25"
           /> */}
-          <Icon
-            iconNode={planet}
-            color='white'
-            size={25}
-          />
-          <h3 className='sideBarLinkLabel'>{t("title")}</h3>
-          <div className='hoverEffectIcon'>
+          <Icon iconNode={planet} color="white" size={25} />
+          <h3 className="sideBarLinkLabel">{t("title")}</h3>
+          <div className="hoverEffectIcon">
             <Image
-              src='/images/arrow-forward-circle.svg'
-              alt='website'
-              width='20'
-              height='20'
+              src="/images/arrow-forward-circle.svg"
+              alt="website"
+              width="20"
+              height="20"
             />
           </div>
         </Link>
         <div
-          className={`sideBarLink ${theme === "light" ? "light" : ""} cursor-pointer `}
+          className={`sideBarLink ${
+            theme === "light" ? "light" : ""
+          } cursor-pointer `}
           onClick={() => {
             router.push("/");
           }}
         >
           <Image
-            className='logoEnixSidebar'
-            src='/images/history.svg'
-            alt='Enix'
+            className="logoEnixSidebar"
+            src="/images/history.svg"
+            alt="Enix"
             width={100}
             height={100}
           />
-          <h3 className='sideBarLinkLabel'>{t("newChat")}</h3>
-          <div className='hoverEffectIcon'>
+          <h3 className="sideBarLinkLabel">{t("newChat")}</h3>
+          <div className="hoverEffectIcon">
             <Image
-              src='/images/arrow-forward-circle.svg'
-              alt='website'
-              width='20'
-              height='20'
+              src="/images/arrow-forward-circle.svg"
+              alt="website"
+              width="20"
+              height="20"
             />
           </div>
         </div>
@@ -126,23 +121,35 @@ const SideBar = () => {
             width="25"
             height="25"
           /> */}
-          <Lightbulb
-            color='white'
-            size={25}
-          />
-          <h3 className='sideBarLinkLabel'>FAQ</h3>
-          <div className='hoverEffectIcon'>
+          <Lightbulb color="white" size={25} />
+          <h3 className="sideBarLinkLabel">FAQ</h3>
+          <div className="hoverEffectIcon">
             <Image
-              src='/images/arrow-forward-circle.svg'
-              alt='website'
-              width='20'
-              height='20'
+              src="/images/arrow-forward-circle.svg"
+              alt="website"
+              width="20"
+              height="20"
+            />
+          </div>
+        </Link>
+        <Link
+          className={`sideBarLink ${theme === "light" ? "light" : ""} `}
+          href={"/articles"}
+        >
+          <Icon iconNode={featherText} color="white" size={25} />
+          <h3 className="sideBarLinkLabel">{t("articles")}</h3>
+          <div className="hoverEffectIcon">
+            <Image
+              src="/images/arrow-forward-circle.svg"
+              alt="website"
+              width="20"
+              height="20"
             />
           </div>
         </Link>
       </div>
-      <div className='sidebarDivider'></div>
-      <div className='sideBarContent'>
+      <div className="sidebarDivider"></div>
+      <div className="sideBarContent">
         <Link
           className={`sideBarLink ${theme === "light" ? "light" : ""} `}
           href={"/dashboard/text"}
@@ -153,17 +160,14 @@ const SideBar = () => {
             width="25"
             height="25"
           /> */}
-          <ScanText
-            color='white'
-            size={25}
-          />
-          <h3 className='sideBarLinkLabel'>{t("text")}</h3>
-          <div className='hoverEffectIcon'>
+          <ScanText color="white" size={25} />
+          <h3 className="sideBarLinkLabel">{t("text")}</h3>
+          <div className="hoverEffectIcon">
             <Image
-              src='/images/arrow-forward-circle.svg'
-              alt='website'
-              width='20'
-              height='20'
+              src="/images/arrow-forward-circle.svg"
+              alt="website"
+              width="20"
+              height="20"
             />
           </div>
         </Link>
@@ -189,26 +193,23 @@ const SideBar = () => {
             width="22"
             height="25"
           /> */}
-          <Images
-            color='white'
-            size={25}
-          />
-          <h3 className='sideBarLinkLabel'>{t("text2")}</h3>
-          <div className='hoverEffectIcon imageGenerateIcon'>
+          <Images color="white" size={25} />
+          <h3 className="sideBarLinkLabel">{t("text2")}</h3>
+          <div className="hoverEffectIcon imageGenerateIcon">
             <Image
-              src='/images/arrow-forward-circle.svg'
-              alt='website'
-              width='20'
-              height='20'
+              src="/images/arrow-forward-circle.svg"
+              alt="website"
+              width="20"
+              height="20"
             />
           </div>
         </Link>
       </div>
-      <div className='sideBarFooter'>
+      <div className="sideBarFooter">
         <ThemeToggle />
         <LanguageSwitcher theme={theme === "light" ? "light" : ""} />
         <button
-          className='sideBarLink exitButton'
+          className="sideBarLink exitButton"
           href={"https://enix.uz/"}
           onClick={() => {
             removeCookie("secretToken");
@@ -216,11 +217,8 @@ const SideBar = () => {
           }}
         >
           {/* <Image src="/images/enter.svg" alt="website" width="25" height="25" /> */}
-          <LogIn
-            color='#ce3737'
-            size={25}
-          />
-          <h3 className='sideBarLinkLabel'>{t("exit")}</h3>
+          <LogIn color="#ce3737" size={25} />
+          <h3 className="sideBarLinkLabel">{t("exit")}</h3>
         </button>
       </div>
     </div>

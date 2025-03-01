@@ -37,7 +37,6 @@
     align-items: center;
     justify-content: space-between;
     padding-right: 20px;
-    position: fixed;
     width: 300px;
     display: flex;
     justify-content: space-between;
@@ -58,6 +57,20 @@
     button:hover {
       opacity: 0.5;
     }
+    .userDownMenuHeaderWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 6px;
+
+      .userDownMenuHeaderIcon {
+        color: hsl(var(--text-color));
+      }
+      .userDownMenuHeaderLabel {
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
   }
 
   .userDownMenuHeader.light {
@@ -72,7 +85,7 @@
     display: none;
     flex-direction: column;
     gap: 10px;
-    padding: 65px 10px 10px 10px;
+    padding: 0px 10px 10px 10px;
 
     .sideBarLink {
       width: 100%;
@@ -139,44 +152,58 @@
   }
 
   .mobileMenuFunctions {
+    gap: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     flex-direction: column;
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
 
     .userInfo {
+      margin-top: 20px;
       display: flex;
-      gap: 8px;
+      justify-content: space-between;
+      gap: 10px;
       align-items: center;
-      padding: 65px 8px 0 8px;
+
       width: 100%;
-      margin-bottom: 10px;
 
-      .userIcon {
+      .userInfoWrapper {
         display: flex;
-        justify-content: center;
+        gap: 8px;
         align-items: center;
-        text-align: center;
-        border-radius: 50%;
-        background: #aca69f;
-        width: 40px;
-        height: 40px;
 
-        .icon {
+        .userIcon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          border-radius: 50%;
+          background: hsl(var(--user-info-icon));
+
+          width: 40px;
+          height: 40px;
+
+          .spanIcon {
+            color: hsl(var(--user-info-icon-text));
+          }
+        }
+
+        .userInfoTitle {
+          color: hsl(var(--user-info-title));
+          font-size: 14px;
           color: hsl(var(--text-color));
         }
-      }
 
-      .userInfoTitle {
-        color: hsl(var(--user-info-title));
-        font-size: 14px;
-      }
-      .userInfoText {
-        color: hsl(var(--user-info-text));
-        font-size: 12px;
+        .userInfoText {
+          color: hsl(var(--user-info-text));
+          font-size: 12px;
+          color: #9ca3af;
+        }
       }
     }
     .planInfo {
@@ -190,17 +217,22 @@
       .planInfoTitle {
         font-size: 14px;
         color: hsl(var(--user-plan-title));
+        color: hsl(var(--text-color));
       }
 
       .planInfoText {
         color: hsl(var(--user-plan-text));
         font-size: 12px;
+        color: hsl(var(--text-color));
       }
 
       .planUpgradeButton {
         border-radius: 6px;
         color: #fff;
-        background: #9a5b13;
+        background: #1f7251;
+        // background: #dae6ff;
+        // background: hsl(var(--user-info-button));
+        font-size: 14px;
         padding: 4px 12px;
       }
     }
@@ -211,7 +243,7 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      padding: 8px 15px;
+      padding: 10px 0px;
       border-radius: 8px;
       gap: 10px;
       transition: all 0.3s;
@@ -332,9 +364,6 @@
   }
   .downMenu .mobileMenu {
     display: flex;
-  }
-  .downMenu .mobileMenuFunctions .userInfo {
-    padding-top: 0px;
   }
 
   .dashboardWrapper.openLogoMenu .downMenu,

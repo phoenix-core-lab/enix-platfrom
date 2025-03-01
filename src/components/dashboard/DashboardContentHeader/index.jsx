@@ -8,6 +8,7 @@ import { useMainContext } from "@/providers/contextProvider";
 import { Link } from "@/i18n/routing";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import { ScanFace, UserCircleIcon } from "lucide-react";
 
 const DashboardContentHeader = () => {
   const t = useTranslations("Dashboard");
@@ -26,7 +27,7 @@ const DashboardContentHeader = () => {
 
   React.useEffect(() => {
     setTheme(cookiesTheme.theme || "dark");
-  }, [cookiesTheme])
+  }, [cookiesTheme]);
 
   React.useEffect(() => {
     document.body.classList.toggle("light", theme === "light");
@@ -107,6 +108,7 @@ const DashboardContentHeader = () => {
             width={100}
             height={100}
           />
+          <ScanFace className="userIcon" />
         </div>
       </div>
     </div>

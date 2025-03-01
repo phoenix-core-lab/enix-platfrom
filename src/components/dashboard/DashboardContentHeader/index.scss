@@ -43,6 +43,19 @@
       width: 25px;
       height: 25px;
       transform: rotate(90deg);
+      display: none;
+      @media screen and (max-width: 900px) {
+        display: block;
+      }
+    }
+    .userIcon {
+      width: 25px;
+      height: 25px;
+      color: hsl(var(--text-color));
+
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
     }
   }
 

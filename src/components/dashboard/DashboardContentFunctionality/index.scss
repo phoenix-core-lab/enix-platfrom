@@ -10,8 +10,9 @@
 
   .contentHeader {
     width: 100%;
-    font-size: 36px;
-    font-weight: bold;
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 600;
     color: hsl(var(--text-color));
     text-align: center;
     min-height: 54px;
@@ -26,7 +27,7 @@
       white-space: nowrap;
       right: 0;
       top: 0;
-      transform: translate(0, -99%);
+      transform: translate(0, -98%);
       z-index: 5;
       position: absolute;
       padding: 6px 12px;
@@ -97,107 +98,36 @@
         display: inline-block;
         transition: transform 0.2s;
       }
-
-      // .box {
-      //   right: 0;
-      //   width: 100%;
-      //   height: 100%;
-      //   top: 98%;
-      //   z-index: -1;
-      //   position: absolute;
-      //   background: #1f7251;
-      //   border: none;
-      // }
     }
 
     form {
+      padding: 18px 20px 48px;
+      // padding-right: 50px;
+      // padding-top: 18px;
+      min-height: 54px;
+      border-radius: 19px;
+      border: 1px solid hsl(var(--form-border-color));
+      background: hsl(var(--textInput));
       width: 100%;
       position: relative;
       display: flex;
       z-index: 5;
 
       .textInput {
+        max-height: 170px;
         border: none;
         outline: none;
-        padding: 20px;
-        padding-right: 50px;
-        padding-top: 18px;
         width: 100%;
-        height: 97px;
         background: hsl(var(--textInput));
         scrollbar-width: none;
         font-size: 16px;
         color: hsl(var(--text-color));
         text-align: left;
-        min-height: 54px;
-        border-radius: 19px;
-        border: 1px solid #434343;
         resize: none;
-      }
-      .textForm {
-        width: 100%;
 
-        form {
-          width: 100%;
-          position: relative;
-          display: flex;
-          z-index: 5;
-
-          .textInput {
-            border: none;
-            outline: none;
-            padding: 20px;
-            padding-right: 50px;
-            width: 100%;
-            height: 97px;
-            background: #2f2f2f;
-            border-radius: 20px;
-            resize: none;
-            font-size: 16px;
-            color: #fff;
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: #434343 #2f2f2f;
-
-            &::placeholder {
-              color: #b4b4b4;
-            }
-          }
-
-          .languageSwitcherButton {
-            position: absolute;
-            right: 15px;
-            top: 15px;
-            background: #2f2f2f00;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: 0.3s;
-            border-radius: 2px;
-            overflow: hidden;
-
-            img {
-              width: 30px;
-              height: 20px;
-
-              &:hover {
-                box-shadow: 0 0 5px 0 #434343;
-              }
-            }
-          }
-
-          .sendButton {
-            background: none;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
-          }
+        &::placeholder {
+          font-size: 14px;
+          color: hsl(var(--text-color));
         }
       }
 
@@ -258,30 +188,35 @@
         }
       }
 
-      .textInput.light {
-        border: 1px solid #e5e7eb;
-      }
-
-      .languageSwitcherButton {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        background: hsl(var(--grey-main));
-        border: none;
-        outline: none;
-        cursor: pointer;
+      .languageSwitcher {
         display: flex;
-        justify-content: center;
         align-items: center;
-        transition: 0.3s;
+        gap: 6px;
+        position: absolute;
 
-        img {
-          width: 30px;
-          height: 20px;
+        bottom: 18px;
 
-          &:hover {
-            box-shadow: 0 0 5px 0 #434343;
+        .languageSwitcherButton {
+          background: hsl(var(--grey-main));
+          border: none;
+          outline: none;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: 0.3s;
+          img {
+            width: 30px;
+            height: 20px;
+
+            &:hover {
+              box-shadow: 0 0 5px 0 #434343;
+            }
           }
+        }
+        .languageSwitcherText {
+          color: #b4b4b4;
+          font-size: 14px;
         }
       }
 
@@ -305,6 +240,12 @@
   .textForm.answer {
     border-radius: 20px 0 20px 20px;
     background: #1f7251;
+  }
+
+  .helperButtonsTitle {
+    color: hsl(var(--text-color));
+    font-size: 14px;
+    text-align: center;
   }
 
   .helperButtons {
@@ -392,6 +333,7 @@
   }
 
   .userMessage {
+    position: relative;
     white-space: pre-wrap;
     word-break: break-word;
     text-align: left;
@@ -401,6 +343,29 @@
     font-size: 16px;
     border-radius: 20px 20px 0 20px;
     letter-spacing: 0.6px;
+
+    .userMessageEdit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      transition: 0.3s all;
+      width: 30px;
+      opacity: 0;
+      position: absolute;
+      left: -30px;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+    &:hover {
+      .userMessageEdit {
+        opacity: 1;
+      }
+    }
   }
 
   .copyContainer {
@@ -679,11 +644,14 @@
     font-size: 26px;
     min-height: 40;
   }
+  .dashboardContentFunctionality .helperButtons {
+    gap: 8px;
+  }
 }
 
-@media screen and (max-width: 600px){
-  .dashboardContentFunctionality{
-    .contentHeader{
+@media screen and (max-width: 600px) {
+  .dashboardContentFunctionality {
+    .contentHeader {
       font-size: 26px;
       min-height: 40px;
     }

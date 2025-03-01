@@ -4,8 +4,10 @@
   height: 100dvh;
   background: hsl(var(--textInput));
   overflow: hidden auto;
+  scroll-behavior: smooth;
+  position: relative;
   scrollbar-width: thin;
-  scrollbar-color: #434343 #2f2f2f;
+  scrollbar-color: var(--scrollbar-color-first) var(--scrollbar-color-second);
   position: relative;
   margin-left: -300px;
   transition: 0.3s;
@@ -31,10 +33,21 @@
     button:hover {
       opacity: 0.5;
     }
+    .userDownMenuHeaderContent {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 6px;
+
+      .userDownMenuHeaderTitle {
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
   }
 
   .userDownMenuHeader.light {
-    border-bottom: 1px solid #E5E7EB ;
+    border-bottom: 1px solid #e5e7eb;
     & > button > img {
       filter: brightness(1) invert(1);
     }

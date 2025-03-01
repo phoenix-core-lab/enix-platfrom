@@ -4,9 +4,8 @@ import "./index.scss";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { useRouter } from "@/i18n/routing";
-import { CookiesProvider, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { useMainContext } from "@/providers/contextProvider";
-import axios from "axios";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 import LanguageSwitcher from "../LanguageSwitcher";
@@ -17,17 +16,18 @@ import {
   Lightbulb,
   ScanText,
   Images,
-  LogIn,
-  Languages,
-  User,
+  Mail,
+  LogOut,
 } from "lucide-react";
+import { featherText } from "@lucide/lab";
 import { planet } from "@lucide/lab";
 import ThemeToggle from "@/components/theme-toggle/theme-toggle";
+import ArtileCard from "@/components/ui/article-card";
 
 const MobileMenu = () => {
+  const router = useRouter();
   const t = useTranslations("Dashboard");
   const locale = useLocale();
-  const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(
     "secretToken",
     "isActiveUser",
@@ -41,7 +41,7 @@ const MobileMenu = () => {
     setActiveUser(cookies.isActiveUser);
   }, [cookies]);
   const [cookiesTheme] = useCookies(["theme"]);
-  const [theme, setTheme] = React.useState("dark"); // Значение по умолчанию
+  const [theme, setTheme] = React.useState("dark");
 
   React.useEffect(() => {
     setTheme(cookiesTheme.theme || "dark");
@@ -50,6 +50,7 @@ const MobileMenu = () => {
   React.useEffect(() => {
     document.body.classList.toggle("light", theme === "light");
   }, [theme]);
+  console.log(activeUser, "activeUSer");
 
   return (
     <div
@@ -60,7 +61,9 @@ const MobileMenu = () => {
         <div
           className={`userDownMenuHeader ${theme === "light" ? "light" : ""}`}
         >
-          <h3>{t("menu")}</h3>
+          <div className="userDownMenuHeaderWrapper">
+            <h3 className="userDownMenuHeaderLabel">{t("profile")}</h3>
+          </div>
 
           <button onClick={() => setOpenLogoMenu(!openLogoMenu)}>
             <Image
@@ -88,8 +91,6 @@ const MobileMenu = () => {
               />
             </div>
           </Link>
-          <LanguageSwitcher />
-          <ThemeToggle />
           <Link
             className={`sideBarLink ${theme === "light" ? "light" : ""}`}
             href={"https://enix.uz/"}
@@ -111,12 +112,6 @@ const MobileMenu = () => {
             href={"/questions"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
-            {/* <Image
-              src="/images/questions.svg"
-              alt="website"
-              width="25"
-              height="25"
-            /> */}
             <Lightbulb color="white" size={25} />
             <h3 className="sideBarLinkLabel">FAQ</h3>
             <div className="hoverEffectIcon">
@@ -128,6 +123,24 @@ const MobileMenu = () => {
               />
             </div>
           </Link>
+          <Link
+            className={`sideBarLink ${theme === "light" ? "light" : ""}`}
+            href={"/articles"}
+            onClick={() => setOpenLogoMenu(!openLogoMenu)}
+          >
+            <Icon iconNode={featherText} color="white" size={25} />
+            <h3 className="sideBarLinkLabel">{t("sideBar.articles")}</h3>
+            <div className="hoverEffectIcon">
+              <Image
+                src="/images/arrow-forward-circle.svg"
+                alt="website"
+                width="20"
+                height="20"
+              />
+            </div>
+          </Link>
+          <LanguageSwitcher />
+          <ThemeToggle />
           <div className="sidebarDivider"></div>
           <Link
             className={`sideBarLink ${theme === "light" ? "light" : ""}`}
@@ -162,27 +175,30 @@ const MobileMenu = () => {
             </div>
           </Link>
         </div>
+
         <div className="mobileMenuFunctions">
-          <div className="userInfo">
-            <div className="userIcon">
-              <User className="icon" />
-            </div>
-            <div>
-              <h3 className="userInfoTitle">Siriwat K.</h3>
-              <p className="userInfoText">+998-88-167-11-14</p>
-            </div>
+          <div className="grid col-1 gap-2">
+            <ArtileCard />
+            <ArtileCard />
+            <ArtileCard />
           </div>
-
           <div className="bottomWrapper">
-            <div className="planInfo">
-              <h3 className="planInfoTitle">Used space</h3>
-              <p className="planInfoText">
-                Your team has used 80% of your available space. Need more?
-              </p>
-              <button className="planUpgradeButton">Upgrade plan</button>
-            </div>
+            {!activeUser && (
+              <div className="planInfo">
+                <h3 className="planInfoTitle">Текущий план</h3>
+                <p className="planInfoText">
+                  Вы использовали 80% бесплатных сообщений. Нужно больше?
+                </p>
+                <button
+                  onClick={() => router.push("/prices")}
+                  className="planUpgradeButton"
+                >
+                  Расширить лимит
+                </button>
+              </div>
+            )}
 
-            <button
+            {/* <button
               className="mobileExitButton"
               title="Yangi so'rov yarating"
               onClick={() => {
@@ -192,7 +208,27 @@ const MobileMenu = () => {
             >
               {t("sideBar.exit")}
               <LogIn color="#ce3737" size={25} />
-            </button>
+            </button> */}
+            <div className="userInfo">
+              <div className="userInfoWrapper">
+                <div className="userIcon">
+                  <span className="spanIcon">SK</span>
+                </div>
+                <div>
+                  <h3 className="userInfoTitle">Siriwat K.</h3>
+                  <p className="userInfoText">+998-88-167-11-14</p>
+                </div>
+              </div>
+              <button
+                onClick={() => {
+                  removeCookie("secretToken");
+                  window.location.href = `${locale}/signin`;
+                }}
+                className="cursor-pointer w-8 h-8"
+              >
+                <LogOut className="text-text " size={20} />
+              </button>
+            </div>
           </div>
         </div>
       </div>

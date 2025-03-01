@@ -1,3 +1,4 @@
+import { hover } from "framer-motion";
 import { text } from "stream/consumers";
 import type { Config } from "tailwindcss";
 
@@ -12,9 +13,11 @@ export default {
     extend: {
       colors: {
         background: {
+          hover: "hsl(var(--hover-background))",
           DEFAULT: "hsl(var(--background))",
           main: "hsl(var(--main-background))",
           prices: "hsl(var(--prices-background))",
+          header: "hsl(var(--header-background))",
         },
         borderColor: {
           prices: "hsl(var(--border-color))",
@@ -23,7 +26,7 @@ export default {
         foreground: "hsl(var(--foreground))",
         textInput: "hsl(var(--textInput))",
         gap: {
-          '12': '3rem',
+          "12": "3rem",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
@@ -69,12 +72,12 @@ export default {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "8px",
+        md: "6px",
+        sm: "4px",
       },
       screens: {
-        xs: '320px', 
+        xs: "320px",
       },
     },
   },

@@ -10,6 +10,7 @@ import {
   Font,
   pdf,
 } from "@react-pdf/renderer";
+import { useCookies } from "react-cookie";
 
 interface DownloadButtonProps {
   text: string;
@@ -50,6 +51,16 @@ export const DownloadButton = ({
   setIsOpen,
 }: DownloadButtonProps) => {
   const t = useTranslations("Dashboard");
+  const [cookiesTheme] = useCookies(["theme"]);
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    setTheme(cookiesTheme.theme || "dark");
+  }, [cookiesTheme]);
+
+  useEffect(() => {
+    document.body.classList.toggle("light", theme === "light");
+  }, [theme]);
 
   const downloadTxt = () => {
     setIsOpen(false);
@@ -103,10 +114,10 @@ export const DownloadButton = ({
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/20"
+            className="fixed inset-0 bg-black/20 z-20"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute mt-1.5 w-44 bg-gray-800/95 rounded-[10px] shadow-lg border border-gray-700/50 overflow-hidden z-10">
+          <div className="absolute mt-1.5 w-44 bg-background-header rounded-[10px] shadow-lg border border-gray-700/50 overflow-hidden z-50">
             <div className="p-1">
               <button
                 onClick={downloadPdf}
