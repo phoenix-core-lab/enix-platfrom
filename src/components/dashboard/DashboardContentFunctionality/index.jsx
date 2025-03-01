@@ -612,10 +612,10 @@ const DashboardContentFunctionality = (props) => {
           initial={{ y: !showAnswer ? 0 : 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
-          className={`textForm ${showAnswer ? "answer" : ""} `}
+          className={`textForm ${showAnswer ? "answer" : ""}`}
         >
           {showAnswer && (
-            <button className="newchat">
+            <button className="newchat" onClick={() => router.push("/dasboard/text")}>
               <RefreshCw className="icon" />
               <span className="text">{t("newChat")}</span>
             </button>

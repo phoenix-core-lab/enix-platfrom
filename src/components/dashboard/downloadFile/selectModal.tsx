@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { FileText, FileIcon, X, BoxIcon } from "lucide-react";
+import React from "react";
+import { FileText, FileIcon, BoxIcon } from "lucide-react";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 import {
