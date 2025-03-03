@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { Sun, Moon } from 'lucide-react';

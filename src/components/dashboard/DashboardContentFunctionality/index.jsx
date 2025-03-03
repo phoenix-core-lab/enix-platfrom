@@ -708,7 +708,7 @@ const DashboardContentFunctionality = (props) => {
               </button>
               <p className="languageSwitcherText">
                 {language === "ru"
-                  ? "Ответи на Русском"
+                  ? "Ответит на Русском"
                   : language === "uz"
                   ? "Javoblar O'zbek tilida"
                   : "Answers in English"}

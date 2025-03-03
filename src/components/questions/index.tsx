@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import "./QuestionsContent.scss";
-import { ArrowLeft, ChevronDown, Minus, Plus } from "lucide-react";
+import { ArrowLeft, Minus, Plus } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 const QuestionsContent = () => {

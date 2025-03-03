@@ -1,5 +1,4 @@
 import { Product } from "@/app/[locale]/articles/page";
-import { Bookmark } from "lucide-react";
 import Image from "next/image";
 
 const ProductCard = ({

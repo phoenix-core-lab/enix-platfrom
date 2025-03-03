@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link, useRouter } from "@/i18n/routing";
+import { useRouter } from "@/i18n/routing";
 import Globe from "@/components/forms/Globe";
 import Image from "next/image";
 import LanguageSwitcher from "../dashboard/LanguageSwitcher";
@@ -21,7 +21,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import SmsCodeModal from "./smscode-modal";
-import { Eye, EyeOff, Phone } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 interface FormElements extends HTMLFormControlsCollection {
   passwordRepeat: HTMLInputElement;
   name: HTMLInputElement;

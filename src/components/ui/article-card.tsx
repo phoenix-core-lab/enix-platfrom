@@ -18,9 +18,9 @@ const ArtileCard = () => {
         <div className="text-xs font-medium text-text">Meeting Tomorrow</div>
       </div>
       <div className="line-clamp-2 text-xs text-muted-foreground">
-        Hi, let's have a meeting tomorrow to discuss the project. I've been
-        reviewing the project details and have some ideas I'd like to share.
-        It's crucial that we align on our next steps to ensure the project's
+        Hi, let&apos;s have a meeting tomorrow to discuss the project. I&apos;ve been
+        reviewing the project details and have some ideas I&apos;d like to share.
+        It&apos;s crucial that we align on our next steps to ensure the project&apos;s
         success. Please come prepared with any questions or insights you may
         have. Looking forward to
       </div>

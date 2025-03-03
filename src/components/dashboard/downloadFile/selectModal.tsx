@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FileText, FileIcon, BoxIcon } from "lucide-react";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
