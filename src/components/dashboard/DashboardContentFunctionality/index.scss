@@ -1,12 +1,12 @@
 .dashboardContentFunctionality {
   width: 100%;
-  max-width: 769px;
+  max-width: 900px;
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
 
   .contentHeader {
     width: 100%;
@@ -15,7 +15,7 @@
     font-weight: 600;
     color: hsl(var(--text-color));
     text-align: center;
-    min-height: 54px;
+    min-height: 42px;
   }
 
   .textForm {
@@ -633,7 +633,7 @@
 
   .dashboardContentFunctionality .chatField {
     max-height: calc(100dvh - 183px);
-    padding: 20px;
+    padding: 20px 0;
   }
 
   .dashboardContentFunctionality .copyItem {
