@@ -128,7 +128,7 @@ export const DownloadButton = ({
                 </div>
                 <div className="text-left flex-1 min-w-0">
                   <div className="text-[11px] font-medium text-gray-200 truncate">
-                    PDF File
+                    PDF 
                   </div>
                 </div>
               </button>
@@ -142,7 +142,7 @@ export const DownloadButton = ({
                 </div>
                 <div className="text-left flex-1 min-w-0">
                   <div className="text-[11px] font-medium text-gray-200 truncate">
-                    Word Document
+                    Word
                   </div>
                 </div>
               </button>
@@ -156,7 +156,7 @@ export const DownloadButton = ({
                 </div>
                 <div className="text-left flex-1 min-w-0">
                   <div className="text-[11px] font-medium text-gray-200 truncate">
-                    Text File
+                    Text
                   </div>
                 </div>
               </button>

@@ -429,6 +429,13 @@ const DashboardContentFunctionality = (props) => {
   const assistentSubmit = (role) => {
     role;
   };
+
+  const EditMessage = (message) => {
+    const form = document.getElementById("textFormModel");
+    const messageInput = form.elements["message"];
+    messageInput.value = message;
+  };
+
   return (
     <div className="dashboardContentFunctionality">
       <ToastContainer theme="dark" pauseOnHover={false} />
@@ -460,7 +467,10 @@ const DashboardContentFunctionality = (props) => {
                     className={item.from_user ? "userMessage" : "modelMessage"}
                   >
                     {item.from_user ? (
-                      <button className="userMessageEdit">
+                      <button
+                        onClick={EditMessage(item.message)}
+                        className="userMessageEdit"
+                      >
                         <Edit width={20} height={20} />
                       </button>
                     ) : null}
@@ -658,7 +668,10 @@ const DashboardContentFunctionality = (props) => {
           }`}
         >
           {showAnswer && (
-            <button className="newchat" onClick={() => router.push("/dasboard/text")}>
+            <button
+              className="newchat"
+              onClick={() => router.push("/dasboard/text")}
+            >
               <RefreshCw className="icon" />
               <span className="text">{t("newChat")}</span>
             </button>
@@ -708,10 +721,10 @@ const DashboardContentFunctionality = (props) => {
               </button>
               <p className="languageSwitcherText">
                 {language === "ru"
-                  ? "Ответит на Русском"
+                  ? "Ответ русский"
                   : language === "uz"
-                  ? "Javoblar O'zbek tilida"
-                  : "Answers in English"}
+                  ? "Javob o'zbekcha"
+                  : "Answer English"}
               </p>
             </div>
 

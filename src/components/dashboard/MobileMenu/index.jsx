@@ -226,7 +226,7 @@ const MobileMenu = () => {
                 }}
                 className="cursor-pointer w-8 h-8"
               >
-                <LogOut className="text-text " size={20} />
+                <LogOut color="#ce3737" className="text-text " size={20} />
               </button>
             </div>
           </div>

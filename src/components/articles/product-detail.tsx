@@ -23,7 +23,7 @@ const ProductDetails = ({
           alt={product.title}
           width={600}
           height={300}
-          className="rounded-lg object-cover"
+          className="rounded-lg w-full"
         />
         <div className="text-text flex items-center justify-between text-sm">
           <span>{product.author}</span>

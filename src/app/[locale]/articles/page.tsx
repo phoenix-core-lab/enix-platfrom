@@ -75,7 +75,7 @@ const products: Product[] = [
 ];
 
 export default function Page() {
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(products[0]);
   const t = useTranslations("Articles");
   const router = useRouter();
   return (

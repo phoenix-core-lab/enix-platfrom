@@ -343,8 +343,13 @@
     font-size: 16px;
     border-radius: 20px 20px 0 20px;
     letter-spacing: 0.6px;
+    margin-bottom: 25px;
 
     .userMessageEdit {
+      left: 10px;
+      top: calc(100% + 5px);
+      background: #2f2f2f;
+      border-radius: 8px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -355,7 +360,6 @@
       width: 30px;
       opacity: 0;
       position: absolute;
-      left: -30px;
 
       &:hover {
         opacity: 1;
