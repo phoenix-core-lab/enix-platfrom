@@ -92,7 +92,7 @@ export default function Page() {
           <h1 className="mb-6 text-center text-2xl font-bold text-text lg:text-3xl lg:mb-8">
             {t("title")}
           </h1>
-          <div className="relative flex flex-col lg:flex-row lg:gap-8">
+          <div className="relative flex flex-col lg:flex-row lg:gap-2">
             <div className="lg:w-1/2">
               <div className=" items-center gap-3 grid md:grid-cols-2 lg:grid-cols-1">
                 {products.map((product) => (

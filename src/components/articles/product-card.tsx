@@ -16,7 +16,7 @@ const ProductCard = ({
       className={`flex flex-col shadow-md cursor-pointer gap-4 rounded-lg  bg-textInput p-4  lg:flex-row
           ${
             isSelected
-              ? "ring-2 ring-secondary ring-offset-2 border-none "
+              ? "ring-secondary ring-offset-2 border-none "
               : "hover:border-primary"
           }`}
     >

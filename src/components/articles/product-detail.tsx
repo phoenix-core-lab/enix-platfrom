@@ -10,7 +10,7 @@ const ProductDetails = ({
   onClose: () => void;
 }) => {
   return (
-    <div className="rounded-lg bg-transparent p-6">
+    <div className="rounded-lg bg-transparent p-4">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-2xl font-bold text-text">{product.title}</h2>
         <button onClick={onClose} className="lg:hidden">

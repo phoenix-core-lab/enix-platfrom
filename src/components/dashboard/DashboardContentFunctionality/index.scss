@@ -346,14 +346,14 @@
     margin-bottom: 25px;
 
     .userMessageEdit {
-      left: 10px;
-      top: calc(100% + 5px);
+      left: -35px;
+      top: 100%;
+      transform: translateY(-100%);
       background: #2f2f2f;
       border-radius: 8px;
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 30px;
       height: 30px;
       cursor: pointer;
       transition: 0.3s all;

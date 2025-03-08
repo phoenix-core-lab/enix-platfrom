@@ -430,12 +430,6 @@ const DashboardContentFunctionality = (props) => {
     role;
   };
 
-  const EditMessage = (message) => {
-    const form = document.getElementById("textFormModel");
-    const messageInput = form.elements["message"];
-    messageInput.value = message;
-  };
-
   return (
     <div className="dashboardContentFunctionality">
       <ToastContainer theme="dark" pauseOnHover={false} />
@@ -468,10 +462,10 @@ const DashboardContentFunctionality = (props) => {
                   >
                     {item.from_user ? (
                       <button
-                        onClick={EditMessage(item.message)}
+                        onClick={() => setMessage(item.message)}
                         className="userMessageEdit"
                       >
-                        <Edit width={20} height={20} />
+                        <Edit width={15} height={15} />
                       </button>
                     ) : null}
                     {item.from_user ? (
